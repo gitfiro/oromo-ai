@@ -1,0 +1,11 @@
+[project]
+name = "oromo-ai"
+version = "0.1.0"
+description = "Open AI research infrastructure for Afaan Oromoo"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = []
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
