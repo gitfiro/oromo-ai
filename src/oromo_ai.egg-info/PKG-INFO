@@ -1,8 +1,0 @@
-Metadata-Version: 2.4
-Name: oromo-ai
-Version: 0.1.0
-Summary: Open AI research infrastructure for Afaan Oromoo
-Requires-Python: <3.13,>=3.12
-Description-Content-Type: text/markdown
-License-File: LICENSE
-Dynamic: license-file
