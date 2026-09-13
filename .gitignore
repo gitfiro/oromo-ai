@@ -1,1 +1,13 @@
 *.egg-info/
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Local corpus data
+data/raw/
+data/processed/
+data/manifests/
+data/instruction/
+data/parallel/
+data/evaluation/
