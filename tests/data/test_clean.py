@@ -130,3 +130,62 @@ def test_empty_after_cleaning():
     result = clean_text(text)
 
     assert result == ""
+
+
+def test_legitimate_read_more_about_is_preserved():
+    text = (
+        "Read more about Mitikkuu Maddaa fi Alamaayyoo "
+        "Xilaahuniin."
+    )
+
+    result = clean_text(text)
+
+    assert result == text
+
+
+def test_bracketed_read_more_before_content_is_removed():
+    text = "WBO Jecha [Read More] The post barruu kanaa."
+
+    result = clean_text(text)
+
+    assert "[Read More]" not in result
+    assert "WBO Jecha" in result
+    assert "The post barruu kanaa." in result
+
+
+def test_read_more_at_end_is_removed():
+    text = "Afaan Oromoo ni baranna. Read More"
+
+    result = clean_text(text)
+
+    assert result == "Afaan Oromoo ni baranna."
+
+
+def test_read_more_symbol_at_end_is_removed():
+    text = "Afaan Oromoo ni baranna. Read More »"
+
+    result = clean_text(text)
+
+    assert result == "Afaan Oromoo ni baranna."
+
+
+def test_readmore_at_end_is_removed():
+    text = "Afaan Oromoo ni baranna. ReadMore"
+
+    result = clean_text(text)
+
+    assert result == "Afaan Oromoo ni baranna."
+
+def test_wordpress_post_wrapper_removed():
+    text = (
+        "WBO Jecha [Read More] "
+        "The post Walaloo Ajaa ibaa Waraana Bilisummaa Oromootiif "
+        "Lataa Qana ii Aagaatiin Must watch appeared first on ."
+    )
+
+    result = clean_text(text)
+
+    assert "WBO Jecha" in result
+    assert "Walaloo Ajaa ibaa" in result
+    assert "The post" not in result
+    assert "appeared first on" not in result

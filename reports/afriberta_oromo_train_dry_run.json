@@ -1,0 +1,356 @@
+{
+  "audit_category_counts": {
+    "base64_or_data_uri": 1,
+    "cms_or_social_metadata": 170,
+    "genomic_or_biological_sequence": 14,
+    "html_or_markup": 27,
+    "no_suspicion_detected": 410086,
+    "repetition_artifact": 156,
+    "table_or_numeric_extraction": 236,
+    "technical_or_code_payload": 2,
+    "url_or_web_payload": 170
+  },
+  "change_rate": 0.000642584357452153,
+  "changed_records": 264,
+  "character_reduction_rate": 9.729348162744473e-05,
+  "characters_removed": 5087,
+  "clean_reason_counts": {
+    "cms_or_social_metadata": 169,
+    "html_or_markup": 27,
+    "url_or_web_payload": 164
+  },
+  "decision_counts": {
+    "CLEAN": 360,
+    "KEEP": 409916,
+    "REJECT": 565
+  },
+  "dry_run_version": "0.1.0",
+  "empty_after_cleaning": 0,
+  "environment": {
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "python": "3.12.14 (main, Sep  1 2026, 14:16:52) [Clang 22.1.3 ]"
+  },
+  "examples": {
+    "CLEAN": [
+      {
+        "after": "December 22, 2017 Mariin Dhimma Dantaa Addaa Oromiyaan Finfinnee Irraa Argachuu Qabdu Irratti, Guyyaa Hardhaa Hawaasa Waliin Geggeeffamuuf Ture, Yeroo Hin Beekkamnetti dabarfame.",
+        "before": "December 22, 2017 Comments Off on Mariin Dhimma Dantaa Addaa Oromiyaan Finfinnee Irraa Argachuu Qabdu Irratti, Guyyaa Hardhaa Hawaasa Waliin Geggeeffamuuf Ture, Yeroo Hin Beekkamnetti dabarfame.",
+        "decision": "CLEAN",
+        "line_number": 704,
+        "reason": "cms_or_social_metadata"
+      },
+      {
+        "after": "Oromummaa fi Finfinnee – via OBN Kutaa 1ffaa:",
+        "before": "Oromummaa fi Finfinnee – via OBN Kutaa 1ffaa: [embedyt] https://www.",
+        "decision": "CLEAN",
+        "line_number": 938,
+        "reason": "url_or_web_payload"
+      },
+      {
+        "after": "Author bekakedirPosted on January 2, 2018 Leave a comment on KOMIISHINII BULCHIINSA MANNEEN SIRREESSAA OROMIYAA———————————————————Kutaa 1ffaa————-Ergaa kana Qilleensa irra akka nuuf olchituuf yeroo siif erginu dhugaa dubbachuuf imimmaan buusaadha kan siif barreessinu.",
+        "before": "Author bekakedirPosted on January 2, 2018 Leave a comment on KOMIISHINII BULCHIINSA MANNEEN SIRREESSAA OROMIYAA———————————————————Kutaa 1ffaa————-Ergaa kana Qilleensa irra akka nuuf olchituuf yeroo siif erginu dhugaa dubbachuuf imimmaan buusaadha kan siif barreessinu.",
+        "decision": "CLEAN",
+        "line_number": 2756,
+        "reason": "cms_or_social_metadata"
+      },
+      {
+        "after": "WBO Jecha Walaloo Ajaa ibaa Waraana Bilisummaa Oromootiif Lataa Qana ii Aagaatiin Must watch",
+        "before": "WBO Jecha [Read More] The post Walaloo Ajaa ibaa Waraana Bilisummaa Oromootiif Lataa Qana ii Aagaatiin Must watch appeared first on .",
+        "decision": "CLEAN",
+        "line_number": 3867,
+        "reason": "cms_or_social_metadata"
+      },
+      {
+        "after": "The quote was an English translation the author provides from the Afaan Oromoo (Oromo language) version, which runs:“Gurraacha garaa garbaa, leemmoo garaa taliilaa, tokkicha maqaa dhibbaa, guddicha hiriyaa hinqabne, kan waan hundaa beeku, kan waan hundaa gochuu danda’u, kan bakka maraa jiru, kan hinkufine, kan hinduuneefi kan hincabne.",
+        "before": "The quote was an English translation the author provides from the Afaan Oromoo (Oromo language) version, which runs:“Gurraacha garaa garbaa, leemmoo garaa taliilaa, tokkicha maqaa dhibbaa, guddicha hiriyaa hinqabne, kan waan hundaa beeku, kan waan hundaa gochuu danda’u, kan bakka maraa jiru, kan hinkufine, kan hinduuneefi kan hincabne.",
+        "decision": "CLEAN",
+        "line_number": 4631,
+        "reason": "cms_or_social_metadata"
+      },
+      {
+        "after": "Haalli Yuniversitii Jimmaa keessa jiru daran yaadessadha –",
+        "before": "Haalli Yuniversitii Jimmaa keessa jiru daran yaadessadha – https://t.",
+        "decision": "CLEAN",
+        "line_number": 6009,
+        "reason": "url_or_web_payload"
+      },
+      {
+        "after": "October 12, 2017 Gaachana Sabaa Akkaataa wayyaaneen liyyuu polisiidhaan milkoofte beektuu?",
+        "before": "October 12, 2017 Gaachana Sabaa Comments Off on Akkaataa wayyaaneen liyyuu polisiidhaan milkoofte beektuu?",
+        "decision": "CLEAN",
+        "line_number": 7593,
+        "reason": "cms_or_social_metadata"
+      },
+      {
+        "after": "San booda namoota seeraan ala nama deddeegisan gara",
+        "before": "San booda namoota seeraan ala nama deddeegisan gara http://dpwebspace.",
+        "decision": "CLEAN",
+        "line_number": 8218,
+        "reason": "url_or_web_payload"
+      },
+      {
+        "after": "Dabalataan ammoo, barreeffamni biraas kan Luuccee Gurmuutiin Afaan Ingiliziitiin dhiyaate “A Better Alternative for the Oromo: Independent State of Oromia”",
+        "before": "Dabalataan ammoo, barreeffamni biraas kan Luuccee Gurmuutiin Afaan Ingiliziitiin dhiyaate “A Better Alternative for the Oromo: Independent State of Oromia” http://ayyaantuu.",
+        "decision": "CLEAN",
+        "line_number": 8634,
+        "reason": "url_or_web_payload"
+      },
+      {
+        "after": "Tumsa Duulaa Waraanaa Itophiyaa fi Keenyaan yaadamaa jiru ilaalchisee Ibsa ABO / Continue reading →",
+        "before": "Comments Off on Tumsa Duulaa Waraanaa Itophiyaa fi Keenyaan yaadamaa jiru ilaalchisee Ibsa ABO / Continue reading →",
+        "decision": "CLEAN",
+        "line_number": 9298,
+        "reason": "cms_or_social_metadata"
+      }
+    ],
+    "EMPTY_AFTER_CLEANING": [],
+    "KEEP": [
+      {
+        "after": "Inni kaleessa Moyaaleetti raaw’atame caalaatti suukanneessaa haa tahu malee Mootummaan Itoophiyaa erga maqaa Labsii Yeroo Muddamaa/State of Emergency jedhuun Ummata Oromoo fi Oromiyaa irratti labsii lolaa haaromsee jalqabee Naqamte, Dambi Doolloo, Ambo, Awwadaay, Gudar, Jimmaa fi walumaagala guutuu Oromiyaa keessatti Ummata nagaa (meesha-maleeyyii) badii tokko malee haala suukanneessaa taheen ajjeesuutti akka jiru marsaaleen sab-qunnamtii hawaasaa fi miidiyaaleen Addunyaa hedduun guyya-guyyaan gabaasaa jiru.",
+        "before": "Inni kaleessa Moyaaleetti raaw’atame caalaatti suukanneessaa haa tahu malee Mootummaan Itoophiyaa erga maqaa Labsii Yeroo Muddamaa/State of Emergency jedhuun Ummata Oromoo fi Oromiyaa irratti labsii lolaa haaromsee jalqabee Naqamte, Dambi Doolloo, Ambo, Awwadaay, Gudar, Jimmaa fi walumaagala guutuu Oromiyaa keessatti Ummata nagaa (meesha-maleeyyii) badii tokko malee haala suukanneessaa taheen ajjeesuutti akka jiru marsaaleen sab-qunnamtii hawaasaa fi miidiyaaleen Addunyaa hedduun guyya-guyyaan gabaasaa jiru.",
+        "decision": "KEEP",
+        "line_number": 1,
+        "reason": "no_rejection_signal"
+      },
+      {
+        "after": "Jechoonni oomisha Shiraa keessaa kallattiin waarshaa Wayyaanee keessaa baafamani torbanoota darban kana balballoomaa turan “injifannoo arganne tikfanna, Dr.",
+        "before": "Jechoonni oomisha Shiraa keessaa kallattiin waarshaa Wayyaanee keessaa baafamani torbanoota darban kana balballoomaa turan “injifannoo arganne tikfanna, Dr.",
+        "decision": "KEEP",
+        "line_number": 2,
+        "reason": "no_rejection_signal"
+      },
+      {
+        "after": "jabadhuu qomoo koo nutuu waliif jiraa",
+        "before": "jabadhuu qomoo koo nutuu waliif jiraa",
+        "decision": "KEEP",
+        "line_number": 3,
+        "reason": "no_rejection_signal"
+      },
+      {
+        "after": "Yeroo haleellaan kun raawwatametti,Hogganaa Paartii mormituu ” Jamiat-e-Islami” fi Bulchaa Kutaa Balkh kan tahe Atta Muhammad Nuur, Hoteela kana keessatti walgahii siyaasaa irra akka ture gabaasni kun ni ibsa.",
+        "before": "Yeroo haleellaan kun raawwatametti,Hogganaa Paartii mormituu ” Jamiat-e-Islami” fi Bulchaa Kutaa Balkh kan tahe Atta Muhammad Nuur, Hoteela kana keessatti walgahii siyaasaa irra akka ture gabaasni kun ni ibsa.",
+        "decision": "KEEP",
+        "line_number": 4,
+        "reason": "no_rejection_signal"
+      },
+      {
+        "after": "''Yakki isaanii kan beekamuu fi kan uummatni shakkee saaxileen alatti tarkaanfiin akka hin fudhatamne kallattiin ifa ta'e kennameeti kan hojjetamaa jiru'' jedhan.",
+        "before": "''Yakki isaanii kan beekamuu fi kan uummatni shakkee saaxileen alatti tarkaanfiin akka hin fudhatamne kallattiin ifa ta'e kennameeti kan hojjetamaa jiru'' jedhan.",
+        "decision": "KEEP",
+        "line_number": 5,
+        "reason": "no_rejection_signal"
+      },
+      {
+        "after": "Teewoodroos uummata Oromoorratti nama garajabbuummaan duguuggaa raawwataa turedha.",
+        "before": "Teewoodroos uummata Oromoorratti nama garajabbuummaan duguuggaa raawwataa turedha.",
+        "decision": "KEEP",
+        "line_number": 6,
+        "reason": "no_rejection_signal"
+      },
+      {
+        "after": "2015 ayyaana Irreechaa jila Oromoo Guddaa irratti akka argamuu qabu walii dhaamee xiiqeffannoo guddaan amantaan utuu wal hinqoodin magaalaa Bishooftuutti argame.",
+        "before": "2015 ayyaana Irreechaa jila Oromoo Guddaa irratti akka argamuu qabu walii dhaamee xiiqeffannoo guddaan amantaan utuu wal hinqoodin magaalaa Bishooftuutti argame.",
+        "decision": "KEEP",
+        "line_number": 7,
+        "reason": "no_rejection_signal"
+      },
+      {
+        "after": "Hiikaa suuraalee gaggabaabaa qur’aanaa irraa(tabaarak fi ammaa)",
+        "before": "Hiikaa suuraalee gaggabaabaa qur’aanaa irraa(tabaarak fi ammaa)",
+        "decision": "KEEP",
+        "line_number": 8,
+        "reason": "no_rejection_signal"
+      },
+      {
+        "after": "Yeroo sannitti, daqiiqaa dhumaatti, waan bade sirreessuun waan akka laayyootti ta’uu miti.",
+        "before": "Yeroo sannitti, daqiiqaa dhumaatti, waan bade sirreessuun waan akka laayyootti ta’uu miti.",
+        "decision": "KEEP",
+        "line_number": 9,
+        "reason": "no_rejection_signal"
+      },
+      {
+        "after": "Dhala namaa lammii kiyya jedhan irratti hammeenyi kun maaf",
+        "before": "Dhala namaa lammii kiyya jedhan irratti hammeenyi kun maaf",
+        "decision": "KEEP",
+        "line_number": 10,
+        "reason": "no_rejection_signal"
+      }
+    ],
+    "PATHOLOGICAL_REPETITION": [
+      {
+        "after": "#follow @omprakash5147 ---------------------------------- #follow @model__of__rajasthan ———————————————- #model__of__rajasthan #choudharyswag #royalseervi #rajasthani_style #rajasthaniattitude #rajasthan #royalrajasthani #dslrlover #photography #rajasthanistyle #@rajasthani_style #@shootout_boys_nd_girls___ #posemaker #rajasthaniswag #marwadistyle #rajasthanicul ture #rajasthanicoolpic #lovepic #instagood #tbt #cool #cute #beautiful #Followme #rajasthanitharka #modal_of_rajasthan #rajasthanichora #thanx_for_follow ❤🙏🏻",
+        "before": "#follow @omprakash5147 ---------------------------------- #follow @model__of__rajasthan ———————————————- #model__of__rajasthan #choudharyswag #royalseervi #rajasthani_style #rajasthaniattitude #rajasthan #royalrajasthani #dslrlover #photography #rajasthanistyle #@rajasthani_style #@shootout_boys_nd_girls___ #posemaker #rajasthaniswag #marwadistyle #rajasthanicul ture #rajasthanicoolpic #lovepic #instagood #tbt #cool #cute #beautiful #Followme #rajasthanitharka #modal_of_rajasthan #rajasthanichora #thanx_for_follow ❤🙏🏻",
+        "decision": "REJECT",
+        "line_number": 4224,
+        "reason": "repetition_signal"
+      },
+      {
+        "after": "Oromo Federalist Congress December 20 ============ WAAMICHA KFO/OFC UUMMATA BIYYA-ALAATIIF!",
+        "before": "Oromo Federalist Congress December 20 ============ WAAMICHA KFO/OFC UUMMATA BIYYA-ALAATIIF!",
+        "decision": "KEEP",
+        "line_number": 9227,
+        "reason": "repetition_signal"
+      },
+      {
+        "after": "___________guyyaa har’aa, Caffee kana duratti ykn Koree",
+        "before": "___________guyyaa har’aa, Caffee kana duratti ykn Koree",
+        "decision": "KEEP",
+        "line_number": 16737,
+        "reason": "repetition_signal"
+      },
+      {
+        "after": "Respuesta: 7E8 03 41 0D 32 aa aa aa aa aa",
+        "before": "Respuesta: 7E8 03 41 0D 32 aa aa aa aa aa",
+        "decision": "KEEP",
+        "line_number": 17727,
+        "reason": "repetition_signal"
+      },
+      {
+        "after": "40 p-umc124 DNA Probe umc124b(chk) BBBBABBABBABBABABBAAAA--A--BBBBBABBABABBAABBABAABBABBBABAAABAABBABBAAAAAAABA-ABBB----------BBBBAAABBBBABBBABBBBBABBBABB-BBB-A-BBABB---------------BAABBABBBAABBABAA-ABBAB-AA-BBABBBABA-BBABB-BBBABABBBB-BBBBBABBBABBABBABAB-BAAA-BBBBBB-BABBBBBBABBABBABBAAAABAABBBAA---AABBB-BA-BBBBBAABABAA---A-B-BBAA-BAA-A",
+        "before": "40 p-umc124 DNA Probe umc124b(chk) BBBBABBABBABBABABBAAAA--A--BBBBBABBABABBAABBABAABBABBBABAAABAABBABBAAAAAAABA-ABBB----------BBBBAAABBBBABBBABBBBBABBBABB-BBB-A-BBABB---------------BAABBABBBAABBABAA-ABBAB-AA-BBABBBABA-BBABB-BBBABABBBB-BBBBBABBBABBABBABAB-BAAA-BBBBBB-BABBBBBBABBABBABBAAAABAABBBAA---AABBB-BA-BBBBBAABABAA---A-B-BBAA-BAA-A",
+        "decision": "REJECT",
+        "line_number": 17872,
+        "reason": "repetition_signal"
+      },
+      {
+        "after": "Ta ta ta ta ta fa, Co - pr - u s-a- du- na",
+        "before": "Ta ta ta ta ta fa, Co - pr - u s-a- du- na",
+        "decision": "KEEP",
+        "line_number": 20717,
+        "reason": "repetition_signal"
+      },
+      {
+        "after": "tTi A Jst\"II 4tittf Ti A A A A A flWI' 4 yff",
+        "before": "tTi A Jst\"II 4tittf Ti A A A A A flWI' 4 yff",
+        "decision": "KEEP",
+        "line_number": 25342,
+        "reason": "repetition_signal"
+      },
+      {
+        "after": "Via: Tulluu Caalii ==================== Mootummaan Dr Abiyyi gama tokkoon waan fudhatama(legitimacy) argate haa fakkaatu malee gama kaaniin gaaffiilee gurguddaatu itti dhihaachaa jira.",
+        "before": "Via: Tulluu Caalii ==================== Mootummaan Dr Abiyyi gama tokkoon waan fudhatama(legitimacy) argate haa fakkaatu malee gama kaaniin gaaffiilee gurguddaatu itti dhihaachaa jira.",
+        "decision": "KEEP",
+        "line_number": 28997,
+        "reason": "repetition_signal"
+      },
+      {
+        "after": "Ummu Ammaaraa ================= Tiwiitarii fayyadamuu bardaadduu?",
+        "before": "Ummu Ammaaraa ================= Tiwiitarii fayyadamuu bardaadduu?",
+        "decision": "KEEP",
+        "line_number": 32745,
+        "reason": "repetition_signal"
+      },
+      {
+        "after": "_ ture,   _   _      _       _       _       _       _       _        _        _",
+        "before": "_ ture,   _   _      _       _       _       _       _       _        _        _",
+        "decision": "REJECT",
+        "line_number": 36012,
+        "reason": "repetition_signal"
+      }
+    ],
+    "REJECT": [
+      {
+        "after": null,
+        "before": "30 p-mmpP1A11 DNA Probe mmp169 ABAAABBA-A-ABABBBABAAABBA-BBBAABBBA-BA-BBBBBBAAA-BB-BAAABBBABAB-AAB-A-ABBB--AAB--BB-AB-A--ABAAB-B-B----A---A-AAAAAA-BAAABAAAABABABAAABABBBBAAAAAAABABBAABBAAAABAABABBAAA-BAAAABAAAAAABAB-AABABABAABBAAAAAABABBBAABBBAAABBAAAAABAAAABB-ABABBABABBBAAAAABB-AAABBAAAABABBAAAABBAABB-ABBBAA-AAABAAABBA-A-AAAAB--B-",
+        "decision": "REJECT",
+        "line_number": 55,
+        "reason": "scientific_or_genomic_payload"
+      },
+      {
+        "after": null,
+        "before": "90 p-psr129 genomic DNA psr129b BAABABB-AAAABABA-AAAABBBAB----ABABBA-AAABAAAAABBAABABBA--A-BBBBAAABBAABAB-B----BBB-AB-AB-A-----BBBAA------BA-ABBABA---B-AABABABAABB-BBBAABA-A-BBAAB-A-BBBA-BABAAB-BB--AAA-BABBBBAABAABBAAABBBBABAAB----BAAABAA-ABBABAAB-ABBABB-AAAABBBA-BABBAA-BBBABBA-A-B-ABBABAABABBABB-AABBAABBAAAAABBAA-AAA-BBA-AA-BAA-AAA",
+        "decision": "REJECT",
+        "line_number": 92,
+        "reason": "scientific_or_genomic_payload"
+      },
+      {
+        "after": null,
+        "before": "90 p-ufgSK-2A9 genomic DNA ufg44 BBABABABB-BBA-BAABBAB-AB-A--B-BBABBB-BBBAA--AAAA-BBB-A-AABAAAABABABBABABBB-BBBABBBABAABA-ABABBA-B-A--B-ABBBA-BABBAABBBBBBBABAABAABABBBAABAAAABBBABBABBBABBABBBABABAABBAABBBBBABBAABBAABBABBAABBBABBABABABBBBAAABBABAAABAABBABABABABBABBABBBBBAAAABABBBABAB-ABBABBBAAABBBBBABABB-BBBABBB-BBA-BBBB-BAB-AABAA-ABA",
+        "decision": "REJECT",
+        "line_number": 486,
+        "reason": "scientific_or_genomic_payload"
+      },
+      {
+        "after": null,
+        "before": "30 p-mmpP5A03 genomic DNA mmp125 ABBBABA-A-AABABAABBAAAABBA-ABABABBAAAABABBBBAABBB-BBABAABB-BABBABBBBA-BAAB-AAAAB-BA-ABAB--BBAAA---B--B-------BABABABBBAABB-ABAABABBBAABBBAAAABBB-ABBAA--A-A----ABABBABB--BBAABABAABBAABBAABAA-ABBBABBAABAAAAABABBBBAABABBABBAAAAABBAABAABBBBBBABBBBBAABAABAAABABAABBAAAABABAAABAAABAAAB-BAB--BBABAB--BBBBA-AAB",
+        "decision": "REJECT",
+        "line_number": 2092,
+        "reason": "scientific_or_genomic_payload"
+      },
+      {
+        "after": null,
+        "before": "302  164 B A  H 3<5S+     0   0    0  673   27                   A                            A AA",
+        "decision": "REJECT",
+        "line_number": 2602,
+        "reason": "obvious_extraction_garbage"
+      },
+      {
+        "after": null,
+        "before": "30 p-umc2291 PCR - SSR umc2291 AABAAAABAABABAAABABAB-BABAA-BBBBABBBBAABA---ABBB-A-BBBBAAAAAAABAAABAAAABA-BAABBABBBBBABBBAAABB-B-AABAABABAA--BBABBA---BB-A-B-BBABBABBAAAAABBA-ABBABBBBABABBABAAABAAABB--BBB-BABABBAAABBABABBBBAAAAABAAA-AA-BBA-BBABABAAAAAAABA-ABABAABAAAAABAABAAB-B-A-BBABABAAABBAA-AAAAABBA-AAABBBBABBABA-AAAAAA-AABABAABABB",
+        "decision": "REJECT",
+        "line_number": 2858,
+        "reason": "scientific_or_genomic_payload"
+      },
+      {
+        "after": null,
+        "before": "#follow @omprakash5147 ---------------------------------- #follow @model__of__rajasthan ———————————————- #model__of__rajasthan #choudharyswag #royalseervi #rajasthani_style #rajasthaniattitude #rajasthan #royalrajasthani #dslrlover #photography #rajasthanistyle #@rajasthani_style #@shootout_boys_nd_girls___ #posemaker #rajasthaniswag #marwadistyle #rajasthanicul ture #rajasthanicoolpic #lovepic #instagood #tbt #cool #cute #beautiful #Followme #rajasthanitharka #modal_of_rajasthan #rajasthanichora #thanx_for_follow ❤🙏🏻",
+        "decision": "REJECT",
+        "line_number": 4224,
+        "reason": "social_media_spam"
+      },
+      {
+        "after": null,
+        "before": "\\\\  Akka   /         \\\\         /         \\\\         /    B  o \\\\         /    C  o \\\\",
+        "decision": "REJECT",
+        "line_number": 5597,
+        "reason": "obvious_extraction_garbage"
+      },
+      {
+        "after": null,
+        "before": "17     AABABAABA      --            --             --            --",
+        "decision": "REJECT",
+        "line_number": 5931,
+        "reason": "obvious_extraction_garbage"
+      },
+      {
+        "after": null,
+        "before": "( u ti \" { i : \\\\ t .",
+        "decision": "REJECT",
+        "line_number": 6122,
+        "reason": "obvious_extraction_garbage"
+      }
+    ]
+  },
+  "input_characters": 52285106,
+  "input_records": 410841,
+  "non_destructive": true,
+  "output_corpus_written": false,
+  "pathological_repetition": 156,
+  "post_clean_characters": 52280019,
+  "reason_counts": {
+    "base64_or_data_uri": 1,
+    "cms_or_social_metadata": 169,
+    "html_or_markup": 27,
+    "no_rejection_signal": 409583,
+    "numeric_or_table_signal_not_sufficient_for_rejection": 215,
+    "obvious_extraction_garbage": 111,
+    "repetition_reviewed_preserve_by_default": 118,
+    "scientific_or_genomic_payload": 308,
+    "social_media_spam": 144,
+    "technical_or_code_payload": 1,
+    "url_or_web_payload": 170
+  },
+  "reject_reason_counts": {
+    "base64_or_data_uri": 1,
+    "obvious_extraction_garbage": 111,
+    "scientific_or_genomic_payload": 308,
+    "social_media_spam": 144,
+    "technical_or_code_payload": 1
+  },
+  "source": {
+    "path": "data/raw/afriberta_oromo/train/train.txt"
+  },
+  "source_modified": false,
+  "timestamp_utc": "2026-09-17T23:44:33.299424+00:00",
+  "unchanged_clean_decisions": 96
+}

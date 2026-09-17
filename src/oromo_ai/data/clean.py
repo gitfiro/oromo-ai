@@ -10,8 +10,16 @@ import unicodedata
 # Patterns
 # ---------------------------------------------------------------------------
 
-_READ_MORE_RE = re.compile(
-    r"(?i)(?<!\w)(?:\[?\s*read\s*more\s*\]?)(?!\w)"
+_BRACKETED_READ_MORE_RE = re.compile(
+    r"(?i)\[\s*read\s*more\s*\]"
+)
+
+_READ_MORE_END_RE = re.compile(
+    r"(?i)(?<!\w)read\s*more(?:\s*[»]+)?\s*$"
+)
+
+_READ_MORE_END_COMPACT_RE = re.compile(
+    r"(?i)(?<!\w)readmore(?:\s*[»]+)?\s*$"
 )
 
 _EMBED_MARKER_RE = re.compile(
@@ -27,7 +35,11 @@ _URL_RE = re.compile(
 )
 
 _CMS_BOILERPLATE_RE = re.compile(
-    r"(?i)(?<!\w)comments\s+off(?!\w)"
+    r"(?i)(?<!\w)comments\s+off(?:\s+on)?(?!\w)"
+)
+
+_CMS_POST_WRAPPER_RE = re.compile(
+    r"(?is)(?<!\w)the\s+post\s+(?P<content>.+?)\s+appeared\s+first\s+on\s+\.*\s*$"
 )
 
 _WHITESPACE_RE = re.compile(r"\s+")
@@ -62,7 +74,18 @@ def remove_read_more(text: str) -> str:
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    cleaned = _READ_MORE_RE.sub("", text)
+    cleaned = _BRACKETED_READ_MORE_RE.sub("", text)
+
+    # Remove standalone "Read More" immediately before a URL.
+    cleaned = re.sub(
+        r"(?i)(?<!\w)read\s*more(?=\s+https?://)",
+        "",
+        cleaned,
+    )
+
+    cleaned = _READ_MORE_END_RE.sub("", cleaned)
+    cleaned = _READ_MORE_END_COMPACT_RE.sub("", cleaned)
+
     return cleaned.rstrip()
 
 
@@ -91,11 +114,12 @@ def remove_urls(text: str) -> str:
 
 
 def remove_cms_boilerplate(text: str) -> str:
-    """Remove clearly identifiable CMS boilerplate."""
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    return _CMS_BOILERPLATE_RE.sub("", text)
+    cleaned = _CMS_BOILERPLATE_RE.sub("", text)
+    cleaned = _CMS_POST_WRAPPER_RE.sub(r"\g<content>", cleaned)
+    return cleaned
 
 
 # ---------------------------------------------------------------------------
