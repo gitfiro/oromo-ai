@@ -190,7 +190,7 @@ def _looks_like_technical_payload(text: str) -> bool:
     return any(signal in text for signal in code_signals)
 
 
-def _looks_like_repetition_artifact(text: str) -> bool:
+def looks_like_repetition_artifact(text: str) -> bool:
     """Detect repetition only when the pattern is structurally suspicious."""
     if _REPEATED_TOKEN_SEQUENCE_RE.search(text):
         return True
@@ -237,7 +237,7 @@ def classify_record(text: str) -> list[str]:
     if _CMS_METADATA_RE.search(text):
         categories.append("cms_or_social_metadata")
 
-    if _looks_like_repetition_artifact(text):
+    if looks_like_repetition_artifact(text):
         categories.append("repetition_artifact")
 
     if not categories:
@@ -411,3 +411,7 @@ if __name__ == "__main__":
 
     print()
     print(f"Audit report written to: {output_path}")
+
+
+# Backward-compatible private alias. New code should use the public helper.
+_looks_like_repetition_artifact = looks_like_repetition_artifact
