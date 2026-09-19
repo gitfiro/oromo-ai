@@ -153,9 +153,11 @@ This ordering is deliberate.
 | Production corpus processing | ✅ Completed       |
 | v0.1.2 validation            | ✅ Passed          |
 | Corpus statistics            | ✅ Generated       |
-| Tokenizer research           | ✅ Baseline complete |
+| Tokenizer research           | ✅ Native + custom benchmark complete |
 | Tokenizer training           | ✅ Candidates benchmarked |
-| Base-model experiments       | 🔄 Next           |
+| Causal-LM tokenizer research | ✅ Phase 4A complete |
+| Vocabulary augmentation      | ✅ Phase 4B1 complete |
+| Base-model selection         | 🔄 In progress     |
 | Continued pretraining        | ⏳ Planned         |
 | SFT                          | ⏳ Planned         |
 | OromoBench                   | 🔄 In development |
@@ -168,9 +170,9 @@ This ordering is deliberate.
 
 ## 🔤 Tokenizer Research — Current Results
 
-Tokenizer research has progressed from planning to a reproducible benchmark and custom-candidate study.
+Tokenizer research now includes frozen-set multilingual baselines, custom Oromo SentencePiece candidates, native causal-LM tokenizer benchmarks, and a whole-word vocabulary-augmentation feasibility study.
 
-The canonical tokenizer evaluation set is a deterministic, frozen **10,000-record** holdout sampled from `afriberta_oromo_v0.1.2`:
+The canonical tokenizer evaluation set is a deterministic, frozen **10,000-record** holdout from `afriberta_oromo_v0.1.2`:
 
 ```text
 tokenizer/evaluation/samples/afriberta_oromo_v0.1.2_n10000.jsonl
@@ -182,7 +184,7 @@ Evaluation sample SHA-256:
 369c4438beab0d619336448eab7e27aae29d0722fd089088dbf0b2addc3d81f5
 ```
 
-The holdout is excluded by stable `record_id` from the tokenizer training corpus:
+The holdout is excluded by stable `record_id` from the tokenizer-training corpus:
 
 ```text
 400,193 tokenizer-training records
@@ -190,33 +192,84 @@ The holdout is excluded by stable `record_id` from the tokenizer training corpus
 0 evaluation leakage
 ```
 
-### Frozen 10K comparison
+### Custom Oromo references
 
 | Tokenizer | Vocab | Tok/Word | Frag % | Single % | UNK | Bytes/Tok |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | Oromo Unigram 48K + byte fallback | 48,000 | **1.4000** | **38.75%** | **61.25%** | **0** | **5.4562** |
 | Oromo Unigram 32K + byte fallback | 32,000 | 1.4495 | 40.83% | 59.17% | **0** | 5.2699 |
 | AfriBERTa | 70,006 | 1.6765 | 39.83% | 60.16% | **0** | 4.5563 |
-| XLM-R | 250,002 | 2.6091 | 81.03% | 18.97% | 3 | 2.9278 |
-| mBERT | 119,547 | 2.8696 | 87.36% | 12.63% | 5,423 | 2.6620 |
 
-The custom Oromo tokenizer experiments demonstrate that a focused tokenizer can represent the current Afaan Oromoo benchmark substantially more compactly than the tested generic multilingual baselines.
+The 48K byte-fallback tokenizer remains the strongest sequence-efficiency reference measured so far, but it is **not** automatically suitable as a drop-in replacement for a pretrained causal LM because tokenizer IDs and pretrained embedding rows are coupled.
 
-The 48K byte-fallback candidate uses approximately **16.5% fewer tokens per whitespace word than AfriBERTa** on the same frozen holdout while producing zero unknown tokens.
+### Native causal-LM tokenizers
 
-This does **not** mean the 48K tokenizer has been selected as the final project tokenizer. Oromo AI's main path is continued pretraining (CPT) of a capable causal language model, and pretrained models are coupled to their native tokenizers and embedding vocabularies.
+All causal models below represent the frozen Oromo sample without unknown tokens, but they fragment Oromo much more heavily than the custom references.
 
-The next tokenizer milestone is therefore to benchmark realistic **Qwen, Llama, Gemma, and Mistral-family tokenizers** against the same frozen evaluation set before deciding between:
+| Native tokenizer | Tok/Word | Frag % | Single % | UNK |
+| --- | ---: | ---: | ---: | ---: |
+| Gemma 3 1B | **2.7855** | **85.91%** | **14.09%** | 0 |
+| Qwen3.5 0.8B | 2.9191 | 86.94% | 13.06% | 0 |
+| Llama 3.2 1B | 3.0311 | 88.32% | 11.68% | 0 |
+| Qwen3 0.6B | 3.0713 | 88.89% | 11.11% | 0 |
+| Mistral 7B v0.3 | 3.3241 | 93.09% | 6.91% | 0 |
+
+Gemma 3 is the strongest native causal tokenizer tested so far, yet it still uses almost twice as many tokens per whitespace word as the custom Oromo 48K-byte reference.
+
+### Phase 4B1 — whole-word vocabulary augmentation
+
+Instead of immediately replacing a pretrained tokenizer, Oromo AI tested a conservative strategy:
 
 ```text
-native base-model tokenizer
-        vs
-vocabulary augmentation
-        vs
-custom tokenizer / tokenizer replacement
+existing pretrained tokenizer
+        +
+selected Oromo whole-word tokens
+        ↓
+preserve native vocabulary IDs
+append only new Oromo vocabulary IDs
 ```
 
-Full methodology, hashes, candidate configurations, Unicode/UNK audit, and results:
+Candidates are derived only from the leakage-safe 400,193-record tokenizer-training split and ranked by estimated training-side savings:
+
+```text
+frequency × (native token pieces - 1)
+```
+
+Results on the frozen 10K holdout:
+
+| Model tokenizer | Native | +2K | +4K | +8K | +16K |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Llama 3.2 1B | 3.0311 | 2.5705 | 2.4715 | 2.3716 | **2.2821** |
+| Qwen3 0.6B | 3.0713 | 2.6063 | 2.5058 | 2.4049 | **2.3140** |
+| Gemma 3 1B | 2.7855 | 2.4475 | 2.3692 | 2.2903 | **2.2172** |
+
+At +4K, word-fragmentation rates fall to roughly the custom-tokenizer reference level:
+
+```text
+Llama +4K   38.19%
+Qwen3 +4K   38.70%
+Gemma +4K   38.21%
+Oromo 48K   38.75%
+```
+
+However, token-per-word efficiency remains substantially worse than the custom Oromo tokenizer. This shows that whole-word augmentation repairs frequent-word fragmentation very effectively but does not fully solve Oromo subword efficiency.
+
+The current decision point is therefore:
+
+```text
+Phase 4A native benchmarking        ✅ complete
+Phase 4B1 whole-word augmentation  ✅ complete
+        ↓
+compare augmentation cost / diminishing returns
+        ↓
+decide whether to test Oromo subword augmentation
+        ↓
+select base-model + tokenizer strategy
+        ↓
+tiny CPT proof
+```
+
+Full methodology and results:
 
 [**docs/TOKENIZER_RESEARCH_REPORT.md**](docs/TOKENIZER_RESEARCH_REPORT.md)
 
