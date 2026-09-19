@@ -28,6 +28,8 @@ Inference/API/applications
 
 The project should not skip ahead simply because later stages are more visible.
 
+The active OromoCorpus objective is **50 million net unique OromoLM-tokenizer tokens minimum**, with **100 million tokens preferred**. Counts are taken after cleaning and cross-source deduplication; evaluation holdouts and separately labeled synthetic data do not count toward this natural-language target.
+
 ---
 
 ## Phase 0 — Repository and research foundation
@@ -94,6 +96,35 @@ Processed SHA-256:
 ```
 
 The cleaning philosophy remains conservative: remove demonstrable extraction/data noise without flattening dialect, orthography, politics, religion, style, or legitimate multilingual context.
+
+---
+
+## Phase 2B — OromoCorpus expansion
+
+**Status: active**
+
+Release milestones:
+
+| Release | Net unique OromoLM tokens | Release requirement |
+| --- | ---: | --- |
+| OromoCorpus v0.2 | **50M minimum** | Multiple licensed source families, cross-source deduplication, and published mixture statistics |
+| OromoCorpus v0.3 | **100M preferred** | Broader domain and dialect balance with reproducible source manifests |
+
+The official total is calculated only after conservative cleaning and exact/near-duplicate removal across all included sources. The project will additionally report raw records, characters, whitespace tokens, and per-source retention so that the expansion remains auditable.
+
+Primary work:
+
+- maintain a source registry containing ownership, license, provenance, acquisition date, domain, dialect metadata, and redistribution constraints;
+- audit and ingest additional public or explicitly licensed Oromo sources;
+- perform source-specific native-speaker quality sampling;
+- deduplicate at document, paragraph, and near-duplicate levels across sources;
+- balance education, literature, news, public documents, technical material, cultural material, and conversational language;
+- isolate OromoBench and other evaluation material before any training export;
+- keep synthetic and machine-translated datasets versioned separately from the natural-language corpus.
+
+The first expansion audit should measure the net contribution of each candidate source against `afriberta_oromo_v0.1.2`; raw advertised source size is not treated as usable yield.
+
+Detailed plan: `docs/CORPUS_EXPANSION_PLAN.md`
 
 ---
 
@@ -373,11 +404,11 @@ The project is currently here:
 ✅ Native causal-LM tokenizer benchmark (Phase 4A)
 ✅ Whole-word augmentation study (Phase 4B1)
         ↓
-🔄 Quantify augmentation tradeoffs and decide on Phase 4B2
+🔄 Expand OromoCorpus toward 50M net unique tokens
         ↓
-⏳ Select base-model + tokenizer strategy
+⏳ Continue base-model + tokenizer strategy decision
         ↓
 ⏳ Tiny CPT proof
 ```
 
-The immediate task is to finish the **Phase 4 tokenizer/base-model strategy decision** before modifying model weights or starting continued pretraining.
+The immediate data task is to register, audit, ingest, and cross-deduplicate the next licensed source, then report its net new OromoLM-tokenizer tokens. Tokenizer/base-model research may continue in parallel, and a tiny CPT proof may validate the pipeline, but scaled continued pretraining waits for an evidence-backed expanded corpus.
