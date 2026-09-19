@@ -84,6 +84,7 @@ def test_social_media_spam_is_rejected():
 
     assert decision == "REJECT"
 
+
 def test_wordpress_post_wrapper_is_cleaned():
     text = (
         "WBO Jecha [Read More] "
@@ -124,3 +125,30 @@ def test_legitimate_oromo_with_comments_wording_is_kept():
     decision, _ = decide_record(text)
 
     assert decision == "KEEP"
+
+
+def test_short_placeholder_extraction_artifact_is_rejected():
+    text = "TA 1 E E ■ ■"
+
+    decision, reasons = decide_record(text)
+
+    assert decision == "REJECT"
+    assert "short_extraction_artifact" in reasons
+
+
+def test_ambiguous_spaced_oromo_is_kept():
+    text = "a f a a n i"
+
+    decision, reasons = decide_record(text)
+
+    assert decision == "KEEP"
+    assert "no_rejection_signal" in reasons
+
+
+def test_short_formula_without_placeholder_is_kept():
+    text = "2 H * 1 amu = 2 amu"
+
+    decision, reasons = decide_record(text)
+
+    assert decision == "KEEP"
+    assert "no_rejection_signal" in reasons

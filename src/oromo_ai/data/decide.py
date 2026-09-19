@@ -36,6 +36,8 @@ _SOCIAL_SPAM_RE = re.compile(
     re.IGNORECASE,
 )
 
+_SHORT_PLACEHOLDER_RE = re.compile(r"[■□�]")
+
 
 def _is_scientific_payload(text: str) -> bool:
     """Reject obvious scientific/sequence contamination.
@@ -134,6 +136,37 @@ def _is_obvious_garbage(text: str) -> bool:
     return False
 
 
+def _is_short_extraction_artifact(text: str) -> bool:
+    """Reject short OCR/extraction fragments with placeholder glyphs.
+
+    This rule is intentionally narrow. Short text and spaced single-character
+    tokens alone are not sufficient evidence of corruption. The combination
+    of short length, high single-character ratio, and replacement/placeholder
+    glyphs is required.
+    """
+
+    if len(text) >= 20:
+        return False
+
+    tokens = text.split()
+
+    if len(tokens) < 3:
+        return False
+
+    if not _SHORT_PLACEHOLDER_RE.search(text):
+        return False
+
+    single_character_tokens = sum(
+        1
+        for token in tokens
+        if len(token.strip(".,!?;:()[]{}\"'’ʼ")) == 1
+    )
+
+    single_character_ratio = single_character_tokens / len(tokens)
+
+    return single_character_ratio >= 0.75
+
+
 def decide_record(text: str) -> tuple[str, list[str]]:
     """Return KEEP, CLEAN, or REJECT plus reasons.
 
@@ -157,6 +190,9 @@ def decide_record(text: str) -> tuple[str, list[str]]:
 
     if _is_obvious_garbage(text):
         return "REJECT", ["obvious_extraction_garbage"]
+
+    if _is_short_extraction_artifact(text):
+        return "REJECT", ["short_extraction_artifact"]
 
     if "technical_or_code_payload" in categories:
         return "REJECT", ["technical_or_code_payload"]

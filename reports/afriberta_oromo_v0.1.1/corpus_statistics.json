@@ -1,0 +1,289 @@
+{
+  "dataset": {
+    "input": "data/processed/afriberta_oromo_v0.1.1/train.jsonl",
+    "sha256": "c6748db774fbd03af1fbfb3389f8fdb5ac43356918e292c994e82bfe984de039",
+    "records": 410242,
+    "characters": 52122995,
+    "tokens_whitespace_estimate": 6882693
+  },
+  "lengths_characters": {
+    "min": 1,
+    "max": 3680,
+    "mean": 127.05426309349116,
+    "median": 103.0,
+    "p50": 103.0,
+    "p90": 226.0,
+    "p95": 289.0,
+    "p99": 483.0
+  },
+  "lengths_tokens": {
+    "min": 1,
+    "max": 343,
+    "mean": 16.77715348501616,
+    "median": 14.0,
+    "p90": 29.0,
+    "p95": 37.0,
+    "p99": 61.0
+  },
+  "vocabulary": {
+    "unique_whitespace_tokens": 537014,
+    "total_whitespace_tokens": 6882693,
+    "type_token_ratio": 0.07802382003672109
+  },
+  "character_profile": {
+    "unique_characters": 2336,
+    "top_characters": [
+      [
+        "a",
+        10198485
+      ],
+      [
+        " ",
+        6479005
+      ],
+      [
+        "i",
+        4209332
+      ],
+      [
+        "n",
+        2895091
+      ],
+      [
+        "e",
+        2697496
+      ],
+      [
+        "u",
+        2447712
+      ],
+      [
+        "o",
+        2250178
+      ],
+      [
+        "t",
+        2070847
+      ],
+      [
+        "r",
+        1896542
+      ],
+      [
+        "m",
+        1645041
+      ],
+      [
+        "s",
+        1516575
+      ],
+      [
+        "d",
+        1357895
+      ],
+      [
+        "h",
+        1313603
+      ],
+      [
+        "k",
+        1221904
+      ],
+      [
+        "b",
+        1151875
+      ],
+      [
+        "l",
+        1031135
+      ],
+      [
+        "f",
+        877581
+      ],
+      [
+        "g",
+        780685
+      ],
+      [
+        "y",
+        739883
+      ],
+      [
+        "j",
+        562284
+      ],
+      [
+        "w",
+        344623
+      ],
+      [
+        "q",
+        340844
+      ],
+      [
+        "c",
+        329207
+      ],
+      [
+        ".",
+        328485
+      ],
+      [
+        ",",
+        253369
+      ],
+      [
+        "A",
+        216846
+      ],
+      [
+        "O",
+        197133
+      ],
+      [
+        "'",
+        189287
+      ],
+      [
+        "’",
+        172820
+      ],
+      [
+        "M",
+        121908
+      ],
+      [
+        "B",
+        120606
+      ],
+      [
+        "I",
+        109461
+      ],
+      [
+        "p",
+        105304
+      ],
+      [
+        "0",
+        97437
+      ],
+      [
+        "2",
+        93793
+      ],
+      [
+        "K",
+        93553
+      ],
+      [
+        "S",
+        92023
+      ],
+      [
+        "D",
+        91563
+      ],
+      [
+        "1",
+        89902
+      ],
+      [
+        "G",
+        84134
+      ],
+      [
+        "H",
+        79629
+      ],
+      [
+        "W",
+        72706
+      ],
+      [
+        "x",
+        67334
+      ],
+      [
+        "F",
+        62714
+      ],
+      [
+        "T",
+        59163
+      ],
+      [
+        "N",
+        57354
+      ],
+      [
+        "-",
+        43986
+      ],
+      [
+        "J",
+        42299
+      ],
+      [
+        "Q",
+        41377
+      ],
+      [
+        "R",
+        41151
+      ]
+    ],
+    "oromo_specific_character_counts": {
+      "C": 32338,
+      "G": 84134,
+      "Q": 41377,
+      "X": 9000,
+      "c": 329207,
+      "g": 780685,
+      "q": 340844,
+      "x": 67334
+    },
+    "apostrophe_counts": {
+      "'": 189287,
+      "ʼ": 217,
+      "’": 172820
+    },
+    "digit_characters": 434498
+  },
+  "english_signal": {
+    "records_with_common_english_words": 18441,
+    "english_signal_record_rate": 0.04495151642201432,
+    "total_signal_hits": 22202
+  },
+  "artifact_signals": {
+    "records_with_urls": 44,
+    "records_with_html": 0,
+    "records_with_repeated_whitespace": 407
+  },
+  "length_flags": {
+    "records_under_20_characters": 694,
+    "records_over_10000_characters": 0,
+    "empty_records": 0
+  },
+  "metadata": {
+    "sources": [
+      [
+        "castorini/afriberta-corpus",
+        410242
+      ]
+    ],
+    "domains": [
+      [
+        "",
+        410242
+      ]
+    ],
+    "dialects": [
+      [
+        "",
+        410242
+      ]
+    ]
+  }
+}

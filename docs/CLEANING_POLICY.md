@@ -1,585 +1,923 @@
-# Oromo AI Corpus Cleaning Policy
+# 🧹 Oromo AI — Corpus Cleaning Policy
 
-## 1. Purpose
+> **Purpose:** Define a conservative, reproducible, and provenance-preserving policy for transforming raw Afaan Oromoo corpora into high-quality training data.
 
-This document defines the rules for transforming raw Afaan Oromoo text
-corpora into training-ready text while preserving linguistic, cultural,
-historical, dialectal, and stylistic information.
+<div align="center">
 
-The cleaning pipeline must be:
+### 🛡️ Data Integrity First
 
-- conservative
-- deterministic
-- reproducible
-- testable
-- provenance-preserving
-- non-destructive
+**Conservative · Deterministic · Reproducible · Testable · Non-Destructive**
 
-Raw source data must never be modified in place.
+</div>
 
 ---
 
-## 2. Core Principle
+## 📋 Document Status
 
-The objective is to remove demonstrable data-extraction noise without
-removing legitimate Afaan Oromoo content.
+| Property                 | Value                                               |
+| ------------------------ | --------------------------------------------------- |
+| **Document**             | Corpus Cleaning Policy                              |
+| **Project**              | Oromo AI                                            |
+| **Policy Version**       | `0.1.0`                                             |
+| **Current Status**       | 🟡 Policy Defined — Implementation Not Yet Approved |
+| **Raw Data**             | 🔒 Immutable                                        |
+| **Aggressive Filtering** | ❌ Not permitted                                     |
+| **Semantic Rewriting**   | ❌ Not permitted                                     |
+| **Machine Translation**  | ❌ Not permitted                                     |
+| **AI Rewriting**         | ❌ Not permitted                                     |
 
-Cleaning must NOT be based on assumptions such as:
+> **Core rule:** **Measure first. Transform second. Train third.**
 
-- political content is low quality
-- religious content is low quality
-- dialectal variation is incorrect
-- unusual spelling is automatically an error
-- foreign names indicate contamination
-- English words indicate contamination
-- web-originated text is automatically unusable
+---
+
+# 1. 🎯 Purpose
+
+This document defines the rules for transforming raw **Afaan Oromoo** text corpora into training-ready text while preserving:
+
+* linguistic information
+* cultural information
+* historical information
+* dialectal variation
+* orthographic variation
+* legitimate stylistic variation
+* domain-specific terminology
+
+The cleaning pipeline must be:
+
+* **Conservative**
+* **Deterministic**
+* **Reproducible**
+* **Testable**
+* **Provenance-preserving**
+* **Non-destructive**
+
+Raw source data must **never be modified in place**.
+
+---
+
+# 2. 🧠 Core Principle
+
+The objective of corpus cleaning is to remove **demonstrable data-extraction noise** without removing legitimate Afaan Oromoo content.
+
+Cleaning must **not** be based on assumptions such as:
+
+* Political content is low quality.
+* Religious content is low quality.
+* Dialectal variation is incorrect.
+* Unusual spelling is automatically an error.
+* Foreign names indicate contamination.
+* English words indicate contamination.
+* Web-originated text is automatically unusable.
+
+### Preservation Principle
+
+> **If there is no strong evidence that something is corrupted or is extraction noise, preserve it.**
 
 The system must preserve legitimate linguistic variation.
 
 ---
 
-## 3. Data Lifecycle
+# 3. 🔄 Data Lifecycle
 
-Raw data follows this lifecycle:
+Raw data follows a controlled processing lifecycle:
 
-    RAW
-      |
-      v
-    PROFILING
-      |
-      v
-    CLEANING
-      |
-      v
-    NORMALIZATION
-      |
-      v
-    DEDUPLICATION
-      |
-      v
-    VALIDATION
-      |
-      v
-    PROCESSED DATASET
+```text
+┌──────────────┐
+│     RAW      │
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│  PROFILING   │
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│   CLEANING   │
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│ NORMALIZATION│
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│DEDUPLICATION │
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│  VALIDATION  │
+└──────┬───────┘
+       │
+       ▼
+┌──────────────────┐
+│ PROCESSED DATASET│
+└──────────────────┘
+```
 
 Each stage must produce reproducible outputs and metadata.
 
-Raw data is immutable.
+**Raw data is immutable.**
 
 ---
 
-## 4. Raw Data Protection
+# 4. 🔒 Raw Data Protection
 
-The following directories are considered raw-source storage:
+The following directory is considered **raw-source storage**:
 
-    data/raw/
+```text
+data/raw/
+```
 
-The cleaning pipeline must never:
+The cleaning pipeline must **never**:
 
-- overwrite raw files
-- rename raw source files destructively
-- rewrite raw archives
-- modify the held-out evaluation corpus
-- silently discard records
+* overwrite raw files
+* rename raw source files destructively
+* rewrite raw archives
+* modify the held-out evaluation corpus
+* silently discard records
 
 All transformations must write to:
 
-    data/processed/
+```text
+data/processed/
+```
 
 Diagnostic reports must be written to:
 
-    data/manifests/
+```text
+data/manifests/
+```
+
+### Data Safety Rule
+
+```text
+data/raw/
+    ↓
+    READ ONLY
+    ↓
+processing pipeline
+    ↓
+data/processed/
+    +
+data/manifests/
+```
 
 ---
 
-## 5. Cleaning Categories
+# 5. 🧹 Cleaning Categories
 
 Cleaning rules are divided into three categories.
 
-### Category A — Safe Removal
+## 🟢 Category A — Safe Removal
 
 These are artifacts that are clearly non-linguistic extraction noise.
 
 Examples:
 
-- standalone "Read More" navigation markers
-- WordPress embed markers
-- obvious HTML tags
-- obvious navigation boilerplate
-- obvious duplicated page metadata
-- malformed extraction wrappers
+* standalone `Read More` navigation markers
+* WordPress embed markers
+* obvious HTML tags
+* obvious navigation boilerplate
+* obvious duplicated page metadata
+* malformed extraction wrappers
 
 These may be removed automatically.
 
-### Category B — Conditional Removal
+---
+
+## 🟡 Category B — Conditional Removal
 
 These require contextual analysis.
 
 Examples:
 
-- URLs
-- email addresses
-- social-media handles
-- repeated website navigation
-- publication metadata
-- boilerplate phrases
-- extremely repetitive records
+* URLs
+* email addresses
+* social-media handles
+* repeated website navigation
+* publication metadata
+* boilerplate phrases
+* extremely repetitive records
 
-These must only be removed when the pattern is clearly metadata or
-extraction noise.
+These must only be removed when the pattern is clearly metadata or extraction noise.
 
-A URL inside otherwise legitimate text must not automatically cause the
-entire record to be deleted.
+### Important
 
-### Category C — Preserve
+A URL inside otherwise legitimate text must **not** automatically cause the entire record to be deleted.
 
-The following must be preserved unless there is independent evidence that
-they are corrupted:
+Example:
 
-- Oromo vocabulary
-- Oromo grammar
-- Qubee orthography
-- Oromo-specific letters
-- long vowels
-- apostrophe-like characters
-- proper names
-- place names
-- historical references
-- political content
-- religious content
-- cultural content
-- dialectal variation
-- quoted material
-- foreign names
-- technical terminology
-- legitimate English words occurring inside Oromo text
-- code-switching
-- punctuation
-- sentence structure
+```text
+Odeeffannoo dabalataa https://example.com irraa argachuu dandeessu.
+```
+
+Expected behavior:
+
+```text
+Odeeffannoo dabalataa irraa argachuu dandeessu.
+```
+
+The linguistic content must remain.
 
 ---
 
-## 6. Web Artifact Cleaning
+## 🔵 Category C — Preserve
 
-### 6.1 Read More
+The following must be preserved unless there is independent evidence that they are corrupted:
+
+* Oromo vocabulary
+* Oromo grammar
+* Qubee orthography
+* Oromo-specific letters
+* long vowels
+* apostrophe-like characters
+* proper names
+* place names
+* historical references
+* political content
+* religious content
+* cultural content
+* dialectal variation
+* quoted material
+* foreign names
+* technical terminology
+* legitimate English words occurring inside Oromo text
+* code-switching
+* punctuation
+* sentence structure
+
+---
+
+# 6. 🌐 Web Artifact Cleaning
+
+## 6.1 Read More
 
 Remove standalone extraction markers such as:
 
-    Read More
-    [Read More]
-    ReadMore
+```text
+Read More
+[Read More]
+ReadMore
+```
+
+### Rule
 
 Only the artifact itself should be removed.
 
 Nearby legitimate text must be preserved.
 
-### 6.2 Embed Markers
+---
+
+## 6.2 Embed Markers
 
 Remove obvious CMS embed markers such as:
 
-    [embed]
-    [embedyt]
-    [/embed]
+```text
+[embed]
+[embedyt]
+[/embed]
+```
 
-When an embed marker contains a URL, remove the embedding wrapper and
-retain surrounding linguistic content.
+When an embed marker contains a URL, remove the embedding wrapper while retaining surrounding linguistic content.
 
-### 6.3 HTML
+---
+
+## 6.3 HTML
 
 Remove actual HTML markup such as:
 
-    <p>
-    </p>
-    <br>
-    <div>
-    </div>
+```html
+<p>
+</p>
+<br>
+<div>
+</div>
+```
 
-Do not remove ordinary Oromo text merely because angle brackets occur.
+Do **not** remove ordinary Oromo text merely because angle brackets occur.
 
-### 6.4 WordPress / CMS Boilerplate
+---
+
+## 6.4 WordPress / CMS Boilerplate
 
 Remove clearly identifiable boilerplate such as:
 
-    Comments Off
+```text
+Comments Off
+```
 
-and equivalent page-navigation metadata when it is not part of the
-linguistic content.
+Equivalent page-navigation metadata may also be removed when it is clearly not part of the linguistic content.
 
-### 6.5 URLs
+---
 
-URLs should normally be removed from training text when they are clearly
-web metadata.
+## 6.5 URLs
+
+URLs should normally be removed from training text when they are clearly web metadata.
 
 Examples:
 
-    https://example.com
-    http://example.org/article
+```text
+https://example.com
+http://example.org/article
+```
 
-However, the existence of a URL must not cause deletion of the entire
-record.
+However:
 
-Example:
-
-    Odeeffannoo dabalataa https://example.com irraa argachuu dandeessu.
+> **The existence of a URL must never cause deletion of the entire record.**
 
 The linguistic portion should remain after URL removal.
 
 ---
 
-## 7. Whitespace Normalization
+# 7. 📏 Whitespace Normalization
 
 Normalize:
 
-- repeated spaces
-- repeated tabs
-- excessive blank lines
-- leading whitespace
-- trailing whitespace
+* repeated spaces
+* repeated tabs
+* excessive blank lines
+* leading whitespace
+* trailing whitespace
 
-Collapse runs of whitespace to a single space where doing so does not
-destroy meaningful structure.
+Collapse runs of whitespace to a single space where doing so does not destroy meaningful structure.
 
-Do not remove punctuation.
+### Must Preserve
 
----
-
-## 8. Unicode Normalization
-
-Apply Unicode NFC normalization.
-
-NFC is preferred because it canonicalizes equivalent Unicode representations
-without aggressively changing visible linguistic characters.
-
-Do NOT:
-
-- ASCII-fold Oromo text
-- remove diacritics
-- replace Oromo characters with English approximations
-- convert all apostrophes to ASCII `'`
-- lowercase all text
-- uppercase all text
+* punctuation
+* meaningful sentence boundaries
+* linguistic content
 
 ---
 
-## 9. Oromo Orthography Preservation
+# 8. 🔤 Unicode Normalization
+
+Apply **Unicode NFC normalization**.
+
+NFC is preferred because it canonicalizes equivalent Unicode representations without aggressively changing visible linguistic characters.
+
+### ❌ Prohibited Transformations
+
+Do **not**:
+
+* ASCII-fold Oromo text
+* remove diacritics
+* replace Oromo characters with English approximations
+* convert all apostrophes to ASCII `'`
+* lowercase all text
+* uppercase all text
+
+### Rule
+
+> Unicode normalization must normalize representation, not rewrite language.
+
+---
+
+# 9. 🟩 Oromo Orthography Preservation
 
 The cleaner must preserve Oromo orthographic distinctions.
 
 Particular care is required for:
 
-- Q/q
-- X/x
-- C/c
-- G/g
-- dh
-- ny
-- ph
-- long vowels
-- apostrophe-like characters
+```text
+Q/q
+X/x
+C/c
+G/g
+dh
+ny
+ph
+long vowels
+apostrophe-like characters
+```
 
-The cleaner must never use a generic English-language normalizer that could
-destroy Oromo orthography.
+The cleaner must never use a generic English-language normalizer that could destroy Afaan Oromoo orthography.
 
 ---
 
-## 10. Apostrophe Policy
+# 10. `'` Apostrophe Policy
 
-The following characters may occur in the corpus:
+The corpus may contain multiple apostrophe-like characters:
 
-    '
-    ’
-    ʼ
+```text
+'
+’
+ʼ
+```
 
-They must NOT automatically be converted to one character.
+These must **not** automatically be converted into one character.
 
 Different apostrophe-like characters may originate from:
 
-- Oromo orthography
-- punctuation
-- typography
-- source formatting
+* Oromo orthography
+* punctuation
+* typography
+* source formatting
 
 Their linguistic role must be analyzed before any future normalization.
 
-For the initial cleaning pipeline:
+### Initial Policy
 
-    preserve apostrophe-like characters
+```text
+preserve apostrophe-like characters
+```
 
 ---
 
-## 11. English-Language Content
+# 11. 🇬🇧 English-Language Content
 
-English words must not be removed solely because they are English.
+English words must **not** be removed solely because they are English.
 
 English may occur because of:
 
-- proper names
-- quotations
-- titles
-- technical terminology
-- bilingual passages
-- code-switching
-- URLs or metadata
+* proper names
+* quotations
+* titles
+* technical terminology
+* bilingual passages
+* code-switching
+* URLs
+* metadata
 
-Language identification may be used for diagnostics, but it must not
-automatically delete records from the Oromo corpus.
+Language identification may be used for diagnostics, but it must not automatically delete records from the Oromo corpus.
+
+> **Language identification is diagnostic—not an automatic deletion mechanism.**
 
 ---
 
-## 12. Record-Level Filtering
+# 12. 🗑️ Record-Level Filtering
 
-A record may be rejected only when there is strong evidence that it is
-not useful training text.
+A record may be rejected only when there is strong evidence that it is not useful training text.
 
 Potential rejection conditions include:
 
-- empty text after cleaning
-- text consisting almost entirely of extraction artifacts
-- obviously corrupted encoding
-- extreme repeated-character corruption
-- duplicated content after normalization
-- records containing no meaningful linguistic content
+* empty text after cleaning
+* text consisting almost entirely of extraction artifacts
+* obviously corrupted encoding
+* extreme repeated-character corruption
+* duplicated content after normalization
+* records containing no meaningful linguistic content
 
 Every rejection must have a machine-readable reason.
 
-Example:
+### Example
 
-    rejected_reason = "empty_after_cleaning"
+```text
+rejected_reason = "empty_after_cleaning"
+```
 
 or:
 
-    rejected_reason = "extraction_artifact_only"
+```text
+rejected_reason = "extraction_artifact_only"
+```
+
+### Rejection Rule
+
+> **Every rejected record must be explainable.**
+
+Silent deletion is prohibited.
 
 ---
 
-## 13. Length Policy
+# 13. 📐 Length Policy
 
 Length thresholds must be conservative.
 
-Do not remove short records merely because they are short.
+Do **not**:
 
-Do not remove long records merely because they are long.
+* remove short records merely because they are short
+* remove long records merely because they are long
 
 Initial filtering should focus on:
 
-- empty records
-- artifact-only records
-- obvious corruption
-- pathological repetition
+* empty records
+* artifact-only records
+* obvious corruption
+* pathological repetition
 
-Length statistics should be reported before deciding on hard limits.
+Length statistics must be reported **before** deciding on hard limits.
 
 ---
 
-## 14. Repetition Detection
+# 14. 🔁 Repetition Detection
 
 The pipeline should identify pathological repetition such as:
 
-    ha ha ha ha ha ha ha ha ha ha ha ha
+```text
+ha ha ha ha ha ha ha ha ha ha ha ha
+```
 
 or repeated blocks caused by extraction errors.
 
-Normal repetition in legitimate language must be preserved.
+However, normal repetition in legitimate language must be preserved.
 
-Repetition detection should therefore be based on thresholds and diagnostics,
-not simple duplicate-word rules.
+### Detection Philosophy
+
+Repetition detection should be based on:
+
+* measurable thresholds
+* structural analysis
+* diagnostics
+
+It must **not** rely on simplistic duplicate-word rules.
 
 ---
 
-## 15. Deduplication
+# 15. #️⃣ Deduplication
 
-Deduplication occurs AFTER cleaning and normalization.
+Deduplication occurs **after cleaning and normalization**.
 
-The initial deduplication strategy is exact normalized-text hashing.
+The initial deduplication strategy is:
 
-Normalization for hashing:
+> **Exact normalized-text hashing**
 
+### Hash Normalization
+
+The normalization sequence is:
+
+```text
 1. Unicode NFC
-2. collapse whitespace
-3. strip leading/trailing whitespace
+2. Collapse whitespace
+3. Strip leading/trailing whitespace
+4. Generate hash
+```
 
-Do not lowercase text for hashing.
+### Explicitly Prohibited
 
-Do not remove punctuation for hashing.
+Do **not**:
 
-Near-duplicate detection may be added later, but it must be evaluated
-separately.
+* lowercase text for hashing
+* remove punctuation for hashing
+* aggressively normalize spelling for hashing
 
----
+### Future Work
 
-## 16. Evaluation Set Protection
+Near-duplicate detection may be added later, but it must be evaluated separately.
 
-The evaluation corpus is held out.
+Potential future methods include:
 
-It must NOT be:
-
-- cleaned using rules developed from the evaluation set
-- used to tune cleaning thresholds
-- deduplicated against training data
-- used for model training
-- used to make training-data filtering decisions
-
-The evaluation set may be inspected diagnostically, but its original
-content must remain immutable.
+* MinHash
+* SimHash
+* n-gram fingerprints
+* locality-sensitive hashing
 
 ---
 
-## 17. Provenance
+# 16. 🧪 Evaluation Set Protection
+
+The evaluation corpus is **held out**.
+
+It must **not** be:
+
+* cleaned using rules developed from the evaluation set
+* used to tune cleaning thresholds
+* deduplicated against training data
+* used for model training
+* used to make training-data filtering decisions
+
+The evaluation set may be inspected diagnostically, but its original content must remain immutable.
+
+### Separation Principle
+
+```text
+TRAINING CORPUS
+      │
+      ├── profiling
+      ├── cleaning
+      ├── normalization
+      └── deduplication
+
+EVALUATION CORPUS
+      │
+      └── HELD OUT
+```
+
+This protects evaluation integrity and reduces the risk of data leakage.
+
+---
+
+# 17. 🔗 Provenance
 
 Every processed dataset must retain provenance information.
 
 At minimum:
 
-- source dataset
-- source record ID
-- source URL when available
-- license
-- processing version
-- cleaning version
-- transformation timestamp
-- rejection reason when applicable
+| Provenance Field                  | Required |
+| --------------------------------- | :------: |
+| Source dataset                    |     ✅    |
+| Source record ID                  |     ✅    |
+| Source URL, when available        |     ✅    |
+| License                           |     ✅    |
+| Processing version                |     ✅    |
+| Cleaning version                  |     ✅    |
+| Transformation timestamp          |     ✅    |
+| Rejection reason, when applicable |     ✅    |
 
 A processed record must remain traceable to its source.
 
+> **No orphaned processed data.**
+
 ---
 
-## 18. Auditability
+# 18. 📊 Auditability
 
 Every cleaning run must produce:
 
-1. processed dataset
-2. processing manifest
-3. cleaning statistics
-4. rejected-record statistics
-5. duplicate statistics
-6. pipeline version
-7. configuration used
+1. Processed dataset
+2. Processing manifest
+3. Cleaning statistics
+4. Rejected-record statistics
+5. Duplicate statistics
+6. Pipeline version
+7. Configuration used
 
-Example statistics:
+### Required Statistics
 
-    input_records
-    output_records
-    rejected_records
-    duplicates_removed
-    urls_removed
-    html_markers_removed
-    read_more_markers_removed
-    embed_markers_removed
+```text
+input_records
+output_records
+rejected_records
+duplicates_removed
+urls_removed
+html_markers_removed
+read_more_markers_removed
+embed_markers_removed
+```
+
+Additional diagnostic statistics may be added without changing the core policy.
 
 ---
 
-## 19. Determinism
+# 19. 🎯 Determinism
 
 Given:
 
-- identical input
-- identical cleaning configuration
-- identical pipeline version
+* identical input
+* identical cleaning configuration
+* identical pipeline version
 
-the cleaner must produce identical output.
+the cleaner must produce **identical output**.
+
+### Prohibited
 
 Random transformations are prohibited.
 
 If sampling is introduced for diagnostics, the random seed must be explicit.
 
+Example:
+
+```text
+random_seed = 42
+```
+
+Determinism is required for reproducibility and regression testing.
+
 ---
 
-## 20. Versioning
+# 20. 🏷️ Versioning
 
 Cleaning rules are versioned independently from the dataset.
 
 Example:
 
-    cleaning_version = 0.1.0
+```text
+cleaning_version = 0.1.0
+```
 
 A change to cleaning behavior requires a version change.
 
-The pipeline must never silently reinterpret an older processed dataset
-under newer cleaning rules.
+The pipeline must never silently reinterpret an older processed dataset under newer cleaning rules.
+
+### Versioning Model
+
+```text
+Dataset Version
+       +
+Cleaning Version
+       +
+Pipeline Version
+       ↓
+Reproducible Processing State
+```
 
 ---
 
-## 21. Testing Requirements
+# 21. 🧪 Testing Requirements
 
-Every cleaning rule must have tests covering:
+Every cleaning rule must have tests covering three classes.
 
-### Positive cases
+## ✅ Positive Cases
 
-Text that SHOULD be cleaned.
+Text that **should be cleaned**.
 
-### Negative cases
+Example:
 
-Text that MUST NOT be altered.
+```text
+Oromo text [Read More]
+```
 
-### Mixed cases
+Expected:
+
+```text
+Oromo text
+```
+
+---
+
+## ❌ Negative Cases
+
+Text that **must not be altered**.
+
+Example:
+
+```text
+Legitimate Afaan Oromoo content
+```
+
+Expected:
+
+```text
+Legitimate Afaan Oromoo content
+```
+
+---
+
+## 🔀 Mixed Cases
 
 Text containing both removable artifacts and legitimate Oromo content.
 
 Example:
 
-    Legitimate Oromo sentence + URL
+```text
+Legitimate Oromo sentence + URL
+```
 
 Expected:
 
-    Legitimate Oromo sentence
+```text
+Legitimate Oromo sentence
+```
+
+### Raw Data Requirement
 
 The original raw text must remain unchanged.
 
 ---
 
-## 22. Initial Cleaning Scope
+# 22. 🚀 Initial Cleaning Scope — v0.1.0
 
-Version 0.1.0 will implement only conservative transformations:
+Version `0.1.0` will implement **only conservative transformations**.
 
-1. Unicode NFC normalization
-2. whitespace normalization
-3. removal of obvious Read More markers
-4. removal of obvious embed markers
-5. removal of HTML markup
-6. removal of clearly identifiable CMS boilerplate
-7. removal of URLs
-8. empty-record detection
-9. basic pathological-repetition diagnostics
-10. exact normalized-text deduplication
+### Approved Operations
 
-No aggressive language filtering will be implemented.
+|  # | Operation                                   | Status |
+| -: | ------------------------------------------- | :----: |
+|  1 | Unicode NFC normalization                   |    ✅   |
+|  2 | Whitespace normalization                    |    ✅   |
+|  3 | Remove obvious `Read More` markers          |    ✅   |
+|  4 | Remove obvious embed markers                |    ✅   |
+|  5 | Remove HTML markup                          |    ✅   |
+|  6 | Remove clearly identifiable CMS boilerplate |    ✅   |
+|  7 | Remove URLs                                 |    ✅   |
+|  8 | Empty-record detection                      |    ✅   |
+|  9 | Basic pathological-repetition diagnostics   |    ✅   |
+| 10 | Exact normalized-text deduplication         |    ✅   |
 
-No semantic rewriting will be implemented.
+### Explicitly Out of Scope
 
-No AI-generated rewriting will be implemented.
+The following are **not** part of v0.1.0:
 
-No machine translation will be used to "improve" the corpus.
+```text
+❌ Aggressive language filtering
+❌ Semantic rewriting
+❌ AI-generated rewriting
+❌ Machine translation
+❌ Automatic spelling correction
+❌ Dialect normalization
+❌ Forced apostrophe normalization
+❌ English-content deletion
+❌ Political-content filtering
+❌ Religious-content filtering
+❌ Cultural-content filtering
+```
 
----
-
-## 23. Future Cleaning
-
-Future versions may add:
-
-- language identification
-- document-level quality scoring
-- near-duplicate detection
-- source-specific boilerplate detection
-- sentence segmentation
-- paragraph reconstruction
-- OCR error detection
-- dialect metadata
-- contamination detection
-- PII detection
-- multilingual contamination analysis
-
-Each future feature must be evaluated independently before becoming part
-of the production pipeline.
+> **Version 0.1.0 cleans extraction noise. It does not rewrite Afaan Oromoo.**
 
 ---
 
-## 24. Approval Status
+# 23. 🔮 Future Cleaning
 
-Current status:
+Future versions may introduce:
 
-    POLICY DEFINED — IMPLEMENTATION NOT YET APPROVED
+* language identification
+* document-level quality scoring
+* near-duplicate detection
+* source-specific boilerplate detection
+* sentence segmentation
+* paragraph reconstruction
+* OCR error detection
+* dialect metadata
+* contamination detection
+* PII detection
+* multilingual contamination analysis
 
-The raw AfriBERTa Afaan Oromoo corpus remains untouched.
+Each future feature must be evaluated independently before becoming part of the production pipeline.
 
-No processed training corpus should be generated until the cleaning
-implementation passes its unit and regression tests.
+### Future Feature Rule
+
+```text
+PROPOSE
+   ↓
+IMPLEMENT
+   ↓
+TEST
+   ↓
+MEASURE
+   ↓
+AUDIT
+   ↓
+APPROVE
+   ↓
+VERSION
+```
+
+No future cleaning capability becomes part of the production pipeline merely because it appears technically useful.
+
+---
+
+# 24. 🏁 Approval Status
+
+<div align="center">
+
+## 🟡 POLICY DEFINED
+
+### IMPLEMENTATION NOT YET APPROVED
+
+</div>
+
+The raw AfriBERTa Afaan Oromoo corpus remains **untouched**.
+
+No processed training corpus should be generated until the cleaning implementation passes its:
+
+* unit tests
+* regression tests
+* mixed-case tests
+* preservation tests
+* determinism tests
+* provenance checks
+* output-integrity checks
+
+---
+
+# 🔐 Final Data Integrity Principles
+
+The Oromo AI corpus pipeline follows these rules:
+
+```text
+RAW DATA IS IMMUTABLE
+        │
+        ▼
+MEASURE BEFORE MODIFYING
+        │
+        ▼
+REMOVE NOISE — NOT LANGUAGE
+        │
+        ▼
+PRESERVE ORTHOGRAPHY
+        │
+        ▼
+PRESERVE LEGITIMATE VARIATION
+        │
+        ▼
+TRACE EVERY TRANSFORMATION
+        │
+        ▼
+TEST EVERY RULE
+        │
+        ▼
+VERSION EVERY BEHAVIOR CHANGE
+        │
+        ▼
+VALIDATE BEFORE TRAINING
+```
+
+### The governing principle
+
+> **Clean the corpus without rewriting the language.**
+
+The purpose of the pipeline is to produce a cleaner representation of the source data—not to impose an artificial version of Afaan Oromoo on the training corpus.
+
+---
+
+<div align="center">
+
+**Oromo AI**
+
+**Afaan Oromoo → Data → Models → Intelligence**
+
+`Measure First · Transform Second · Train Third`
+
+</div>

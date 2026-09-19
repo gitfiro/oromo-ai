@@ -1,0 +1,44 @@
+{
+  "name": "afriberta_oromo_processed",
+  "version": "0.1.0",
+  "description": "Production-processed Afaan Oromoo subset of the AfriBERTa corpus with conservative provenance-preserving cleaning and targeted short extraction-artifact rejection.",
+  "language": "orm",
+  "license": "Apache-2.0",
+  "source": "AfriBERTa Corpus",
+  "source_url": "https://huggingface.co/datasets/castorini/afriberta-corpus",
+  "record_count": 410193,
+  "total_characters": 52122367,
+  "total_tokens": null,
+  "processing_version": "0.1.0",
+  "created_at": "2026-09-19T15:39:40.281457+00:00",
+  "metadata": {
+    "input_record_count": 410841,
+    "output_record_count": 410193,
+    "rejected_record_count": 614,
+    "clean_decisions": 360,
+    "changed_records": 264,
+    "empty_after_cleaning": 0,
+    "duplicates_removed": 34,
+    "input_characters": 52285106,
+    "output_characters": 52122367,
+    "source_path": "data/raw/afriberta_oromo/train/train.txt",
+    "source_sha256": "269cde87d84ad34463b7bd654b16737aeef756adbe2463518353004660187d6a",
+    "source_id": "afriberta_oromo",
+    "processing_version": "0.1.0",
+    "decision_counts": {
+      "KEEP": 409867,
+      "CLEAN": 360,
+      "REJECT": 614
+    },
+    "rejection_reasons": {
+      "scientific_or_genomic_payload": 308,
+      "short_extraction_artifact": 49,
+      "obvious_extraction_garbage": 111,
+      "social_media_spam": 144,
+      "technical_or_code_payload": 1,
+      "base64_or_data_uri": 1
+    },
+    "raw_source_modified": false,
+    "unique_cleaned_text_hashes": 410193
+  }
+}
