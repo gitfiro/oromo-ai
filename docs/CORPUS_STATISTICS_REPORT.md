@@ -515,6 +515,15 @@ The corpus contains approximately:
 
 This is a valuable Oromo-language seed corpus, but it is not sufficient by itself to represent a modern large-scale foundation-model training mixture.
 
+The official expansion objective is:
+
+| Milestone | Target |
+| --- | ---: |
+| OromoCorpus v0.2 | **50 million net unique OromoLM-tokenizer tokens minimum** |
+| OromoCorpus v0.3 | **100 million net unique OromoLM-tokenizer tokens preferred** |
+
+These targets are not raw download totals. They are measured after conservative cleaning and cross-source exact/near-duplicate removal. Evaluation holdouts are excluded, and synthetic or machine-translated datasets are tracked separately from the primary natural-language total.
+
 The corpus should therefore be treated as:
 
 ```text
@@ -771,6 +780,8 @@ The next data-engineering priorities are:
 8. Build evaluation data
 9. Measure tokenizer efficiency
 10. Construct the broader OromoCorpus
+11. Reach 50M net unique OromoLM-tokenizer tokens for v0.2
+12. Expand toward 100M tokens with stronger domain and dialect balance for v0.3
 ```
 
 The goal is not merely to increase record count.
@@ -784,6 +795,8 @@ diversity
 provenance
 linguistic usefulness
 ```
+
+Progress toward 50M and 100M must be reported by source, license, domain, dialect where known, raw size, retained size, duplicate loss, and final OromoLM-tokenizer count. No source's advertised size should be counted before it passes the production pipeline.
 
 ---
 
