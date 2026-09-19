@@ -1,0 +1,30 @@
+{
+  "artifacts": {
+    "model": {
+      "path": "tokenizer/training/candidates/oromo_unigram_48k/tokenizer.model",
+      "sha256": "bf8f11186820645532778d95314b7165acc926e0805d3e7fc4bf9655fcdd331e"
+    },
+    "vocab": {
+      "path": "tokenizer/training/candidates/oromo_unigram_48k/tokenizer.vocab",
+      "sha256": "f6376522bcca6bac2de964c9e8ef8dcc80360672d3d61d6dc01a9d61626ae22e"
+    }
+  },
+  "candidate": "oromo_unigram_48k",
+  "format_version": 1,
+  "sentencepiece_version": "0.2.2",
+  "timestamp_utc": "2026-09-19T17:12:57.504062+00:00",
+  "training": {
+    "actual_vocab_size": 48000,
+    "byte_fallback": false,
+    "character_coverage": 1.0,
+    "input": "tokenizer/training/afriberta_oromo_v0.1.2_tokenizer_train.txt",
+    "input_sentence_size": 0,
+    "input_sha256": "a733419e61ed4751e7f4da950e8c05c893ecbbc63be12c1551a1493507162dff",
+    "max_sentence_length": 16384,
+    "max_sentencepiece_length": 32,
+    "model_type": "unigram",
+    "normalization_rule_name": "nmt_nfkc",
+    "requested_vocab_size": 48000,
+    "shuffle_input_sentence": false
+  }
+}

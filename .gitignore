@@ -11,3 +11,11 @@ data/manifests/
 data/instruction/
 data/parallel/
 data/evaluation/
+
+# Tokenizer generated data
+tokenizer/training/*.txt
+tokenizer/evaluation/samples/*.jsonl
+
+# Trained tokenizer binary artifacts
+tokenizer/training/candidates/**/*.model
+tokenizer/training/candidates/**/*.vocab

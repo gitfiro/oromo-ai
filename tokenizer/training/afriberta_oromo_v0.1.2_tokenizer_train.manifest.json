@@ -1,0 +1,25 @@
+{
+  "evaluation_holdout": {
+    "excluded_records": 10000,
+    "path": "tokenizer/evaluation/samples/afriberta_oromo_v0.1.2_n10000.jsonl",
+    "records": 10000,
+    "sha256": "369c4438beab0d619336448eab7e27aae29d0722fd089088dbf0b2addc3d81f5"
+  },
+  "filtering": {
+    "empty_records": 0,
+    "evaluation_leakage_records": 0,
+    "unresolved_record_ids": 0
+  },
+  "format_version": 1,
+  "purpose": "Afaan Oromoo tokenizer training corpus",
+  "source": {
+    "path": "data/processed/afriberta_oromo_v0.1.2/train.jsonl",
+    "records": 410193,
+    "sha256": "6f990088c8fb319b46c9a25a1c463e7a700cc8d292da781cfcc44ac4391ee0f6"
+  },
+  "training_corpus": {
+    "path": "tokenizer/training/afriberta_oromo_v0.1.2_tokenizer_train.txt",
+    "records": 400193,
+    "sha256": "a733419e61ed4751e7f4da950e8c05c893ecbbc63be12c1551a1493507162dff"
+  }
+}
