@@ -153,15 +153,72 @@ This ordering is deliberate.
 | Production corpus processing | ✅ Completed       |
 | v0.1.2 validation            | ✅ Passed          |
 | Corpus statistics            | ✅ Generated       |
-| Tokenizer research           | 🔄 Next           |
-| Tokenizer training           | ⏳ Planned         |
-| Base-model experiments       | ⏳ Planned         |
+| Tokenizer research           | ✅ Baseline complete |
+| Tokenizer training           | ✅ Candidates benchmarked |
+| Base-model experiments       | 🔄 Next           |
 | Continued pretraining        | ⏳ Planned         |
 | SFT                          | ⏳ Planned         |
 | OromoBench                   | 🔄 In development |
 | ASR                          | ⏳ Planned         |
 | TTS                          | ⏳ Planned         |
 | API                          | ⏳ Planned         |
+
+---
+
+
+## 🔤 Tokenizer Research — Current Results
+
+Tokenizer research has progressed from planning to a reproducible benchmark and custom-candidate study.
+
+The canonical tokenizer evaluation set is a deterministic, frozen **10,000-record** holdout sampled from `afriberta_oromo_v0.1.2`:
+
+```text
+tokenizer/evaluation/samples/afriberta_oromo_v0.1.2_n10000.jsonl
+```
+
+Evaluation sample SHA-256:
+
+```text
+369c4438beab0d619336448eab7e27aae29d0722fd089088dbf0b2addc3d81f5
+```
+
+The holdout is excluded by stable `record_id` from the tokenizer training corpus:
+
+```text
+400,193 tokenizer-training records
+10,000 frozen evaluation records
+0 evaluation leakage
+```
+
+### Frozen 10K comparison
+
+| Tokenizer | Vocab | Tok/Word | Frag % | Single % | UNK | Bytes/Tok |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Oromo Unigram 48K + byte fallback | 48,000 | **1.4000** | **38.75%** | **61.25%** | **0** | **5.4562** |
+| Oromo Unigram 32K + byte fallback | 32,000 | 1.4495 | 40.83% | 59.17% | **0** | 5.2699 |
+| AfriBERTa | 70,006 | 1.6765 | 39.83% | 60.16% | **0** | 4.5563 |
+| XLM-R | 250,002 | 2.6091 | 81.03% | 18.97% | 3 | 2.9278 |
+| mBERT | 119,547 | 2.8696 | 87.36% | 12.63% | 5,423 | 2.6620 |
+
+The custom Oromo tokenizer experiments demonstrate that a focused tokenizer can represent the current Afaan Oromoo benchmark substantially more compactly than the tested generic multilingual baselines.
+
+The 48K byte-fallback candidate uses approximately **16.5% fewer tokens per whitespace word than AfriBERTa** on the same frozen holdout while producing zero unknown tokens.
+
+This does **not** mean the 48K tokenizer has been selected as the final project tokenizer. Oromo AI's main path is continued pretraining (CPT) of a capable causal language model, and pretrained models are coupled to their native tokenizers and embedding vocabularies.
+
+The next tokenizer milestone is therefore to benchmark realistic **Qwen, Llama, Gemma, and Mistral-family tokenizers** against the same frozen evaluation set before deciding between:
+
+```text
+native base-model tokenizer
+        vs
+vocabulary augmentation
+        vs
+custom tokenizer / tokenizer replacement
+```
+
+Full methodology, hashes, candidate configurations, Unicode/UNK audit, and results:
+
+[**docs/TOKENIZER_RESEARCH_REPORT.md**](docs/TOKENIZER_RESEARCH_REPORT.md)
 
 ---
 
@@ -615,7 +672,7 @@ The repository uses automated tests for the data pipeline.
 The current checkpoint passes:
 
 ```text
-47 passed
+57 passed
 ```
 
 Tests cover areas including:
