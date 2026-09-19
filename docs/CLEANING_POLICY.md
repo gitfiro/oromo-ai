@@ -441,7 +441,7 @@ English may occur because of:
 * URLs
 * metadata
 
-Language identification may be used for diagnostics, but it must not automatically delete records from the Oromo corpus.
+Language identification may be used for diagnostics, but it must not automatically delete records from OromoCorpus.
 
 > **Language identification is diagnostic—not an automatic deletion mechanism.**
 
@@ -874,7 +874,7 @@ No processed training corpus should be generated until the cleaning implementati
 
 # 🔐 Final Data Integrity Principles
 
-The Oromo AI corpus pipeline follows these rules:
+The OromoCorpus pipeline follows these rules:
 
 ```text
 RAW DATA IS IMMUTABLE

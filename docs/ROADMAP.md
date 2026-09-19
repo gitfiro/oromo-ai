@@ -4,12 +4,14 @@
 
 Oromo AI is building an open, research-grade Afaan Oromoo AI stack with a deliberate progression from validated data to language modeling, instruction tuning, evaluation, and applications.
 
+Canonical component names used throughout this roadmap are **OromoCorpus** for the corpus family, **OromoTokenizer** for tokenizer research, **OromoLM** for the model family, and **OromoBench** for evaluation. See `docs/NAMING.md`.
+
 The working sequence is:
 
 ```text
-Corpus
+OromoCorpus
   ↓
-Tokenizer research
+OromoTokenizer research
   ↓
 Causal base-model selection
   ↓
@@ -95,7 +97,7 @@ The cleaning philosophy remains conservative: remove demonstrable extraction/dat
 
 ---
 
-## Phase 3 — Tokenizer research
+## Phase 3 — OromoTokenizer research
 
 **Status: baseline and custom-candidate experiments complete**
 
@@ -121,7 +123,7 @@ SHA-256:
 369c4438beab0d619336448eab7e27aae29d0722fd089088dbf0b2addc3d81f5
 ```
 
-Serious custom references:
+Serious OromoTokenizer research references:
 
 ```text
 oromo-unigram-32k-byte
@@ -138,7 +140,7 @@ oromo-unigram-48k-byte
 0 unknown tokens
 ```
 
-This is **not yet the final tokenizer**.
+These are **OromoTokenizer research candidates**, not a final production tokenizer.
 
 Detailed report:
 
@@ -208,13 +210,13 @@ The base model must ultimately be selected from the combined evidence of tokeniz
 
 ---
 
-## Phase 5 — Tiny continued-pretraining proof
+## Phase 5 — Tiny OromoLM continued-pretraining proof
 
 **Status: planned**
 
 Target:
 
-A small, affordable proof that validates the complete training pipeline before scaling.
+A small, affordable OromoLM proof that validates the complete training pipeline before scaling.
 
 The proof should test:
 
@@ -242,7 +244,7 @@ Success means the training architecture works and produces measurable Oromo-lang
 
 ---
 
-## Phase 6 — 1B-class experiment
+## Phase 6 — OromoLM-1B-class experiment
 
 **Status: planned**
 
@@ -282,7 +284,7 @@ Important controls:
 
 **Status: planned**
 
-Only after the base model demonstrates meaningful Oromo language modeling.
+Only after the base model demonstrates meaningful Afaan Oromoo language modeling suitable for the OromoLM family.
 
 SFT goals may include:
 
@@ -336,6 +338,8 @@ Before public release:
 - safety evaluation;
 - artifact checksums.
 
+Model releases must use the `OromoLM-<size>` family convention. Instruction-tuned and specialized variants add a clear suffix, such as `OromoLM-1B-Instruct` or `OromoLM-1B-Translate`.
+
 ---
 
 ## Phase 11 — Applications
@@ -344,7 +348,7 @@ Before public release:
 
 Potential downstream systems:
 
-- Oromo chat/instruction model;
+- OromoLM-Instruct chat model;
 - translation;
 - retrieval/RAG;
 - search;
@@ -377,4 +381,3 @@ The project is currently here:
 ```
 
 The immediate task is to finish the **Phase 4 tokenizer/base-model strategy decision** before modifying model weights or starting continued pretraining.
-

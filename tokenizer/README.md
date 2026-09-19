@@ -1,10 +1,10 @@
-# Afaan Oromoo Tokenizer Research
+# OromoTokenizer Research
 
-This directory contains the reproducible tokenizer research and evaluation layer for Oromo AI.
+This directory contains the reproducible **OromoTokenizer** research and evaluation layer for the Oromo AI initiative.
 
 ## Objective
 
-Determine how efficiently existing tokenizers represent Afaan Oromoo before deciding whether an Oromo-specific tokenizer should be trained.
+Determine how efficiently existing tokenizers represent Afaan Oromoo before deciding which tokenizer or tokenizer-adaptation strategy should accompany OromoLM.
 
 The project will not assume that a custom tokenizer is necessary. The decision must be evidence-driven.
 
@@ -86,6 +86,6 @@ Investigate vocabulary augmentation or continued tokenizer research.
 
 ### Existing tokenizers are substantially inefficient
 
-Train and evaluate an Oromo-specific tokenizer.
+Train and evaluate OromoTokenizer candidates.
 
 No custom tokenizer should be trained until the baseline measurements justify it.

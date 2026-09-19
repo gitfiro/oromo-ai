@@ -1,6 +1,8 @@
-# Afaan Oromoo Tokenizer Research Report
+# OromoTokenizer Research Report
 
 **Project:** Oromo AI  
+**Component:** OromoTokenizer
+
 **Research phase:** Tokenizer baseline and custom-candidate evaluation  
 **Corpus version:** `afriberta_oromo_v0.1.2`  
 **Status:** Baseline complete; custom candidates benchmarked; causal-LM tokenizer benchmarking next
@@ -9,7 +11,7 @@
 
 ## 1. Purpose
 
-This report records the reproducible tokenizer research completed before Oromo AI begins continued-pretraining experiments.
+This report records the reproducible OromoTokenizer research completed before Oromo AI begins OromoLM continued-pretraining experiments.
 
 The project does **not** assume that a custom tokenizer is automatically preferable. The objective is to measure how efficiently established and Oromo-specialized tokenizers represent Afaan Oromoo, identify failure modes, and preserve enough evidence to make the later base-model/tokenizer decision deliberately.
 
@@ -185,7 +187,7 @@ The result is evidence about tokenizer behavior, not a final model-selection dec
 
 ---
 
-## 7. Custom Oromo tokenizer Candidate V1
+## 7. OromoTokenizer Candidate V1
 
 Custom candidates were trained with SentencePiece Unigram using identical training data and settings while varying vocabulary size.
 
@@ -275,7 +277,7 @@ The 48K-byte candidate currently has the strongest measured sequence efficiency.
 
 ## 10. Unified tokenizer comparison
 
-The frozen 10K benchmark now includes custom Oromo tokenizers, multilingual baselines, and realistic causal-LM tokenizers.
+The frozen 10K benchmark now includes OromoTokenizer candidates, multilingual baselines, and realistic causal-LM tokenizers.
 
 ### Custom and multilingual references
 
@@ -303,7 +305,7 @@ The frozen 10K benchmark now includes custom Oromo tokenizers, multilingual base
 
 All tested causal tokenizers achieve zero unknown tokens on the current holdout, so the central problem is not Unicode coverage. The problem is **representation efficiency**.
 
-Relative to the custom Oromo 48K-byte reference at 1.4000 tokens/word:
+Relative to the OromoTokenizer 48K-byte research reference at 1.4000 tokens/word:
 
 - Gemma 3 uses roughly 99% more tokens per word;
 - Qwen3.5 uses roughly 109% more;
@@ -322,7 +324,7 @@ Phase 4A established the following:
 1. modern causal tokenizers can represent the evaluated Oromo text without unknown tokens;
 2. every tested causal tokenizer fragments Oromo heavily;
 3. Gemma 3 is the strongest native causal tokenizer among the tested families;
-4. no tested native tokenizer approaches the custom Oromo tokenizer's sequence efficiency;
+4. no tested native tokenizer approaches the strongest OromoTokenizer candidate's sequence efficiency;
 5. tokenizer efficiency must therefore be considered explicitly when selecting a CPT base model.
 
 The native benchmark does **not** by itself determine the best base model. Base-model quality, architecture, license, training ecosystem, compute cost, and CPT behavior remain separate decision variables.
@@ -499,7 +501,7 @@ This is the key Phase 4B1 finding.
 **Established facts:**
 
 - the production corpus and frozen tokenizer holdout remain unchanged;
-- custom Oromo 32K-byte and 48K-byte tokenizers are strong sequence-efficiency references;
+- OromoTokenizer 32K-byte and 48K-byte candidates are strong sequence-efficiency references;
 - the custom 48K-byte tokenizer remains the best measured sequence-efficiency reference at 1.4000 tokens/word;
 - all tested causal tokenizers have zero unknowns on the current holdout;
 - all tested causal tokenizers impose substantial Oromo token inflation;

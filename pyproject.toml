@@ -1,7 +1,7 @@
 [project]
 name = "oromo-ai"
 version = "0.1.0"
-description = "Open AI research infrastructure for Afaan Oromoo"
+description = "Research infrastructure for OromoCorpus, OromoTokenizer, OromoLM, and OromoBench"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [

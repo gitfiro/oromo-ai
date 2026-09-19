@@ -2,11 +2,11 @@
 
 <p align="center">
   <strong>Open AI infrastructure for Afaan Oromoo</strong><br>
-  <em>Building language technology for Oromo — from data to models, evaluation, and applications.</em>
+  <em>Building OromoCorpus, OromoTokenizer, OromoLM, OromoBench, and the applications they enable.</em>
 </p>
 
 <p align="center">
-  <strong>Data → Tokenizer → Language Model → Instruction Tuning → Evaluation → Applications</strong>
+  <strong>OromoCorpus → OromoTokenizer → OromoLM → Instruction Tuning → OromoBench → Applications</strong>
 </p>
 
 <p align="center">
@@ -41,8 +41,8 @@ The long-term objective is to build a complete Oromo AI technology stack:
         └─────┬─────┘         └─────┬─────┘        └─────┬─────┘
               │                     │                     │
               ▼                     ▼                     ▼
-        OromoCorpus          Language Models        Translation
-        Data Pipeline        Instruction Models     ASR / TTS
+        OromoCorpus             OromoLM             Translation
+        Data Pipeline        OromoLM-Instruct       ASR / TTS
         Provenance            Embeddings             Morphology
         Quality Control       Specialized Models     RAG / Search
         Evaluation Data       Future Foundation      APIs / Apps
@@ -52,15 +52,43 @@ The project is being developed as a **research-grade foundation**, not as a coll
 
 ---
 
+## 🏷️ Project Naming
+
+The repository uses a stable naming system so that the initiative, datasets, tokenizers, models, and evaluations are not confused with one another.
+
+| Scope | Canonical name | Usage |
+| --- | --- | --- |
+| Research initiative | **Oromo AI** | The overall open research and engineering effort |
+| GitHub repository | **`oromo-ai`** | Source code, research, documentation, and reproducible experiments |
+| Corpus family | **OromoCorpus** | Versioned Afaan Oromoo training and evaluation corpora |
+| Tokenizer family | **OromoTokenizer** | Custom tokenizer candidates and tokenizer-adaptation research |
+| Foundation-model family | **OromoLM** | Continued-pretrained Afaan Oromoo causal language models |
+| Evaluation suite | **OromoBench** | Versioned Afaan Oromoo model evaluation framework |
+
+Planned release identifiers follow the model family and size:
+
+```text
+OromoLM-600M
+OromoLM-1B
+OromoLM-1B-Instruct
+OromoLM-1B-Translate
+```
+
+Names for unreleased artifacts describe the intended family and **do not imply that a production model or tokenizer has already been selected**. Historical dataset IDs, experiment names, file paths, and third-party model identifiers remain unchanged for reproducibility.
+
+See [`docs/NAMING.md`](docs/NAMING.md) for the canonical naming policy.
+
+---
+
 # 🎯 Vision
 
 The goal is to make Afaan Oromoo a first-class language in modern AI systems.
 
 That means building the infrastructure required to support:
 
-* Afaan Oromoo language modeling
-* Oromo instruction-following models
-* Oromo text generation
+* Afaan Oromoo language modeling with OromoLM
+* OromoLM instruction-following variants
+* Afaan Oromoo text generation
 * Oromo ↔ English translation
 * Oromo ↔ other Ethiopian and African languages
 * morphology-aware NLP
@@ -87,10 +115,10 @@ The long-term architecture is:
           │                 │                 │
     ┌─────┼─────┐       ┌───┴───┐       ┌────┼────┐
     │     │     │       │       │       │    │    │
-   LLM  RAG  Search     ASR    TTS   Translation Morphology
+ OromoLM RAG Search     ASR    TTS   Translation Morphology
     │
     ▼
- Instruction Models
+ OromoLM-Instruct
     │
     ▼
  API / Applications
@@ -150,15 +178,15 @@ This ordering is deliberate.
 | Rejection decision engine    | ✅ Implemented     |
 | Deduplication                | ✅ Implemented     |
 | Provenance tracking          | ✅ Implemented     |
-| Production corpus processing | ✅ Completed       |
+| OromoCorpus processing       | ✅ Completed       |
 | v0.1.2 validation            | ✅ Passed          |
 | Corpus statistics            | ✅ Generated       |
-| Tokenizer research           | ✅ Native + custom benchmark complete |
-| Tokenizer training           | ✅ Candidates benchmarked |
+| OromoTokenizer research      | ✅ Native + custom benchmark complete |
+| OromoTokenizer training      | ✅ Candidates benchmarked |
 | Causal-LM tokenizer research | ✅ Phase 4A complete |
 | Vocabulary augmentation      | ✅ Phase 4B1 complete |
-| Base-model selection         | 🔄 In progress     |
-| Continued pretraining        | ⏳ Planned         |
+| OromoLM base selection       | 🔄 In progress     |
+| OromoLM continued pretraining | ⏳ Planned        |
 | SFT                          | ⏳ Planned         |
 | OromoBench                   | 🔄 In development |
 | ASR                          | ⏳ Planned         |
@@ -168,9 +196,9 @@ This ordering is deliberate.
 ---
 
 
-## 🔤 Tokenizer Research — Current Results
+## 🔤 OromoTokenizer Research — Current Results
 
-Tokenizer research now includes frozen-set multilingual baselines, custom Oromo SentencePiece candidates, native causal-LM tokenizer benchmarks, and a whole-word vocabulary-augmentation feasibility study.
+OromoTokenizer research now includes frozen-set multilingual baselines, custom SentencePiece candidates, native causal-LM tokenizer benchmarks, and a whole-word vocabulary-augmentation feasibility study.
 
 The canonical tokenizer evaluation set is a deterministic, frozen **10,000-record** holdout from `afriberta_oromo_v0.1.2`:
 
@@ -192,7 +220,7 @@ The holdout is excluded by stable `record_id` from the tokenizer-training corpus
 0 evaluation leakage
 ```
 
-### Custom Oromo references
+### OromoTokenizer research references
 
 | Tokenizer | Vocab | Tok/Word | Frag % | Single % | UNK | Bytes/Tok |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -218,7 +246,7 @@ Gemma 3 is the strongest native causal tokenizer tested so far, yet it still use
 
 ### Phase 4B1 — whole-word vocabulary augmentation
 
-Instead of immediately replacing a pretrained tokenizer, Oromo AI tested a conservative strategy:
+Instead of immediately replacing a pretrained tokenizer with an OromoTokenizer candidate, Oromo AI tested a conservative strategy:
 
 ```text
 existing pretrained tokenizer
@@ -252,7 +280,7 @@ Gemma +4K   38.21%
 Oromo 48K   38.75%
 ```
 
-However, token-per-word efficiency remains substantially worse than the custom Oromo tokenizer. This shows that whole-word augmentation repairs frequent-word fragmentation very effectively but does not fully solve Oromo subword efficiency.
+However, token-per-word efficiency remains substantially worse than the best OromoTokenizer research reference. This shows that whole-word augmentation repairs frequent-word fragmentation very effectively but does not fully solve Oromo subword efficiency.
 
 The current decision point is therefore:
 
@@ -275,9 +303,9 @@ Full methodology and results:
 
 ---
 
-# 📊 Current Corpus
+# 📊 OromoCorpus — Current Release
 
-The first production corpus acquisition uses the **AfriBERTa Oromo corpus**, specifically the Afaan Oromoo portion of:
+The first versioned OromoCorpus release uses the **AfriBERTa Oromo corpus**, specifically the Afaan Oromoo portion of:
 
 `castorini/afriberta-corpus`
 
@@ -750,7 +778,7 @@ The project will **not** immediately attempt to train a massive language model f
 The initial strategy is:
 
 ```text
-High-quality Oromo corpus
+Versioned OromoCorpus
         ↓
 Tokenizer research
         ↓
@@ -789,7 +817,7 @@ QLoRA combines quantization with LoRA to reduce memory requirements during fine-
 
 ### SFT
 
-Supervised Fine-Tuning will be used to teach models to follow Oromo instructions and produce useful structured responses.
+Supervised Fine-Tuning will be used to produce OromoLM instruction variants that follow Afaan Oromoo instructions and generate useful structured responses.
 
 These techniques become relevant **after** the underlying data and evaluation infrastructure are sufficiently mature.
 
@@ -1073,7 +1101,7 @@ The corpus should remain useful even if the model architecture changes.
 
 ## Phase 2 — Corpus Engineering
 
-* [x] Acquire first Oromo corpus
+* [x] Acquire first OromoCorpus source
 * [x] Preserve raw source
 * [x] Establish source hashes
 * [x] Implement audit pipeline
@@ -1084,7 +1112,7 @@ The corpus should remain useful even if the model architecture changes.
 * [x] Generate production dataset
 * [x] Validate v0.1.2
 
-## Phase 3 — Tokenizer
+## Phase 3 — OromoTokenizer
 
 * [ ] Analyze Oromo tokenization
 * [ ] Compare existing tokenizers
@@ -1093,18 +1121,18 @@ The corpus should remain useful even if the model architecture changes.
 * [ ] Train experimental tokenizer
 * [ ] Establish tokenizer evaluation suite
 
-## Phase 4 — Model Experiments
+## Phase 4 — OromoLM Experiments
 
 * [ ] Establish tiny model baseline
-* [ ] Train proof-of-concept Oromo model
+* [ ] Train proof-of-concept OromoLM checkpoint
 * [ ] Evaluate loss/perplexity
 * [ ] Test continued pretraining
 * [ ] Compare open-weight base models
 * [ ] Establish reproducible training configuration
 
-## Phase 5 — Instruction Tuning
+## Phase 5 — OromoLM Instruction Tuning
 
-* [ ] Build Oromo instruction dataset
+* [ ] Build OromoLM instruction dataset
 * [ ] Build supervised examples
 * [ ] SFT baseline
 * [ ] LoRA/QLoRA experiments
@@ -1283,7 +1311,7 @@ The ultimate goal is an open, reproducible Oromo AI ecosystem in which researche
      DATA             MODELS        EVALUATION
        │               │               │
        ▼               ▼               ▼
- OromoCorpus      Oromo Models      OromoBench
+ OromoCorpus         OromoLM         OromoBench
        │               │               │
        └───────────────┼───────────────┘
                        │

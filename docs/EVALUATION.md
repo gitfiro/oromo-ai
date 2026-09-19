@@ -4,14 +4,16 @@
 
 Evaluation in Oromo AI is designed to prevent progress from being judged by fluent-looking examples alone.
 
+This framework evaluates the named project layers: **OromoCorpus** integrity, **OromoTokenizer** efficiency and adaptation, **OromoLM** capability, and the future **OromoBench** suite.
+
 Every major research layer should have a fixed, reproducible evaluation protocol before optimization begins.
 
 Current evaluation layers:
 
 ```text
-Corpus integrity
+OromoCorpus integrity
       ↓
-Tokenizer efficiency
+OromoTokenizer efficiency
       ↓
 Base-model language ability
       ↓
@@ -188,7 +190,7 @@ The decision should consider:
 7. cost of vocabulary augmentation or tokenizer replacement;
 8. continued-pretraining stability.
 
-The current 32K-byte and 48K-byte tokenizers are research references, not yet final production choices.
+The current 32K-byte and 48K-byte tokenizers are OromoTokenizer research references, not yet final production choices.
 
 ---
 
@@ -200,7 +202,7 @@ Current evidence supports three conclusions:
 
 1. native causal tokenizers are lossless on the frozen holdout but inefficient for Oromo;
 2. 2K–4K high-value lexical additions produce the largest early gains;
-3. whole-word augmentation alone does not recover the custom Oromo tokenizer's token-per-word efficiency.
+3. whole-word augmentation alone does not recover the strongest OromoTokenizer candidate's token-per-word efficiency.
 
 The next tokenizer decision should compare:
 
@@ -231,7 +233,7 @@ Before scaling model size, the first continued-pretraining proof should evaluate
 - training stability;
 - checkpoint reproducibility.
 
-The proof model exists to validate the pipeline, not to maximize benchmark headlines.
+The first OromoLM proof exists to validate the pipeline, not to maximize benchmark headlines.
 
 ---
 
