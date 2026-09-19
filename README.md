@@ -181,6 +181,7 @@ This ordering is deliberate.
 | OromoCorpus processing       | ✅ Completed       |
 | v0.1.2 validation            | ✅ Passed          |
 | Corpus statistics            | ✅ Generated       |
+| OromoCorpus expansion        | 🔄 50M–100M target active |
 | OromoTokenizer research      | ✅ Native + custom benchmark complete |
 | OromoTokenizer training      | ✅ Candidates benchmarked |
 | Causal-LM tokenizer research | ✅ Phase 4A complete |
@@ -342,6 +343,28 @@ afriberta_oromo_v0.1.2
 The complete statistics and validation methodology are documented in:
 
 [`docs/CORPUS_STATISTICS_REPORT.md`](docs/CORPUS_STATISTICS_REPORT.md)
+
+## 🎯 Official OromoCorpus Expansion Target
+
+Oromo AI is now working toward a **50–100 million token** natural-language corpus:
+
+| Milestone | Target | Meaning |
+| --- | ---: | --- |
+| **OromoCorpus v0.2** | **50M tokens minimum** | First corpus-expansion release suitable for meaningful OromoLM continued-pretraining experiments |
+| **OromoCorpus v0.3** | **100M tokens preferred** | Broader, more balanced corpus for stronger OromoLM training and evaluation |
+
+The official number means **net unique OromoLM-tokenizer tokens after cleaning and cross-source deduplication**. Raw source tokens, whitespace words, characters, and document counts will also be reported, but they do not replace the official post-processing token count.
+
+The total excludes OromoBench and all other evaluation holdouts. Synthetic or machine-translated text must remain separately identified and does not count toward the primary natural-language target.
+
+The expansion is governed by four requirements:
+
+* multiple licensed source families;
+* source-level provenance and reproducible manifests;
+* cross-source exact and near-duplicate removal;
+* domain and dialect diversity rather than token-count inflation.
+
+See [`docs/CORPUS_EXPANSION_PLAN.md`](docs/CORPUS_EXPANSION_PLAN.md) for the release gates and acquisition strategy.
 
 ---
 
@@ -827,6 +850,8 @@ These techniques become relevant **after** the underlying data and evaluation in
 
 The project is building toward a broader corpus ecosystem rather than relying permanently on one source.
 
+The active corpus goal is **50 million net unique OromoLM tokens minimum**, with **100 million tokens preferred**. These totals are measured only after cleaning and cross-source deduplication.
+
 Future corpus sources may include appropriately licensed:
 
 * books
@@ -1111,6 +1136,10 @@ The corpus should remain useful even if the model architecture changes.
 * [x] Implement rejection ledger
 * [x] Generate production dataset
 * [x] Validate v0.1.2
+* [ ] Audit and register additional licensed sources
+* [ ] Reach OromoCorpus v0.2 at 50M net unique tokens
+* [ ] Reach OromoCorpus v0.3 at 100M net unique tokens
+* [ ] Publish domain, dialect, license, and source-mixture statistics
 
 ## Phase 3 — OromoTokenizer
 
@@ -1235,6 +1264,7 @@ DATA_POLICY.md
 DATA_SCHEMA.md
 DATA_PIPELINE.md
 CORPUS_STATISTICS_REPORT.md
+CORPUS_EXPANSION_PLAN.md
 ```
 
 The documentation is intended to record not only **what** was built, but **why** specific decisions were made.
@@ -1265,9 +1295,9 @@ For v0.1.2, the authoritative source and processed hashes are recorded in the da
 
 # 📌 Current Milestone
 
-### OromoCorpus v0.1.2
+### OromoCorpus expansion toward v0.2
 
-The project has completed its first controlled production corpus-processing milestone.
+The project has completed its first controlled production corpus-processing milestone in `afriberta_oromo_v0.1.2`. The active data milestone is now **OromoCorpus v0.2: at least 50 million net unique OromoLM-tokenizer tokens**, while preserving a preferred path to 100 million tokens in v0.3.
 
 The important achievement is not simply the number of records.
 
@@ -1296,6 +1326,8 @@ Verify invariants
 ```
 
 That infrastructure is the foundation for everything that follows.
+
+The next corpus cycle will use that infrastructure to add multiple licensed sources, run source-specific quality review, remove duplicates across source boundaries, and publish the resulting token and mixture statistics. A tiny CPT pipeline proof may use the validated seed corpus, but meaningful scaled OromoLM training will use the expanded corpus and must not consume OromoBench holdouts.
 
 ---
 
