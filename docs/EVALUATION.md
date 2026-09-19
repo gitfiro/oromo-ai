@@ -127,13 +127,45 @@ fragmented + single-token + unaligned = total words
 
 ### Current benchmark
 
+#### Custom and multilingual references
+
 | Tokenizer | Vocab | Tok/Word | Frag % | Single % | UNK | Bytes/Tok |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| oromo-unigram-48k-byte | 48,000 | 1.4000 | 38.75% | 61.25% | 0 | 5.4562 |
+| oromo-unigram-48k-byte | 48,000 | **1.4000** | **38.75%** | **61.25%** | 0 | 5.4562 |
 | oromo-unigram-32k-byte | 32,000 | 1.4495 | 40.83% | 59.17% | 0 | 5.2699 |
 | castorini/afriberta_base | 70,006 | 1.6765 | 39.83% | 60.16% | 0 | 4.5563 |
 | xlm-roberta-base | 250,002 | 2.6091 | 81.03% | 18.97% | 3 | 2.9278 |
 | bert-base-multilingual-cased | 119,547 | 2.8696 | 87.36% | 12.63% | 5,423 | 2.6620 |
+
+#### Native causal-LM tokenizers
+
+| Tokenizer | Vocab | Tok/Word | Frag % | Single % | UNK | Bytes/Tok |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| google/gemma-3-1b-pt | 262,144 | **2.7855** | **85.91%** | **14.09%** | 0 | **2.7423** |
+| Qwen/Qwen3.5-0.8B-Base | 248,044 | 2.9191 | 86.94% | 13.06% | 0 | 2.6169 |
+| meta-llama/Llama-3.2-1B | 128,000 | 3.0311 | 88.32% | 11.68% | 0 | 2.5202 |
+| Qwen/Qwen3-0.6B-Base | 151,643 | 3.0713 | 88.89% | 11.11% | 0 | 2.4872 |
+| mistralai/Mistral-7B-v0.3 | 32,768 | 3.3241 | 93.09% | 6.91% | 0 | 2.2980 |
+
+The native causal tokenizers all provide Unicode coverage on this holdout, but sequence inflation and word fragmentation are consistently high for Afaan Oromoo.
+
+#### Whole-word augmentation feasibility
+
+Vocabulary augmentation preserves the original tokenizer IDs and appends selected Oromo lexical tokens. Candidate ranking uses only the leakage-safe tokenizer-training split and optimizes:
+
+```text
+frequency × (native_pieces - 1)
+```
+
+Frozen-holdout results:
+
+| Base tokenizer | Native | +2K | +4K | +8K | +16K |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Llama 3.2 1B | 3.0311 | 2.5705 | 2.4715 | 2.3716 | **2.2821** |
+| Qwen3 0.6B | 3.0713 | 2.6063 | 2.5058 | 2.4049 | **2.3140** |
+| Gemma 3 1B | 2.7855 | 2.4475 | 2.3692 | 2.2903 | **2.2172** |
+
+At +4K, fragmentation falls to 38.19% for Llama, 38.70% for Qwen3, and 38.21% for Gemma—close to the 38.75% custom 48K reference. Token-per-word efficiency remains materially worse than the custom tokenizer, so fragmentation and sequence efficiency must be evaluated separately.
 
 Full tokenizer methodology and all candidate results are documented in:
 
@@ -160,30 +192,29 @@ The current 32K-byte and 48K-byte tokenizers are research references, not yet fi
 
 ---
 
-## 4. Next evaluation: causal-LM tokenizers
+## 4. Causal-LM tokenizer and augmentation evaluation
 
-The next benchmark must use the same frozen 10K Oromo sample against realistic continued-pretraining model families.
+Native causal-tokenizer benchmarking is complete for the current candidate set, and Phase 4B1 has established that whole-word vocabulary augmentation can recover a large amount of Oromo word-level efficiency without replacing the original tokenizer.
 
-Planned families:
+Current evidence supports three conclusions:
 
-- Qwen;
-- Llama;
-- Gemma;
-- Mistral.
+1. native causal tokenizers are lossless on the frozen holdout but inefficient for Oromo;
+2. 2K–4K high-value lexical additions produce the largest early gains;
+3. whole-word augmentation alone does not recover the custom Oromo tokenizer's token-per-word efficiency.
 
-The objective is to measure native-tokenizer Oromo inflation before changing any pretrained model vocabulary.
-
-This experiment will inform whether Oromo AI should use:
+The next tokenizer decision should compare:
 
 ```text
 native tokenizer
-      |
-      +-- sufficient → keep it
-      |
-      +-- usable but inefficient → investigate vocabulary augmentation
-      |
-      +-- substantially inefficient → investigate tokenizer surgery/custom path
+      vs
+whole-word augmentation
+      vs
+Oromo subword augmentation
+      vs
+full tokenizer replacement
 ```
+
+Before any model weights are modified, the project should quantify diminishing returns, vocabulary/embedding parameter cost, and whether subword augmentation closes the remaining sequence-efficiency gap.
 
 ---
 
