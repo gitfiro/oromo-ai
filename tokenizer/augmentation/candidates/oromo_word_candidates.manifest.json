@@ -1,0 +1,34 @@
+{
+  "created_utc": "2026-09-19T18:19:53.600990+00:00",
+  "filters": {
+    "internal_apostrophes": [
+      "'",
+      "ʼ",
+      "’"
+    ],
+    "internal_hyphen": true,
+    "latin_ascii_letters_only": true,
+    "lemmatized": false,
+    "lowercased": false,
+    "max_length": 64,
+    "min_frequency": 2,
+    "min_length": 2
+  },
+  "format_version": 1,
+  "input": {
+    "lines": 400193,
+    "path": "tokenizer/training/afriberta_oromo_v0.1.2_tokenizer_train.txt",
+    "sha256": "a733419e61ed4751e7f4da950e8c05c893ecbbc63be12c1551a1493507162dff"
+  },
+  "output": {
+    "path": "tokenizer/augmentation/candidates/oromo_word_candidates.jsonl",
+    "sha256": "0e214873025d7504489edc7ad30186ae125cc00457dffd5ebff2ba35734cd1fd"
+  },
+  "purpose": "Leakage-safe lexical candidate pool for tokenizer augmentation research.",
+  "statistics": {
+    "accepted_lexical_occurrences": 6414817,
+    "candidate_forms": 168207,
+    "unique_lexical_forms": 405216,
+    "whitespace_tokens_seen": 6716499
+  }
+}
