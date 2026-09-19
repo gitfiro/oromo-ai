@@ -148,42 +148,63 @@ Detailed report:
 
 ## Phase 4 — Causal-LM tokenizer and base-model research
 
-**Status: next**
+**Status: Phase 4A and Phase 4B1 complete; strategy decision in progress**
 
-Purpose:
+### Phase 4A — native causal tokenizer benchmark
 
-Measure how realistic open-weight causal language-model tokenizers handle Afaan Oromoo before modifying any pretrained vocabulary.
+Completed on the frozen 10K Oromo holdout:
 
-Candidate families to investigate:
+| Native tokenizer | Tok/Word | Frag % | Single % | UNK |
+| --- | ---: | ---: | ---: | ---: |
+| Gemma 3 1B | **2.7855** | **85.91%** | **14.09%** | 0 |
+| Qwen3.5 0.8B | 2.9191 | 86.94% | 13.06% | 0 |
+| Llama 3.2 1B | 3.0311 | 88.32% | 11.68% | 0 |
+| Qwen3 0.6B | 3.0713 | 88.89% | 11.11% | 0 |
+| Mistral 7B v0.3 | 3.3241 | 93.09% | 6.91% | 0 |
 
-- Qwen;
-- Llama;
-- Gemma;
-- Mistral.
+Gemma 3 currently has the most efficient native causal tokenizer of the tested families, but every native tokenizer remains substantially less sequence-efficient than the custom Oromo references.
 
-For each realistic model family:
+### Phase 4B1 — whole-word vocabulary augmentation
 
-1. verify the exact model/tokenizer identifier and license;
-2. run the frozen Oromo 10K tokenizer benchmark;
-3. record vocabulary size and Oromo sequence inflation;
-4. compare against AfriBERTa and custom 32K/48K-byte references;
-5. assess model size, architecture, context length, training ecosystem, and compute requirements;
-6. decide whether the native tokenizer is sufficient.
+Completed for:
 
-Possible outcomes:
+- Llama 3.2 1B;
+- Qwen3 0.6B;
+- Gemma 3 1B.
+
+Candidate words are derived only from the 400,193-record leakage-safe tokenizer-training split and ranked by:
 
 ```text
-A. Native tokenizer sufficient
-   → CPT with native vocabulary
-
-B. Native tokenizer usable but inefficient
-   → evaluate vocabulary augmentation
-
-C. Native tokenizer severely inefficient
-   → investigate tokenizer replacement/custom-model path
+frequency × (native token pieces - 1)
 ```
 
-No base model should be selected from reputation alone.
+Results:
+
+| Model tokenizer | Native | +2K | +4K | +8K | +16K |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Llama 3.2 1B | 3.0311 | 2.5705 | 2.4715 | 2.3716 | **2.2821** |
+| Qwen3 0.6B | 3.0713 | 2.6063 | 2.5058 | 2.4049 | **2.3140** |
+| Gemma 3 1B | 2.7855 | 2.4475 | 2.3692 | 2.2903 | **2.2172** |
+
+The largest early gain occurs in the first few thousand additions. At +4K, all three tokenizers reach approximately 38% word fragmentation, close to the custom Oromo 48K reference. Token-per-word efficiency, however, remains well above the custom reference of 1.4000.
+
+### Current decision point
+
+Phase 4 has established that:
+
+- native causal tokenizers cover Oromo but tokenize it inefficiently;
+- whole-word vocabulary augmentation is highly effective for frequent lexical forms;
+- augmentation preserves the original tokenizer vocabulary/ID space and appends new IDs;
+- whole-word augmentation alone does not fully solve Oromo subword inefficiency.
+
+Before model-level CPT begins, the next research decision is whether to:
+
+1. proceed with a practical whole-word augmentation budget;
+2. run a Phase 4B2 Oromo subword-augmentation experiment;
+3. retain the native tokenizer despite sequence inflation; or
+4. pursue deeper tokenizer replacement only if the evidence justifies its pretrained-embedding cost.
+
+The base model must ultimately be selected from the combined evidence of tokenizer efficiency, model quality, architecture, license, compute requirements, and CPT feasibility—not tokenizer metrics alone.
 
 ---
 
@@ -344,15 +365,16 @@ The project is currently here:
 ```text
 ✅ Production corpus v0.1.2
 ✅ Frozen tokenizer evaluation
-✅ Established tokenizer baselines
-✅ Custom Oromo tokenizer candidates
-✅ Byte-fallback coverage experiment
+✅ Multilingual/custom tokenizer baselines
+✅ Native causal-LM tokenizer benchmark (Phase 4A)
+✅ Whole-word augmentation study (Phase 4B1)
         ↓
-🔄 Benchmark realistic causal-LM tokenizers
+🔄 Quantify augmentation tradeoffs and decide on Phase 4B2
         ↓
-⏳ Select base-model/tokenizer strategy
+⏳ Select base-model + tokenizer strategy
         ↓
 ⏳ Tiny CPT proof
 ```
 
-The immediate task is **Phase 4: causal-LM tokenizer and base-model research**.
+The immediate task is to finish the **Phase 4 tokenizer/base-model strategy decision** before modifying model weights or starting continued pretraining.
+
