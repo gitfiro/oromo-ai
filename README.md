@@ -723,19 +723,9 @@ oromo-ai/
 
 ---
 
-# ⚙️ Development Environment
+# ⚙️ Development Tooling
 
-The current development environment is:
-
-```text
-Windows
-   │
-   └── WSL2
-        │
-        └── Ubuntu
-             │
-             └── /home/mr-noob/projects/oromo-ai
-```
+The project uses a reproducible Python-based development and research stack.
 
 Python:
 
