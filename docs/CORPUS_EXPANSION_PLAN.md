@@ -13,6 +13,34 @@ The project is targeting:
 
 The project optimizes for quality, diversity, licensing clarity, and reproducibility—not the largest possible raw download.
 
+## Current Measured Progress — 2026-09-20
+
+The current accepted multi-source corpus measures **12,558,641 tokens** under the Oromo Unigram 48K + byte-fallback tokenizer used as a planning reference. This tokenizer is not yet the final OromoLM tokenizer, so the number is a versioned planning measurement rather than the final release count.
+
+| Source | Final accepted records | 48K reference tokens | Registry status |
+| --- | ---: | ---: | --- |
+| AfriBERTa Afaan Oromoo v0.1.2 | 410,193 | 9,587,934 | approved |
+| Wikimedia omwiki v0.1 | 2,254 | 1,070,896 | approved |
+| VOA Afaan Oromoo via WURA v0.1 | 9,510 | 1,899,811 | approved |
+| **Total** | **421,957** | **12,558,641** | — |
+
+Progress:
+
+```text
+50M minimum:  25.12% complete
+remaining:    37,441,359 reference tokens
+
+100M target:  12.56% complete
+```
+
+`castorini-wura-orm` remains `reviewing`. WURA is used as a provenance-discovery layer; only source subsets that independently pass rights review and the full acceptance pipeline count toward OromoCorpus.
+
+Frozen source reports:
+
+- `docs/sources/WIKIMEDIA_OMWIKI_REPORT.md`
+- `docs/sources/VOA_AFAAN_OROMOO_WURA_REPORT.md`
+
+The next acquisition priority is no longer tiny opportunistic sources. Prefer sources or publisher clusters capable of contributing roughly **5M–15M+ net-new tokens**, unless a smaller source provides unusually valuable domain, dialect, literary, conversational, or evaluation-safe diversity.
 ## Counting Standard
 
 The official milestone count is measured as:
@@ -147,14 +175,14 @@ In addition to the v0.2 gates:
 
 ## Immediate Execution Order
 
-1. Create the machine-readable source registry and manifest schema additions.
-2. Audit the first large licensed Oromo candidate source.
-3. Ingest it without modifying existing raw or processed releases.
-4. Cross-deduplicate it against `afriberta_oromo_v0.1.2`.
-5. Publish raw-versus-retained and net-new-token results.
-6. Repeat with smaller curated sources that improve domain or dialect coverage.
-7. Freeze v0.2 only after the 50M release gates pass.
-8. Continue acquisition toward the preferred 100M v0.3 target.
+1. Preserve the current approved-source baseline and frozen source manifests.
+2. Audit the next rights-clear Oromo source or publisher cluster with a realistic **5M–15M+ net-new-token** yield.
+3. Keep unclear sources in `reviewing` or `hold`; do not infer permission from crawlability or dataset-wrapper licenses.
+4. Ingest accepted source subsets without modifying prior frozen releases.
+5. Apply conservative quality filtering, within-source exact/near deduplication, and cross-source deduplication against every accepted source.
+6. Publish raw-versus-retained, provenance, licensing, and net-new-token results for each source.
+7. Use smaller curated sources selectively when they materially improve domain or dialect coverage.
+8. Freeze OromoCorpus v0.2 only after the 50M release gates pass, then continue toward the preferred 100M v0.3 target.
 
 ## Decision Principle
 
