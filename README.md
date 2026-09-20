@@ -181,7 +181,7 @@ This ordering is deliberate.
 | OromoCorpus processing       | ✅ Completed       |
 | v0.1.2 validation            | ✅ Passed          |
 | Corpus statistics            | ✅ Generated       |
-| OromoCorpus expansion        | 🔄 50M–100M target active |
+| OromoCorpus expansion        | 🔄 12.56M / 50M reference tokens (25.12%) |
 | OromoTokenizer research      | ✅ Native + custom benchmark complete |
 | OromoTokenizer training      | ✅ Candidates benchmarked |
 | Causal-LM tokenizer research | ✅ Phase 4A complete |
@@ -353,6 +353,28 @@ Oromo AI is now working toward a **50–100 million token** natural-language cor
 | **OromoCorpus v0.2** | **50M tokens minimum** | First corpus-expansion release suitable for meaningful OromoLM continued-pretraining experiments |
 | **OromoCorpus v0.3** | **100M tokens preferred** | Broader, more balanced corpus for stronger OromoLM training and evaluation |
 
+### Current measured planning snapshot — 2026-09-20
+
+Using the current **Oromo Unigram 48K + byte-fallback research tokenizer as a planning reference** (not yet the final OromoLM tokenizer), the accepted corpus currently measures:
+
+| Accepted source | Net-new records | 48K reference tokens | Status |
+| --- | ---: | ---: | --- |
+| AfriBERTa Afaan Oromoo v0.1.2 | 410,193 | 9,587,934 | Approved seed |
+| Afaan Oromoo Wikipedia (omwiki) | 2,254 | 1,070,896 | Approved, frozen |
+| VOA Afaan Oromoo via WURA | 9,510 | 1,899,811 | Approved provenance-cleared subset |
+| **Current total** | **421,957** | **12,558,641** | **25.12% of 50M** |
+
+```text
+50M minimum target:     50,000,000
+current planning total: 12,558,641
+remaining:              37,441,359
+progress:               25.12%
+```
+
+The WURA Oromo package remains under source-level review as a discovery layer; only the separately audited VOA subset is approved. Source-specific frozen reports are available at:
+
+- [`docs/sources/WIKIMEDIA_OMWIKI_REPORT.md`](docs/sources/WIKIMEDIA_OMWIKI_REPORT.md)
+- [`docs/sources/VOA_AFAAN_OROMOO_WURA_REPORT.md`](docs/sources/VOA_AFAAN_OROMOO_WURA_REPORT.md)
 The official number means **net unique OromoLM-tokenizer tokens after cleaning and cross-source deduplication**. Raw source tokens, whitespace words, characters, and document counts will also be reported, but they do not replace the official post-processing token count.
 
 The total excludes OromoBench and all other evaluation holdouts. Synthetic or machine-translated text must remain separately identified and does not count toward the primary natural-language target.
