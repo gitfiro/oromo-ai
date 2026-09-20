@@ -19,3 +19,6 @@ tokenizer/evaluation/samples/*.jsonl
 # Trained tokenizer binary artifacts
 tokenizer/training/candidates/**/*.model
 tokenizer/training/candidates/**/*.vocab
+
+# Intermediate generated corpus artifacts
+data/interim/

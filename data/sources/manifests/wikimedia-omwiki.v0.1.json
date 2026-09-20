@@ -1,0 +1,106 @@
+{
+  "artifact_hashes": {
+    "cleaned_jsonl_sha256": "7f2ed6dea270e52a1464f1ac45a2b2609ea8da5151fe88c13d588b1ee4f18029",
+    "exact_net_new_jsonl_sha256": "65eb16ecd215560d833916b70a14ec33e9ed4ebc40162fc4a1e7742fab7f3ff3",
+    "final_near_dedup_jsonl_sha256": "3db0136f942e535a1be9db3a421ff31086766d3ac9bf32856ea0c1d58eff41b9",
+    "raw_extracted_jsonl_sha256": "3bec5901541d535e9a2c8e3631afd085a44e0c02612f57c055ee0c5c76f1c800"
+  },
+  "characters": {
+    "final_net_new": 4749893,
+    "post_wikimedia_clean": 4886367,
+    "raw": 6435348,
+    "wikimedia_clean_retention_percent": 75.93
+  },
+  "corpus_family": "OromoCorpus",
+  "counts": {
+    "afriberta_exact_duplicates": 91,
+    "exact_net_new_records": 2269,
+    "final_net_new_records": 2254,
+    "near_duplicates_removed": 15,
+    "post_wikimedia_clean_records": 2401,
+    "quality_rejections": 8,
+    "raw_namespace_zero_records": 2420,
+    "wikimedia_clean_removed": 19,
+    "within_source_exact_duplicates": 33
+  },
+  "created_at": "2026-09-20T18:27:30.057391+00:00",
+  "domain": "encyclopedia_reference",
+  "language": "orm",
+  "licensing": {
+    "attribution_required": true,
+    "dataset_redistribution_conditions": [
+      "preserve attribution",
+      "provide CC BY-SA 4.0 license notice or link",
+      "indicate modifications to redistributed adapted text",
+      "comply with applicable ShareAlike requirements"
+    ],
+    "declared_license": "CC-BY-SA-4.0",
+    "downstream_model_weight_license": "separate_review_required",
+    "legal_review_complete": true,
+    "modification_notice_required": true,
+    "notes": "Source review completed for OromoCorpus training and text-dataset use. Approval does not determine the license requirements, if any, for downstream trained model weights.",
+    "redistribution_permission": "yes",
+    "registry_review_status": "approved",
+    "share_alike_obligation": true,
+    "training_permission": "yes"
+  },
+  "manifest_version": "0.1",
+  "pipeline": {
+    "exact_dedup_normalization": "Unicode NFC + whitespace collapse",
+    "mediawiki_markup_removed": true,
+    "namespace": 0,
+    "near_dedup_baseline": "afriberta_oromo_v0.1.2",
+    "near_dedup_method": "word_5gram_jaccard",
+    "near_dedup_threshold": 0.85,
+    "quality_pipeline": "Oromo AI conservative quality gates",
+    "redirects_excluded": true
+  },
+  "raw_artifact": {
+    "path": "data/raw/wikimedia-omwiki/omwiki-latest-pages-articles-multistream.xml.bz2",
+    "sha256": "6fa7678029d946e8c13fb00e088a2c21553bf955a5e6801d5313fc56173618aa"
+  },
+  "rejections": {
+    "duplicate_within_source": 33,
+    "obvious_extraction_garbage": 1,
+    "scientific_or_genomic_payload": 6,
+    "social_media_spam": 1
+  },
+  "release_status": {
+    "approved_for_oromocorpus_release": true,
+    "metrics_frozen": true,
+    "reason": "Source licensing/provenance review completed for OromoCorpus use. Corpus metrics remain frozen."
+  },
+  "source": {
+    "acquisition_method": "official_wikimedia_xml_dump",
+    "dump_url": "https://dumps.wikimedia.org/omwiki/latest/omwiki-latest-pages-articles-multistream.xml.bz2",
+    "publisher": "Wikimedia contributors / Wikimedia Foundation",
+    "source_url": "https://om.wikipedia.org/"
+  },
+  "source_id": "wikimedia-omwiki",
+  "source_name": "Afaan Oromoo Wikipedia",
+  "tokenizer_status": {
+    "official_tokenizer_selected": false,
+    "planning_reference": "oromo-unigram-48k-byte",
+    "reference_measurements": [
+      "oromo-unigram-32k-byte",
+      "oromo-unigram-48k-byte"
+    ]
+  },
+  "tokens": {
+    "oromo_unigram_32k_byte": {
+      "chars_per_token": 4.2681,
+      "tokenizer_tokens": 1112880,
+      "tokens_per_whitespace_token": 1.818,
+      "vocab_size": 32000
+    },
+    "oromo_unigram_48k_byte": {
+      "chars_per_token": 4.4354,
+      "tokenizer_tokens": 1070896,
+      "tokens_per_whitespace_token": 1.7494,
+      "vocab_size": 48000
+    },
+    "whitespace_tokens": 612144
+  },
+  "wiki_code": "omwiki",
+  "wikimedia_language_code": "om"
+}
