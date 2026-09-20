@@ -767,39 +767,60 @@ These limitations are documented rather than hidden.
 
 # 29. Next Corpus Work
 
+The original `afriberta_oromo_v0.1.2` seed remains frozen and unchanged. Corpus expansion is now operating as a source-by-source, provenance-first process.
+
+### Current multi-source planning snapshot — 2026-09-20
+
+The current accepted sources measure:
+
+| Source | Final accepted records | Characters | 48K reference tokens |
+| --- | ---: | ---: | ---: |
+| AfriBERTa Afaan Oromoo v0.1.2 | 410,193 | 52,122,367 | 9,587,934 |
+| Wikimedia omwiki v0.1 | 2,254 | 4,749,893 | 1,070,896 |
+| VOA Afaan Oromoo via WURA v0.1 | 9,510 | 10,433,883 | 1,899,811 |
+| **Current total** | **421,957** | **67,306,143** | **12,558,641** |
+
+The token total uses the Oromo Unigram 48K + byte-fallback tokenizer as the current **planning reference**, not as the final OromoLM tokenizer.
+
+```text
+OromoCorpus v0.2 minimum: 50,000,000 reference tokens
+current planning total:   12,558,641
+progress:                 25.12%
+remaining:                37,441,359
+
+OromoCorpus v0.3 target: 100,000,000 reference tokens
+progress:                 12.56%
+```
+
+Approved source expansion completed so far:
+
+- `wikimedia-omwiki.v0.1`: 2,254 net-new records after source-specific cleaning, exact deduplication, and 5-word-shingle near deduplication;
+- `voa-afaan-oromoo-via-wura.v0.1`: 9,510 net-new records after conservative third-party provenance holds, quality processing, exact deduplication, and near deduplication;
+- `castorini-wura-orm` remains `reviewing` as a discovery layer and does not count as a whole toward the accepted corpus.
+
+Frozen source-level reports:
+
+- `docs/sources/WIKIMEDIA_OMWIKI_REPORT.md`
+- `docs/sources/VOA_AFAAN_OROMOO_WURA_REPORT.md`
+
+### Next acquisition priorities
+
 The next data-engineering priorities are:
 
 ```text
-1. Acquire additional licensed Oromo sources
-2. Improve document-level reconstruction
-3. Expand dialect metadata
-4. Expand domain metadata
-5. Build source-specific quality profiles
-6. Add additional parallel corpora
-7. Build instruction data
-8. Build evaluation data
-9. Measure tokenizer efficiency
-10. Construct the broader OromoCorpus
-11. Reach 50M net unique OromoLM-tokenizer tokens for v0.2
-12. Expand toward 100M tokens with stronger domain and dialect balance for v0.3
+1. Target rights-clear sources or publisher clusters capable of roughly 5M–15M+ net-new tokens
+2. Preserve source-level licensing and provenance decisions
+3. Continue exact and near deduplication against every accepted source
+4. Improve domain and dialect balance rather than maximizing raw volume
+5. Use smaller curated sources when they add unusually valuable linguistic diversity
+6. Keep OromoBench/evaluation data isolated from training
+7. Freeze OromoCorpus v0.2 only after the 50M release gates pass
+8. Continue toward 100M with broader domain and dialect coverage
 ```
 
-The goal is not merely to increase record count.
-
-The goal is to increase:
-
-```text
-quality
-coverage
-diversity
-provenance
-linguistic usefulness
-```
-
-Progress toward 50M and 100M must be reported by source, license, domain, dialect where known, raw size, retained size, duplicate loss, and final OromoLM-tokenizer count. No source's advertised size should be counted before it passes the production pipeline.
+The goal is not merely to increase record count. The goal is to increase quality, coverage, diversity, provenance, and linguistic usefulness. No source's advertised size is counted before it passes the production pipeline.
 
 ---
-
 # 30. Production Dataset Principle
 
 The current corpus pipeline follows:
@@ -867,6 +888,10 @@ The corpus is now ready to serve as a **seed dataset for tokenizer research and 
 
 It should not yet be treated as the final Oromo foundation-model training corpus.
 
+Since v0.1.2 was frozen, two additional source-level expansions have been qualified and frozen: Wikimedia omwiki and the provenance-cleared VOA Afaan Oromoo subset recovered through WURA. Together they contribute **2,970,707 net-new 48K reference tokens** beyond the AfriBERTa seed.
+
+The current accepted planning total is **12,558,641 48K reference tokens**, or **25.12%** of the 50M v0.2 minimum. These are source-level planning measurements; a final OromoCorpus release still requires the selected/versioned OromoLM tokenizer and all v0.2 release gates.
+
 ---
 
 # 32. Dataset Status
@@ -884,8 +909,9 @@ It should not yet be treated as the final Oromo foundation-model training corpus
 │  v0.1.2 processing        COMPLETE       │
 │  Integrity validation     COMPLETE       │
 │                                          │
-│  Corpus expansion         NEXT           │
-│  Tokenizer research       NEXT           │
+│  Corpus expansion         ACTIVE 25.12%  │
+│  Source registry          ACTIVE         │
+│  Tokenizer research       ACTIVE         │
 │  Model training           LATER          │
 └──────────────────────────────────────────┘
 ```
