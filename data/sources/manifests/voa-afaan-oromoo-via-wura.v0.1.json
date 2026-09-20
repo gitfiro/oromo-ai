@@ -1,0 +1,83 @@
+{
+  "created_at": "2026-09-20T19:13:23.130196+00:00",
+  "funnel": {
+    "cross_source_exact_duplicates": 0,
+    "cross_source_near_duplicates": 1,
+    "exact_net_new_records": 9513,
+    "final_net_new_records": 9510,
+    "provenance_cleared_records": 9639,
+    "publisher_marker_hold_records": 59,
+    "quality_accepted_records": 9639,
+    "quality_rejected_records": 0,
+    "wire_service_hold_records": 63,
+    "within_source_exact_duplicates": 126,
+    "within_source_near_duplicates": 2,
+    "wura_voa_raw_records": 9761
+  },
+  "language": "orm",
+  "licensing": {
+    "attribution_required": true,
+    "downstream_model_weight_license": "separate_review_required",
+    "publisher": "Voice of America",
+    "redistribution_permission": "yes",
+    "review_notes": "Approval applies to the provenance-cleared subset only. Records containing identified AP, AFP, Reuters, BBC, CNN, Bloomberg, Guardian, New York Times, Washington Post, Al Jazeera, Deutsche Welle, or France 24 markers were held.",
+    "rights_basis": "VOA-produced material is treated as public-domain U.S. government material; identifiable third-party publisher and wire-service material was conservatively held.",
+    "third_party_material_excluded": true,
+    "training_permission": "yes"
+  },
+  "manifest_version": "0.1",
+  "metrics": {
+    "average_characters_per_record": 1097.15,
+    "final_characters": 10433883,
+    "tokenizer_reference": {
+      "official_tokenizer_frozen": false,
+      "oromo_unigram_32k_byte": {
+        "characters_per_token": 5.2778,
+        "tokens": 1976931,
+        "tokens_per_whitespace_token": 1.4812,
+        "vocab_size": 32000
+      },
+      "oromo_unigram_48k_byte": {
+        "characters_per_token": 5.4921,
+        "planning_reference": true,
+        "tokens": 1899811,
+        "tokens_per_whitespace_token": 1.4234,
+        "vocab_size": 48000
+      }
+    },
+    "whitespace_tokens": 1334704
+  },
+  "processing": {
+    "cross_source_baselines": [
+      "afriberta_oromo_v0.1.2",
+      "wikimedia-omwiki.v0.1"
+    ],
+    "exact_dedup": true,
+    "near_dedup": {
+      "candidate_signature_size": 32,
+      "enabled": true,
+      "shingle_size": 5,
+      "threshold": 0.85
+    },
+    "quality_policy": "Oromo AI canonical conservative pipeline"
+  },
+  "provenance": {
+    "acquisition_method": "WURA document-level extraction",
+    "exact_net_new_sha256": "959e885ca5b8cb12c742ee238219aa816777f22ef0a4660fc88d14c355e46148",
+    "final_near_dedup_sha256": "4abe7c6b938de5714707303a8f56a82bea48a624a5719a8e2beb1d46434b426d",
+    "provenance_cleared_sha256": "1e4ec6b4405a6ebe37448df279a403b59085e2d3f732a7ae5748d06c77044d1c",
+    "publisher_domain": "voaafaanoromoo.com",
+    "quality_accepted_sha256": "1d85dc7595c0a401fad72a4e6ccc04b83fe4a071f60b6d321c80eee758eeb607",
+    "raw_wura_sha256": "854ad8d60226a6897294e613f8fc766c8e910634100141903d01f6576250fc12",
+    "upstream_dataset": "castorini/wura",
+    "upstream_subset": "documents-v1.0/train/orm.jsonl",
+    "voa_raw_subset_sha256": "cded712bad9f2f7ee3778bc7ca8fcb9289d96f7e9c008a38b03744f4539a7afd"
+  },
+  "release_status": {
+    "approved_for_oromocorpus_release": true,
+    "metrics_frozen": true,
+    "requires_new_manifest_version_if_processing_changes": true
+  },
+  "source_id": "voa-afaan-oromoo-via-wura",
+  "source_name": "Voice of America Afaan Oromoo via WURA"
+}
