@@ -112,6 +112,26 @@ Release milestones:
 
 The official total is calculated only after conservative cleaning and exact/near-duplicate removal across all included sources. The project will additionally report raw records, characters, whitespace tokens, and per-source retention so that the expansion remains auditable.
 
+### Verified expansion progress — 2026-09-20
+
+Using the Oromo Unigram 48K + byte-fallback research tokenizer as the current planning reference:
+
+| Accepted source | Net-new records | 48K reference tokens | Status |
+| --- | ---: | ---: | --- |
+| AfriBERTa Afaan Oromoo v0.1.2 | 410,193 | 9,587,934 | approved seed |
+| Wikimedia omwiki v0.1 | 2,254 | 1,070,896 | approved/frozen |
+| VOA Afaan Oromoo via WURA v0.1 | 9,510 | 1,899,811 | approved/frozen |
+| **Total** | **421,957** | **12,558,641** | **25.12% of v0.2 minimum** |
+
+```text
+remaining to 50M: 37,441,359 reference tokens
+progress to 100M: 12.56%
+```
+
+The full WURA Oromo package remains under review and does not count toward the accepted total. WURA is currently used as a source-discovery/provenance layer; only independently rights-cleared subsets enter OromoCorpus.
+
+Next-source selection now prioritizes rights-clear sources or publisher clusters with a realistic **5M–15M+ net-new-token** contribution. Smaller sources remain worthwhile when they materially improve domain, dialect, literary, conversational, or technical coverage.
+
 Primary work:
 
 - maintain a source registry containing ownership, license, provenance, acquisition date, domain, dialect metadata, and redistribution constraints;
@@ -399,16 +419,24 @@ The project is currently here:
 
 ```text
 ✅ Production corpus v0.1.2
+✅ Source registry + source-level manifest framework
+✅ Wikimedia omwiki source qualified and frozen
+✅ VOA Afaan Oromoo via WURA source qualified and frozen
+✅ Current 48K-reference corpus measurement: 12,558,641 tokens
 ✅ Frozen tokenizer evaluation
 ✅ Multilingual/custom tokenizer baselines
 ✅ Native causal-LM tokenizer benchmark (Phase 4A)
 ✅ Whole-word augmentation study (Phase 4B1)
         ↓
-🔄 Expand OromoCorpus toward 50M net unique tokens
+🔄 Expand OromoCorpus from 12.56M toward 50M net unique tokens
+        ↓
+🔄 Audit next rights-clear 5M–15M+ token source / publisher cluster
         ↓
 ⏳ Continue base-model + tokenizer strategy decision
         ↓
 ⏳ Tiny CPT proof
 ```
 
-The immediate data task is to register, audit, ingest, and cross-deduplicate the next licensed source, then report its net new OromoLM-tokenizer tokens. Tokenizer/base-model research may continue in parallel, and a tiny CPT proof may validate the pipeline, but scaled continued pretraining waits for an evidence-backed expanded corpus.
+The immediate data task is to identify and audit the next high-yield, rights-clear Afaan Oromoo source or publisher cluster. Each new source must pass provenance review, conservative quality processing, exact and near cross-source deduplication, and source-level manifest/report freezing before its tokens are added to the planning total.
+
+Tokenizer/base-model research may continue in parallel, and a tiny CPT proof may validate the training architecture, but scaled continued pretraining waits for an evidence-backed expanded corpus.
