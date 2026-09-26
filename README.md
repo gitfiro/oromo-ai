@@ -69,16 +69,17 @@ The current accepted corpus planning total is measured with the **Oromo Unigram 
 | AfriBERTa Afaan Oromoo v0.1.2 | 410,193 | 9,587,934 |
 | Wikimedia omwiki v0.1 | 2,254 | 1,070,896 |
 | VOA Afaan Oromoo via WURA v0.1 | 9,510 | 1,899,811 |
-| **Total** | **421,957** | **12,558,641** |
+| WaxalNLP Oromo ASR v0.1 | 44,194 | 1,934,045 |
+| **Total** | **466,151** | **14,492,686** |
 
 ```text
 OromoCorpus v0.2 minimum: 50,000,000 tokens
-Current planning total:   12,558,641
-Progress:                 25.12%
-Remaining:                37,441,359
+Current planning total:   14,492,686
+Progress:                 28.99%
+Remaining:                35,507,314
 
 OromoCorpus v0.3 target: 100,000,000 tokens
-Current progress:         12.56%
+Current progress:         14.49%
 ```
 
 The full WURA Oromo package remains under source-level review and does not count as an accepted source by itself. Only independently audited and rights-cleared subsets are admitted.
@@ -189,6 +190,7 @@ The repository is research infrastructure under active development; commands and
 ✅ AfriBERTa Oromo v0.1.2 validated
 ✅ Wikimedia omwiki source qualified
 ✅ VOA Afaan Oromoo subset qualified
+✅ WaxalNLP Oromo ASR source qualified
 ✅ Frozen tokenizer evaluation set
 ✅ Custom tokenizer benchmark
 ✅ Native causal-tokenizer benchmark

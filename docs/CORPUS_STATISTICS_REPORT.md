@@ -778,18 +778,19 @@ The current accepted sources measure:
 | AfriBERTa Afaan Oromoo v0.1.2 | 410,193 | 52,122,367 | 9,587,934 |
 | Wikimedia omwiki v0.1 | 2,254 | 4,749,893 | 1,070,896 |
 | VOA Afaan Oromoo via WURA v0.1 | 9,510 | 10,433,883 | 1,899,811 |
-| **Current total** | **421,957** | **67,306,143** | **12,558,641** |
+| WaxalNLP Oromo ASR v0.1 | 44,194 | 10,637,213 | 1,934,045 |
+| **Current total** | **466,151** | **77,943,356** | **14,492,686** |
 
 The token total uses the Oromo Unigram 48K + byte-fallback tokenizer as the current **planning reference**, not as the final OromoLM tokenizer.
 
 ```text
 OromoCorpus v0.2 minimum: 50,000,000 reference tokens
-current planning total:   12,558,641
-progress:                 25.12%
-remaining:                37,441,359
+current planning total:   14,492,686
+progress:                 28.99%
+remaining:                35,507,314
 
 OromoCorpus v0.3 target: 100,000,000 reference tokens
-progress:                 12.56%
+progress:                 14.49%
 ```
 
 Approved source expansion completed so far:
@@ -890,7 +891,7 @@ It should not yet be treated as the final Oromo foundation-model training corpus
 
 Since v0.1.2 was frozen, two additional source-level expansions have been qualified and frozen: Wikimedia omwiki and the provenance-cleared VOA Afaan Oromoo subset recovered through WURA. Together they contribute **2,970,707 net-new 48K reference tokens** beyond the AfriBERTa seed.
 
-The current accepted planning total is **12,558,641 48K reference tokens**, or **25.12%** of the 50M v0.2 minimum. These are source-level planning measurements; a final OromoCorpus release still requires the selected/versioned OromoLM tokenizer and all v0.2 release gates.
+The current accepted planning total is **14,492,686 48K reference tokens**, or **28.99%** of the 50M v0.2 minimum. These are source-level planning measurements; a final OromoCorpus release still requires the selected/versioned OromoLM tokenizer and all v0.2 release gates.
 
 ---
 
@@ -909,7 +910,7 @@ The current accepted planning total is **12,558,641 48K reference tokens**, or *
 │  v0.1.2 processing        COMPLETE       │
 │  Integrity validation     COMPLETE       │
 │                                          │
-│  Corpus expansion         ACTIVE 25.12%  │
+│  Corpus expansion         ACTIVE 28.99%  │
 │  Source registry          ACTIVE         │
 │  Tokenizer research       ACTIVE         │
 │  Model training           LATER          │

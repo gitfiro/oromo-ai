@@ -15,22 +15,23 @@ The project optimizes for quality, diversity, licensing clarity, and reproducibi
 
 ## Current Measured Progress — 2026-09-20
 
-The current accepted multi-source corpus measures **12,558,641 tokens** under the Oromo Unigram 48K + byte-fallback tokenizer used as a planning reference. This tokenizer is not yet the final OromoLM tokenizer, so the number is a versioned planning measurement rather than the final release count.
+The current accepted multi-source corpus measures **14,492,686 tokens** under the Oromo Unigram 48K + byte-fallback tokenizer used as a planning reference. This tokenizer is not yet the final OromoLM tokenizer, so the number is a versioned planning measurement rather than the final release count.
 
 | Source | Final accepted records | 48K reference tokens | Registry status |
 | --- | ---: | ---: | --- |
 | AfriBERTa Afaan Oromoo v0.1.2 | 410,193 | 9,587,934 | approved |
 | Wikimedia omwiki v0.1 | 2,254 | 1,070,896 | approved |
 | VOA Afaan Oromoo via WURA v0.1 | 9,510 | 1,899,811 | approved |
-| **Total** | **421,957** | **12,558,641** | — |
+| WaxalNLP Oromo ASR v0.1 | 44,194 | 1,934,045 | approved |
+| **Total** | **466,151** | **14,492,686** | — |
 
 Progress:
 
 ```text
-50M minimum:  25.12% complete
-remaining:    37,441,359 reference tokens
+50M minimum:  28.99% complete
+remaining:    35,507,314 reference tokens
 
-100M target:  12.56% complete
+100M target:  14.49% complete
 ```
 
 `castorini-wura-orm` remains `reviewing`. WURA is used as a provenance-discovery layer; only source subsets that independently pass rights review and the full acceptance pipeline count toward OromoCorpus.
