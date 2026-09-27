@@ -6,7 +6,8 @@
 **Configuration:** `om`  
 **Language:** Afaan Oromoo / Oromo  
 **Source family:** Common Crawl-derived web corpus  
-**Manifest version:** `0.1`
+**Current approval manifest:** `0.2`  
+**Historical HOLD manifest:** `0.1`
 
 ### Current decision
 
@@ -15,12 +16,17 @@
 - Near deduplication: **PASS**
 - Language-quality audit: **PASS**
 - Tokenizer-reference measurement: **PASS**
-- Corpus status: **RESEARCH HOLD**
-- Approved for accepted OromoCorpus release: **NO**
-- Licensing/provenance review: **REQUIRED**
+- Corpus status: **APPROVED**
+- Approved for accepted OromoCorpus release: **YES**
+- Upstream dataset license: **ODC-BY**
+- Approval basis: **upstream MADLAD-400 dataset-level ODC-BY license**
+- Underlying individual content rights: **not independently verified**
+- Downstream model-weight licensing: **separate review required**
 
-MADLAD is therefore a technically qualified and quality-cleaned
-research corpus, but it is not part of the accepted OromoCorpus release.
+MADLAD is technically qualified, quality-cleaned, and approved for OromoCorpus
+under the upstream dataset's published ODC-BY license. This project decision
+does not assert independent copyright clearance for every underlying Common
+Crawl page.
 
 ---
 
@@ -222,52 +228,52 @@ near-deduplicated 48K-reference token yield.
 
 ## 9. Licensing and Provenance
 
-MADLAD-400 is derived from Common Crawl.
+MADLAD-400 is derived from Common Crawl. The official
+`allenai/MADLAD-400` dataset metadata identifies its dataset license as
+**ODC-BY**.
 
-The distributed dataset has a dataset-level **ODC-BY** license.
-However, dataset-level licensing does not by itself establish that every
-underlying web publisher granted the rights required for every intended
-downstream use.
+Oromo AI now accepts the frozen research-clean Oromo subset by relying on that
+upstream dataset-level license representation. The project requires
+attribution to AllenAI / MADLAD-400 and preservation of the ODC-BY notice for
+relevant corpus redistribution.
 
-The released Oromo text schema does not provide sufficient per-document
-URL/domain provenance for the project to independently reconstruct and
-clear underlying publisher rights.
+This acceptance is deliberately scoped:
 
-Therefore:
-
-- technical research use: **qualified**
-- quality status: **passed**
-- accepted OromoCorpus release: **not approved**
-- training use for the release corpus: **on hold**
-- text redistribution: **on hold**
+- dataset-level licensing basis: **ODC-BY**
+- training use in OromoCorpus: **approved**
+- corpus inclusion/accounting: **approved**
+- text redistribution: **approved under upstream dataset license with attribution**
+- underlying individual Common Crawl content rights: **not independently verified**
 - downstream model-weight licensing: **separate review required**
 
-The quality decision and legal/provenance decision are deliberately
-independent.
+ODC-BY is documented as a database license; Oromo AI does not describe it as
+independently licensing every underlying web page. The prior provenance
+investigation remains part of the permanent audit trail.
+
+Full decision:
+
+`docs/sources/MADLAD_400_LICENSE_DECISION.md`
+
+The quality decision, provenance evidence, and licensing basis remain
+separately documented.
 
 ---
 
 ## 10. Corpus Accounting
 
-Accepted OromoCorpus remains:
-
-**14,492,686 48K-reference tokens**
-
-MADLAD research-clean HOLD:
-
-**17,873,390 48K-reference tokens**
-
-Combined technical research pool:
+Accepted OromoCorpus after MADLAD approval:
 
 **32,366,076 48K-reference tokens**
 
-MADLAD is **not included** in the accepted OromoCorpus total.
+MADLAD accepted contribution:
 
-If it were eventually cleared, the combined pool would represent:
+**17,873,390 48K-reference tokens**
 
-**64.73% of the 50M-token minimum target**
+Progress toward the 50M-token minimum:
 
-Remaining to 50M in that technical scenario:
+**64.73%**
+
+Remaining to 50M:
 
 **17,633,924 tokens**
 
@@ -275,16 +281,18 @@ Remaining to 50M in that technical scenario:
 
 ## 11. Final Decision
 
-MADLAD-400 Oromo v0.1 is frozen as:
+MADLAD-400 Oromo v0.2 is frozen as:
 
-**TECHNICALLY QUALIFIED / QUALITY PASSED / RESEARCH HOLD**
+**TECHNICALLY QUALIFIED / QUALITY PASSED / APPROVED UNDER UPSTREAM ODC-BY**
 
-No future documentation or corpus statistics should count its
-17,873,390 reference tokens toward the accepted OromoCorpus total unless
-a later provenance/licensing decision explicitly changes its status.
+The previous v0.1 manifest is retained as the historical research-HOLD
+decision. The v0.2 manifest records the licensing-policy change without
+rewriting the earlier audit history.
 
-Any change to processing, quality decisions, or release status requires
-a new manifest version.
+Its **17,873,390** reference tokens now count toward accepted OromoCorpus.
+
+Any future change to processing, quality decisions, artifact hashes, or
+licensing basis requires a new manifest version.
 
 
 ---
@@ -295,7 +303,10 @@ A subsequent provenance-recovery audit successfully mapped **1,917 records**
 from the final research-clean corpus to official MADLAD v1.5 URLs and
 timestamps, representing **1,874,398 48K-reference tokens (10.49%)**.
 
-The remaining MADLAD material remains provenance-unresolved.
+The remaining MADLAD material lacks directly recovered source-level provenance.
+Following the v0.2 policy decision, this is retained as an audit limitation
+(`underlying_content_rights: not_independently_verified`) rather than a corpus
+acceptance blocker under the upstream ODC-BY dataset license.
 
 See:
 
