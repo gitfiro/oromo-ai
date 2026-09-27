@@ -80,8 +80,11 @@ The current accepted corpus planning total is measured with the **Oromo Unigram 
 ### Research-qualified source on HOLD
 
 MADLAD-400 Oromo v0.1 has passed technical processing, cross-source
-deduplication, conservative language-quality review, and tokenizer-reference
-measurement.
+deduplication, conservative language-quality review, tokenizer-reference
+measurement, and a first provenance-recovery audit. Official MADLAD v1.5
+provenance was recovered for **1,917 final research-clean records / 1,874,398
+48K-reference tokens (10.49%)**. The remaining **16,787 records / 15,998,992
+reference tokens** remain provenance-unresolved.
 
 | Source | Research-clean records | 48K reference tokens | Status |
 |---|---:|---:|---|
@@ -91,7 +94,8 @@ Accepted OromoCorpus remains **14,492,686** 48K-reference tokens.
 
 MADLAD contributes **17,873,390** additional research-clean tokens to a
 separate technical pool of **32,366,076** tokens, but it is not counted toward
-the accepted OromoCorpus because provenance/licensing review remains open.
+the accepted OromoCorpus. Provenance is only partially recovered and
+source-level licensing review remains incomplete.
 
 ```text
 OromoCorpus v0.2 minimum: 50,000,000 tokens
@@ -213,7 +217,8 @@ The repository is research infrastructure under active development; commands and
 ✅ VOA Afaan Oromoo subset qualified
 ✅ WaxalNLP Oromo ASR source qualified
 ✅ MADLAD-400 Oromo technical and quality qualification complete
-⏸️ MADLAD-400 Oromo research HOLD pending provenance/licensing review
+✅ MADLAD-400 Oromo provenance recovery: 1,917 records / 1,874,398 tokens mapped
+⏸️ MADLAD-400 Oromo remains research HOLD; 16,787 records / 15,998,992 tokens unresolved
 ✅ Frozen tokenizer evaluation set
 ✅ Custom tokenizer benchmark
 ✅ Native causal-tokenizer benchmark
@@ -247,6 +252,7 @@ Detailed technical material lives in `docs/` rather than being duplicated in thi
 | [Tokenizer Research Report](docs/TOKENIZER_RESEARCH_REPORT.md) | Tokenizer benchmarks and experiments |
 | [Evaluation](docs/EVALUATION.md) | OromoBench evaluation direction |
 | [Roadmap](docs/ROADMAP.md) | Project phases and current milestone |
+| [MADLAD Provenance Review](docs/sources/MADLAD400_PROVENANCE_REVIEW.md) | Partial source-level provenance recovery, URL/domain audit, and VOA review |
 | [Naming](docs/NAMING.md) | Canonical project naming |
 
 Source-specific qualification reports are maintained under [`docs/sources/`](docs/sources/).
