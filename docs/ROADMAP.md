@@ -101,7 +101,7 @@ The cleaning philosophy remains conservative: remove demonstrable extraction/dat
 
 ## Phase 2B — OromoCorpus expansion
 
-**Status: active**
+**Status: 50M minimum achieved; expansion toward 100M active**
 
 Release milestones:
 
@@ -123,7 +123,8 @@ Using the Oromo Unigram 48K + byte-fallback research tokenizer as the current pl
 | VOA Afaan Oromoo via WURA v0.1 | 9,510 | 1,899,811 | approved/frozen |
 | WaxalNLP Oromo ASR v0.1 | 44,194 | 1,934,045 | approved/frozen |
 | MADLAD-400 Oromo v0.2 | 18,704 | 17,873,390 | approved/frozen — ODC-BY |
-| **Accepted total** | **484,855** | **32,366,076** | **64.73% of v0.2 minimum** |
+| HPLT 3.0 gaz_Latn v0.1 | 26,655 | 19,771,727 | approved/frozen — CC0 packaging; underlying text caveat |
+| **Accepted total** | **511,510** | **52,137,803** | **104.28% of v0.2 minimum** |
 
 ### MADLAD-400 approval
 
@@ -141,9 +142,27 @@ longer blocks project acceptance under the upstream dataset license.
 
 See `docs/sources/MADLAD_400_LICENSE_DECISION.md`.
 
+### HPLT 3.0 approval and 50M milestone
+
+HPLT 3.0 `gaz_Latn` v0.1 contributes **26,655 records / 19,771,727
+48K-reference tokens** after restricting the release to WDS bins 8–10,
+cross-source exact/near deduplication, structural-quality screening, and a
+full GlotLID v3 pass over the structurally clean candidate population.
+
+The frozen artifact contains 26,570 `gaz_Latn` top-1 records and 85
+`hae_Latn` top-1 records across 1,091 unique domains. Ambiguous,
+strong-non-Oromo, structurally flagged, and WDS 5–7 material remain excluded
+from v0.1.
+
+HPLT licenses the dataset packaging under CC0 while stating that it does not
+own the underlying extracted text. The project therefore records underlying
+individual-content rights as not independently verified. See
+`docs/sources/HPLT3_LICENSE_DECISION.md`.
+
 ```text
-remaining to 50M: 17,633,924 reference tokens
-progress to 100M: 32.37%
+50M minimum achieved: 52,137,803 reference tokens
+margin above 50M:       2,137,803 reference tokens
+progress to 100M:       52.14%
 ```
 
 The full WURA Oromo package remains under review and does not count toward the accepted total. WURA is currently used as a source-discovery/provenance layer; only independently rights-cleared subsets enter OromoCorpus.
@@ -160,7 +179,7 @@ upstream MADLAD-400 **ODC-BY** dataset license. Official v1.5 recovery covers
 documented as not independently verified rather than omitted from the audit
 trail.
 
-Next-source selection now prioritizes rights-clear sources or publisher clusters with a realistic **5M–15M+ net-new-token** contribution. Smaller sources remain worthwhile when they materially improve domain, dialect, literary, conversational, or technical coverage.
+With the 50M minimum achieved, the next-source strategy prioritizes progress toward 100M and corpus balance. New sources should materially improve domain, dialect, literary, educational, technical, public-information, or conversational coverage; raw size alone is no longer the primary constraint.
 
 Primary work:
 
@@ -457,15 +476,17 @@ The project is currently here:
 ✅ MADLAD provenance recovery: 1,917 records / 1,874,398 tokens mapped to official v1.5 URLs
 ✅ MADLAD recovered-domain inventory: 182 domains
 ✅ MADLAD-400 Oromo v0.2 approved under upstream ODC-BY dataset license
-✅ Current accepted 48K-reference corpus measurement: 32,366,076 tokens
+✅ HPLT 3.0 gaz_Latn v0.1 approved/frozen: 26,655 records / 19,771,727 tokens
+✅ 50M minimum corpus milestone achieved
+✅ Current accepted 48K-reference corpus measurement: 52,137,803 tokens
 ✅ Frozen tokenizer evaluation
 ✅ Multilingual/custom tokenizer baselines
 ✅ Native causal-LM tokenizer benchmark (Phase 4A)
 ✅ Whole-word augmentation study (Phase 4B1)
         ↓
-🔄 Expand accepted OromoCorpus from 32.37M toward 50M net unique tokens
+🔄 Expand accepted OromoCorpus from 52.14M toward the preferred 100M target
         ↓
-🔄 Audit next rights-clear 5M–15M+ token source / publisher cluster
+🔄 Improve corpus domain/dialect balance while expanding toward 100M / publisher cluster
         ↓
 ⏳ Continue base-model + tokenizer strategy decision
         ↓
