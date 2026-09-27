@@ -842,6 +842,8 @@ Frozen source-level reports:
 
 - `docs/sources/WIKIMEDIA_OMWIKI_REPORT.md`
 - `docs/sources/VOA_AFAAN_OROMOO_WURA_REPORT.md`
+- `docs/sources/MADLAD_400_OROMO_REPORT.md`
+- `docs/sources/MADLAD400_PROVENANCE_REVIEW.md`
 
 ### Next acquisition priorities
 
