@@ -285,3 +285,18 @@ a later provenance/licensing decision explicitly changes its status.
 
 Any change to processing, quality decisions, or release status requires
 a new manifest version.
+
+
+---
+
+## Provenance Recovery Follow-up
+
+A subsequent provenance-recovery audit successfully mapped **1,917 records**
+from the final research-clean corpus to official MADLAD v1.5 URLs and
+timestamps, representing **1,874,398 48K-reference tokens (10.49%)**.
+
+The remaining MADLAD material remains provenance-unresolved.
+
+See:
+
+`docs/sources/MADLAD400_PROVENANCE_REVIEW.md`
