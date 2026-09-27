@@ -218,7 +218,7 @@ The repository is research infrastructure under active development; commands and
 ✅ WaxalNLP Oromo ASR source qualified
 ✅ MADLAD-400 Oromo technical and quality qualification complete
 ✅ MADLAD-400 Oromo provenance recovery: 1,917 records / 1,874,398 tokens mapped
-⏸️ MADLAD-400 Oromo remains research HOLD; 16,787 records / 15,998,992 tokens unresolved
+✅ MADLAD-400 Oromo v0.2 approved under upstream ODC-BY dataset license
 ✅ Frozen tokenizer evaluation set
 ✅ Custom tokenizer benchmark
 ✅ Native causal-tokenizer benchmark
