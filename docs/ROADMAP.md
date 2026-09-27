@@ -112,7 +112,7 @@ Release milestones:
 
 The official total is calculated only after conservative cleaning and exact/near-duplicate removal across all included sources. The project will additionally report raw records, characters, whitespace tokens, and per-source retention so that the expansion remains auditable.
 
-### Verified expansion progress — 2026-09-26
+### Verified expansion progress — 2026-09-27
 
 Using the Oromo Unigram 48K + byte-fallback research tokenizer as the current planning reference:
 
@@ -133,8 +133,12 @@ Using the Oromo Unigram 48K + byte-fallback research tokenizer as the current pl
 The separate technical research pool is now **32,366,076 reference tokens**,
 or **64.73% of the 50M minimum**.
 
-MADLAD is not counted toward the accepted OromoCorpus release target while
-provenance/licensing review remains unresolved.
+MADLAD is not counted toward the accepted OromoCorpus release target. A
+subsequent provenance-recovery audit mapped **1,917 final research-clean
+records / 1,874,398 48K-reference tokens (10.49%)** to official MADLAD v1.5
+URLs and timestamps. The remaining **16,787 records / 15,998,992 reference
+tokens** remain provenance-unresolved, and source-level licensing review is
+incomplete.
 
 ```text
 remaining to 50M: 35,507,314 reference tokens
@@ -148,8 +152,11 @@ deduplication, conservative quality triage, GlotLID-assisted language review,
 manual review, and 48K-reference measurement.
 
 The frozen research-clean artifact contains **18,704 records / 17,873,390
-reference tokens**, but remains `research_hold` because underlying publisher
-provenance and rights are not sufficiently resolved.
+reference tokens** and remains `research_hold`. The official v1.5 recovery
+covers 1,917 of those records across 182 recovered domains. A 326-record
+VOA-domain tranche (128,693 reference tokens) has been isolated for rights
+screening, but no MADLAD-derived tokens have been promoted into accepted
+OromoCorpus.
 
 Next-source selection now prioritizes rights-clear sources or publisher clusters with a realistic **5M–15M+ net-new-token** contribution. Smaller sources remain worthwhile when they materially improve domain, dialect, literary, conversational, or technical coverage.
 
@@ -445,7 +452,10 @@ The project is currently here:
 ✅ VOA Afaan Oromoo via WURA source qualified and frozen
 ✅ WaxalNLP Oromo ASR source qualified and frozen
 ✅ MADLAD-400 Oromo technical + quality qualification complete
-⏸️ MADLAD-400 Oromo frozen as research HOLD pending provenance/licensing review
+✅ MADLAD provenance recovery: 1,917 records / 1,874,398 tokens mapped to official v1.5 URLs
+✅ MADLAD recovered-domain inventory: 182 domains
+✅ MADLAD→VOA candidate tranche isolated: 326 records / 128,693 tokens
+⏸️ MADLAD remains research HOLD; 16,787 records / 15,998,992 tokens unresolved
 ✅ Current accepted 48K-reference corpus measurement: 14,492,686 tokens
 ✅ Separate technical research pool measurement: 32,366,076 tokens
 ✅ Frozen tokenizer evaluation
@@ -462,6 +472,6 @@ The project is currently here:
 ⏳ Tiny CPT proof
 ```
 
-The immediate data task is to identify and audit the next high-yield, rights-clear Afaan Oromoo source or publisher cluster. Each new source must pass provenance review, conservative quality processing, exact and near cross-source deduplication, and source-level manifest/report freezing before its tokens are added to the planning total.
+The immediate data task is to identify and audit the next high-yield, rights-clear Afaan Oromoo source or publisher cluster while preserving the partially recovered MADLAD provenance evidence. Each new source must pass provenance review, conservative quality processing, exact and near cross-source deduplication, and source-level manifest/report freezing before its tokens are added to the planning total.
 
 Tokenizer/base-model research may continue in parallel, and a tiny CPT proof may validate the training architecture, but scaled continued pretraining waits for an evidence-backed expanded corpus.
