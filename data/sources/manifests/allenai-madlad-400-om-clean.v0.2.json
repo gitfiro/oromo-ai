@@ -1,0 +1,150 @@
+{
+  "artifact_hashes": {
+    "cross_near_duplicates_jsonl_sha256": "ffe2020767e4a0a3b4ff9a05dbdf5e4ad31dd6a0ad28a8a0a5d2b84b5de3f1dd",
+    "exact_net_new_jsonl_sha256": "ef6bfdfbbb3b2676f45e15fd0679a69caf5c805f418a6b34dc547c2ae22c23d3",
+    "glotlid_audit_jsonl_sha256": "c8fba5f2573cfeab958ff331c1e42e9f049460ce921880a61b88adcb540e1da1",
+    "glotlid_audit_tsv_sha256": "99853c39dfcb779b901d6f768ab19dd3ebcf601b796e0acc534fd81da5669dca",
+    "near_dedup_jsonl_sha256": "04073c041f2e32b1bded6e12907d5bb14cb78770f390ac64a4a5f55c58a7a823",
+    "raw_gzip_sha256": "ad80e759be2ae6585c595a01a336ebceb15dd2e558fb3e7eb71c0bb118d9d342",
+    "rejected_language_contamination_jsonl_sha256": "9d78b82c14501a8d2831391f85b09af15fe4479e5af1bb4d53abd7bde0bd0e92",
+    "research_clean_jsonl_sha256": "4a28bde40c0c3f973fa2d503edee80a7a5e06330ddb74d7249f23bc662dcaf11",
+    "within_near_duplicates_jsonl_sha256": "1e1dc597c2a692cd895af257f85efa8023882934049e112002169bfdb894b60d",
+    "provenance_recovered_jsonl_sha256": "5133542e9836b6b4638bb8508c4035a3a326500a8310fa997486b321b5df4cc5",
+    "voa_candidates_jsonl_sha256": "6bc008ca46d05ff637a924c3d88e695ff99fdc1ad2358f8bdddbbfe6477206be",
+    "voa_manual_review_jsonl_sha256": "05fcc80293eb7faf3d401ab58e6505678a2f649b0f09c2c39b0b1e75da4e4a98"
+  },
+  "artifacts": {
+    "cross_near_duplicates": "data/interim/allenai-madlad-400-om-clean/near_dedup/madlad-om.cross-near-duplicates.jsonl",
+    "exact_net_new": "data/interim/allenai-madlad-400-om-clean/exact_dedup/madlad-om.exact-net-new.jsonl",
+    "glotlid_audit": "data/interim/allenai-madlad-400-om-clean/quality_audit/language_review_glotlid.jsonl",
+    "near_dedup": "data/interim/allenai-madlad-400-om-clean/near_dedup/madlad-om.near-dedup-new.jsonl",
+    "raw": "data/interim/allenai-madlad-400-om-clean/raw/om_clean_0000.jsonl.gz",
+    "rejected_language_contamination": "data/interim/allenai-madlad-400-om-clean/quality_decisions/rejected_language_contamination.jsonl",
+    "research_clean": "data/interim/allenai-madlad-400-om-clean/madlad-om.research-clean.jsonl",
+    "within_near_duplicates": "data/interim/allenai-madlad-400-om-clean/near_dedup/madlad-om.within-near-duplicates.jsonl",
+    "provenance_recovered": "data/interim/allenai-madlad-400-om-clean/provenance_recovery/research-clean.provenance-recovered.jsonl",
+    "voa_candidates": "data/interim/allenai-madlad-400-om-clean/provenance_recovery/voaafaanoromoo.candidates.jsonl",
+    "voa_manual_review": "data/interim/allenai-madlad-400-om-clean/provenance_recovery/voaafaanoromoo.manual-review.jsonl"
+  },
+  "corpus_family": "OromoCorpus",
+  "created_at": "2026-09-27T20:48:00+00:00",
+  "domain": "mixed_web_corpus",
+  "funnel": {
+    "after_within_near_dedup_records": 18888,
+    "cross_source_exact_duplicates": 0,
+    "cross_source_near_duplicates": 25,
+    "exact_net_new_records": 18895,
+    "final_research_clean_records": 18704,
+    "near_dedup_net_new_records": 18863,
+    "quality_language_rejected_records": 159,
+    "raw_records": 18895,
+    "rows_with_text": 18895,
+    "within_source_exact_duplicates": 0,
+    "within_source_near_duplicates": 7
+  },
+  "language": "orm",
+  "licensing": {
+    "dataset_level_attribution_required": true,
+    "dataset_level_license": "ODC-BY",
+    "approval_basis": "upstream_dataset_level_ODC-BY",
+    "upstream_license_source": "allenai/MADLAD-400 Hugging Face dataset metadata",
+    "document_level_publisher_provenance": "partially_recovered",
+    "provenance_recovered_final_records": 1917,
+    "provenance_recovered_reference_48k_tokens": 1874398,
+    "provenance_recovery_token_coverage": 0.1049,
+    "provenance_unresolved_final_records": 16787,
+    "provenance_unresolved_reference_48k_tokens": 15998992,
+    "underlying_content_rights": "not_independently_verified",
+    "legal_review_complete": true,
+    "legal_review_scope": "project acceptance under upstream dataset-level license representation; not independent clearance of every underlying Common Crawl content item",
+    "attribution_notice": "Contains data derived from AllenAI MADLAD-400, made available under the Open Data Commons Attribution License (ODC-BY). Preserve AllenAI/MADLAD-400 attribution and the applicable ODC-BY notice when redistributing the corpus or a substantial database-derived portion.",
+    "redistribution_permission": "approved_under_upstream_dataset_license_with_attribution",
+    "training_permission": "approved_under_upstream_dataset_license",
+    "downstream_model_weight_license": "separate_review_required",
+    "registry_review_status": "approved",
+    "notes": "Oromo AI approves the frozen research-clean Oromo subset for inclusion in OromoCorpus by relying on the upstream MADLAD-400 dataset's published ODC-BY license. ODC-BY governs database rights and attribution obligations; this project does not claim that the license independently grants copyright permission for every underlying Common Crawl content item. Provenance recovery findings remain documented and are not erased by this acceptance decision."
+  },
+  "manifest_version": "0.2",
+  "metrics": {
+    "average_characters_per_record": 4701.17,
+    "final_characters": 87930775,
+    "tokenizer_reference": {
+      "official_tokenizer_frozen": false,
+      "oromo_unigram_48k_byte": {
+        "characters_per_token": 4.9196,
+        "planning_reference": true,
+        "tokens": 17873390,
+        "tokens_per_whitespace_token": 1.6119,
+        "vocab_size": 48000
+      }
+    },
+    "whitespace_tokens": 11088537
+  },
+  "processing": {
+    "cross_source_exact_baselines": [
+      "afriberta_oromo_v0.1.2",
+      "wikimedia-omwiki.v0.1",
+      "voa-afaan-oromoo-via-wura.v0.1",
+      "google-waxalnlp-orm-asr-v2.v0.1"
+    ],
+    "cross_source_near_baselines": [
+      "afriberta_oromo_v0.1.2",
+      "wikimedia-omwiki.v0.1",
+      "voa-afaan-oromoo-via-wura.v0.1",
+      "google-waxalnlp-orm-asr-v2.v0.1"
+    ],
+    "exact_dedup_normalization": "whitespace collapse",
+    "expected_language": "orm",
+    "near_dedup": {
+      "candidate_signature_size": 32,
+      "enabled": true,
+      "method": "word_5gram_jaccard",
+      "shingle_size": 5,
+      "threshold": 0.85,
+      "within_source_policy": "first_record_in_source_order_wins"
+    },
+    "quality_triage": {
+      "confirmed_oromo_labels": [
+        "__label__gaz_Latn",
+        "__label__hae_Latn"
+      ],
+      "final_rejected_records": 159,
+      "glotlid_language_review": {
+        "non_oromo_or_uncertain": 39,
+        "possible_oromo": 2,
+        "probable_oromo": 4,
+        "strong_oromo": 57
+      },
+      "glotlid_model": "cis-lmu/glotlid-v3",
+      "initial_near_dedup_records": 18863,
+      "keep_candidates": 18541,
+      "language_review": 102,
+      "long_document_review": 100,
+      "policy": "Conservative review. Heuristic flags and document length alone are not deletion criteria. Final language rejection combines quality signals, GlotLID evidence, and manual review.",
+      "strong_non_oromo_candidates": 120
+    },
+    "text_field": "text"
+  },
+  "release_status": {
+    "approved_for_oromocorpus_release": true,
+    "corpus_status": "approved",
+    "counts_toward_accepted_oromocorpus": true,
+    "licensing_review_required": false,
+    "metrics_frozen": true,
+    "quality_status": "passed",
+    "requires_new_manifest_version_if_processing_changes": true,
+    "technical_status": "qualified",
+    "approval_basis": "upstream_dataset_level_ODC-BY"
+  },
+  "source": {
+    "acquisition_method": "Hugging Face released Oromo clean shard download",
+    "dataset_config": "om",
+    "distribution": "AllenAI MADLAD-400",
+    "huggingface_dataset": "allenai/MADLAD-400",
+    "source_family": "MADLAD-400",
+    "source_url": "https://huggingface.co/datasets/allenai/MADLAD-400",
+    "upstream_origin": "Common Crawl"
+  },
+  "source_id": "allenai-madlad-400-om-clean",
+  "source_name": "MADLAD-400 Oromo Clean"
+}
