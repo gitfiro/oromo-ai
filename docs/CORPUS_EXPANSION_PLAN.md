@@ -78,6 +78,7 @@ Frozen source reports:
 - `docs/sources/MADLAD400_PROVENANCE_REVIEW.md`
 
 The next acquisition priority is no longer tiny opportunistic sources. Prefer sources or publisher clusters capable of contributing roughly **5M–15M+ net-new tokens**, unless a smaller source provides unusually valuable domain, dialect, literary, conversational, or evaluation-safe diversity.
+
 ## Counting Standard
 
 The official milestone count is measured as:
