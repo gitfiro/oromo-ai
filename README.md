@@ -70,7 +70,23 @@ The current accepted corpus planning total is measured with the **Oromo Unigram 
 | Wikimedia omwiki v0.1 | 2,254 | 1,070,896 |
 | VOA Afaan Oromoo via WURA v0.1 | 9,510 | 1,899,811 |
 | WaxalNLP Oromo ASR v0.1 | 44,194 | 1,934,045 |
-| **Total** | **466,151** | **14,492,686** |
+| **Accepted total** | **466,151** | **14,492,686** |
+
+### Research-qualified source on HOLD
+
+MADLAD-400 Oromo v0.1 has passed technical processing, cross-source
+deduplication, conservative language-quality review, and tokenizer-reference
+measurement.
+
+| Source | Research-clean records | 48K reference tokens | Status |
+|---|---:|---:|---|
+| MADLAD-400 Oromo v0.1 | 18,704 | 17,873,390 | research hold |
+
+Accepted OromoCorpus remains **14,492,686** 48K-reference tokens.
+
+MADLAD contributes **17,873,390** additional research-clean tokens to a
+separate technical pool of **32,366,076** tokens, but it is not counted toward
+the accepted OromoCorpus because provenance/licensing review remains open.
 
 ```text
 OromoCorpus v0.2 minimum: 50,000,000 tokens
@@ -191,6 +207,8 @@ The repository is research infrastructure under active development; commands and
 ✅ Wikimedia omwiki source qualified
 ✅ VOA Afaan Oromoo subset qualified
 ✅ WaxalNLP Oromo ASR source qualified
+✅ MADLAD-400 Oromo technical and quality qualification complete
+⏸️ MADLAD-400 Oromo research HOLD pending provenance/licensing review
 ✅ Frozen tokenizer evaluation set
 ✅ Custom tokenizer benchmark
 ✅ Native causal-tokenizer benchmark

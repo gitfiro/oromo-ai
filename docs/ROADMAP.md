@@ -122,7 +122,19 @@ Using the Oromo Unigram 48K + byte-fallback research tokenizer as the current pl
 | Wikimedia omwiki v0.1 | 2,254 | 1,070,896 | approved/frozen |
 | VOA Afaan Oromoo via WURA v0.1 | 9,510 | 1,899,811 | approved/frozen |
 | WaxalNLP Oromo ASR v0.1 | 44,194 | 1,934,045 | approved/frozen |
-| **Total** | **466,151** | **14,492,686** | **28.99% of v0.2 minimum** |
+| **Accepted total** | **466,151** | **14,492,686** | **28.99% of v0.2 minimum** |
+
+### Research-qualified HOLD source
+
+| Source | Records | 48K reference tokens | Status |
+|---|---:|---:|---|
+| MADLAD-400 Oromo v0.1 | 18,704 | 17,873,390 | research hold |
+
+The separate technical research pool is now **32,366,076 reference tokens**,
+or **64.73% of the 50M minimum**.
+
+MADLAD is not counted toward the accepted OromoCorpus release target while
+provenance/licensing review remains unresolved.
 
 ```text
 remaining to 50M: 35,507,314 reference tokens
@@ -130,6 +142,14 @@ progress to 100M: 14.49%
 ```
 
 The full WURA Oromo package remains under review and does not count toward the accepted total. WURA is currently used as a source-discovery/provenance layer; only independently rights-cleared subsets enter OromoCorpus.
+
+MADLAD-400 Oromo v0.1 has completed exact deduplication, canonical near
+deduplication, conservative quality triage, GlotLID-assisted language review,
+manual review, and 48K-reference measurement.
+
+The frozen research-clean artifact contains **18,704 records / 17,873,390
+reference tokens**, but remains `research_hold` because underlying publisher
+provenance and rights are not sufficiently resolved.
 
 Next-source selection now prioritizes rights-clear sources or publisher clusters with a realistic **5M–15M+ net-new-token** contribution. Smaller sources remain worthwhile when they materially improve domain, dialect, literary, conversational, or technical coverage.
 
@@ -424,13 +444,16 @@ The project is currently here:
 ✅ Wikimedia omwiki source qualified and frozen
 ✅ VOA Afaan Oromoo via WURA source qualified and frozen
 ✅ WaxalNLP Oromo ASR source qualified and frozen
-✅ Current 48K-reference corpus measurement: 14,492,686 tokens
+✅ MADLAD-400 Oromo technical + quality qualification complete
+⏸️ MADLAD-400 Oromo frozen as research HOLD pending provenance/licensing review
+✅ Current accepted 48K-reference corpus measurement: 14,492,686 tokens
+✅ Separate technical research pool measurement: 32,366,076 tokens
 ✅ Frozen tokenizer evaluation
 ✅ Multilingual/custom tokenizer baselines
 ✅ Native causal-LM tokenizer benchmark (Phase 4A)
 ✅ Whole-word augmentation study (Phase 4B1)
         ↓
-🔄 Expand OromoCorpus from 12.56M toward 50M net unique tokens
+🔄 Expand accepted OromoCorpus from 14.49M toward 50M net unique tokens
         ↓
 🔄 Audit next rights-clear 5M–15M+ token source / publisher cluster
         ↓

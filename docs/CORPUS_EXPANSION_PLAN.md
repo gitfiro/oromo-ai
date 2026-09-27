@@ -23,7 +23,32 @@ The current accepted multi-source corpus measures **14,492,686 tokens** under th
 | Wikimedia omwiki v0.1 | 2,254 | 1,070,896 | approved |
 | VOA Afaan Oromoo via WURA v0.1 | 9,510 | 1,899,811 | approved |
 | WaxalNLP Oromo ASR v0.1 | 44,194 | 1,934,045 | approved |
-| **Total** | **466,151** | **14,492,686** | — |
+| **Accepted total** | **466,151** | **14,492,686** | — |
+
+### Research-qualified HOLD pool
+
+| Source | Research-clean records | 48K reference tokens | Status |
+|---|---:|---:|---|
+| MADLAD-400 Oromo v0.1 | 18,704 | 17,873,390 | research hold |
+
+MADLAD-400 has passed the project's technical and language-quality gates but
+does **not** count toward the accepted OromoCorpus natural-language target.
+
+Its dataset-level ODC-BY terms do not independently resolve the rights of all
+underlying Common Crawl publisher content, and the released Oromo text does
+not retain sufficient document-level provenance for independent clearance.
+
+For planning visibility only:
+
+Accepted OromoCorpus: **14,492,686**
+
+MADLAD research-clean HOLD: **17,873,390**
+
+Combined technical pool: **32,366,076**
+
+Technical-pool gap to 50M: **17,633,924**
+
+The official accepted-corpus gap to 50M remains **35,507,314 tokens**.
 
 Progress:
 
@@ -35,6 +60,11 @@ remaining:    35,507,314 reference tokens
 ```
 
 `castorini-wura-orm` remains `reviewing`. WURA is used as a provenance-discovery layer; only source subsets that independently pass rights review and the full acceptance pipeline count toward OromoCorpus.
+
+`allenai-madlad-400-om-clean` is `research_hold`. Its research-clean artifact
+contains **18,704 records / 17,873,390 48K-reference tokens**, but those tokens
+remain excluded from accepted OromoCorpus accounting until provenance and
+licensing review explicitly clears the source.
 
 Frozen source reports:
 

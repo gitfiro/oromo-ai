@@ -22,3 +22,6 @@ tokenizer/training/candidates/**/*.vocab
 
 # Intermediate generated corpus artifacts
 data/interim/
+
+# External language-identification models
+models/language_id/glotlid/
