@@ -13,7 +13,7 @@ The project is targeting:
 
 The project optimizes for quality, diversity, licensing clarity, and reproducibility—not the largest possible raw download.
 
-## Current Measured Progress — 2026-09-20
+## Current Measured Progress — 2026-09-27
 
 The current accepted multi-source corpus measures **14,492,686 tokens** under the Oromo Unigram 48K + byte-fallback tokenizer used as a planning reference. This tokenizer is not yet the final OromoLM tokenizer, so the number is a versioned planning measurement rather than the final release count.
 
@@ -35,8 +35,10 @@ MADLAD-400 has passed the project's technical and language-quality gates but
 does **not** count toward the accepted OromoCorpus natural-language target.
 
 Its dataset-level ODC-BY terms do not independently resolve the rights of all
-underlying Common Crawl publisher content, and the released Oromo text does
-not retain sufficient document-level provenance for independent clearance.
+underlying Common Crawl publisher content. A follow-up audit recovered
+official MADLAD v1.5 URL/timestamp provenance for **1,917 final research-clean
+records / 1,874,398 48K-reference tokens (10.49%)**, but **16,787 records /
+15,998,992 reference tokens** remain unresolved.
 
 For planning visibility only:
 
@@ -62,14 +64,18 @@ remaining:    35,507,314 reference tokens
 `castorini-wura-orm` remains `reviewing`. WURA is used as a provenance-discovery layer; only source subsets that independently pass rights review and the full acceptance pipeline count toward OromoCorpus.
 
 `allenai-madlad-400-om-clean` is `research_hold`. Its research-clean artifact
-contains **18,704 records / 17,873,390 48K-reference tokens**, but those tokens
-remain excluded from accepted OromoCorpus accounting until provenance and
-licensing review explicitly clears the source.
+contains **18,704 records / 17,873,390 48K-reference tokens**. Provenance is
+partially recovered for 1,917 final records across 182 domains; the remaining
+16,787 records are unresolved. A recovered `voaafaanoromoo.com` tranche of
+326 records / 128,693 tokens is under separate rights screening. No MADLAD
+tokens currently count toward accepted OromoCorpus accounting.
 
 Frozen source reports:
 
 - `docs/sources/WIKIMEDIA_OMWIKI_REPORT.md`
 - `docs/sources/VOA_AFAAN_OROMOO_WURA_REPORT.md`
+- `docs/sources/MADLAD_400_OROMO_REPORT.md`
+- `docs/sources/MADLAD400_PROVENANCE_REVIEW.md`
 
 The next acquisition priority is no longer tiny opportunistic sources. Prefer sources or publisher clusters capable of contributing roughly **5M–15M+ net-new tokens**, unless a smaller source provides unusually valuable domain, dialect, literary, conversational, or evaluation-safe diversity.
 ## Counting Standard
