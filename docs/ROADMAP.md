@@ -148,16 +148,17 @@ progress to 100M: 32.37%
 
 The full WURA Oromo package remains under review and does not count toward the accepted total. WURA is currently used as a source-discovery/provenance layer; only independently rights-cleared subsets enter OromoCorpus.
 
-MADLAD-400 Oromo v0.1 has completed exact deduplication, canonical near
-deduplication, conservative quality triage, GlotLID-assisted language review,
-manual review, and 48K-reference measurement.
+MADLAD-400 Oromo completed exact deduplication, canonical near deduplication,
+conservative quality triage, GlotLID-assisted language review, manual review,
+48K-reference measurement, and provenance investigation before its v0.2
+approval.
 
 The frozen research-clean artifact contains **18,704 records / 17,873,390
-reference tokens** and remains `research_hold`. The official v1.5 recovery
-covers 1,917 of those records across 182 recovered domains. A 326-record
-VOA-domain tranche (128,693 reference tokens) has been isolated for rights
-screening, but no MADLAD-derived tokens have been promoted into accepted
-OromoCorpus.
+reference tokens** and is now included in accepted OromoCorpus under the
+upstream MADLAD-400 **ODC-BY** dataset license. Official v1.5 recovery covers
+1,917 records across 182 domains; the remaining source-level provenance is
+documented as not independently verified rather than omitted from the audit
+trail.
 
 Next-source selection now prioritizes rights-clear sources or publisher clusters with a realistic **5M–15M+ net-new-token** contribution. Smaller sources remain worthwhile when they materially improve domain, dialect, literary, conversational, or technical coverage.
 
