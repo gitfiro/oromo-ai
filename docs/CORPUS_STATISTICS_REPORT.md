@@ -780,7 +780,8 @@ The current accepted sources measure:
 | VOA Afaan Oromoo via WURA v0.1 | 9,510 | 10,433,883 | 1,899,811 |
 | WaxalNLP Oromo ASR v0.1 | 44,194 | 10,637,213 | 1,934,045 |
 | MADLAD-400 Oromo v0.2 | 18,704 | 87,930,775 | 17,873,390 |
-| **Accepted total** | **484,855** | **165,874,131** | **32,366,076** |
+| HPLT 3.0 gaz_Latn v0.1 | 26,655 | 104,275,394 | 19,771,727 |
+| **Accepted total** | **511,510** | **270,149,525** | **52,137,803** |
 
 ### MADLAD-400 approved source
 
@@ -818,22 +819,49 @@ Research-clean SHA-256:
 
 `4a28bde40c0c3f973fa2d503edee80a7a5e06330ddb74d7249f23bc662dcaf11`
 
-Accepted OromoCorpus is now **32,366,076** reference tokens.
+### HPLT 3.0 approved source and 50M milestone
+
+HPLT 3.0 `gaz_Latn` v0.1 is approved/frozen as a conservative WDS 8–10 subset after exact deduplication, canonical 5-word-shingle near deduplication, structural-quality review, and full GlotLID v3 verification.
+
+| HPLT v0.1 metric | Value |
+| --- | ---: |
+| Final records | 26,655 |
+| Characters | 104,275,394 |
+| Whitespace tokens | 13,581,841 |
+| 48K reference tokens | 19,771,727 |
+| Unique domains | 1,091 |
+| GlotLID gaz_Latn top-1 | 26,570 |
+| GlotLID hae_Latn top-1 | 85 |
+
+Frozen HPLT corpus SHA-256:
+
+`b39bae97f09990d3ccfac141ae86ecfeb2c75ab30ce6674ee73e5504b419f856`
+
+Frozen HPLT statistics SHA-256:
+
+`0860a7d309f25245d5d288973fd94c30ec4431a7bfb91d553e2c6c00586f53cb`
+
+The v0.1 release excludes WDS 5–7, 315 structural-review records, 164 language-ambiguous records, and 1,112 strong non-Oromo records. HPLT licenses the dataset packaging under CC0 while stating that it does not own the underlying extracted text; underlying individual-content rights are therefore recorded as not independently verified.
+
+See `docs/sources/HPLT3_OROMO_REPORT.md` and `docs/sources/HPLT3_LICENSE_DECISION.md`.
+
+Accepted OromoCorpus is now **52,137,803** reference tokens.
 
 MADLAD contributes **17,873,390** accepted research-clean reference tokens.
+HPLT v0.1 contributes **19,771,727** accepted reference tokens.
 
-The accepted corpus is **64.73% of the 50M minimum**.
+The accepted corpus is **104.28% of the 50M minimum**.
 
 The token total uses the Oromo Unigram 48K + byte-fallback tokenizer as the current **planning reference**, not as the final OromoLM tokenizer.
 
 ```text
 OromoCorpus v0.2 minimum: 50,000,000 reference tokens
-current planning total:   32,366,076
-progress:                 64.73%
-remaining:                17,633,924
+current planning total:   52,137,803
+progress:                 104.28%
+margin above minimum:      2,137,803
 
 OromoCorpus v0.3 target: 100,000,000 reference tokens
-progress:                 32.37%
+progress:                 52.14%
 ```
 
 Approved source expansion completed so far:
@@ -841,7 +869,8 @@ Approved source expansion completed so far:
 - `wikimedia-omwiki.v0.1`: 2,254 net-new records after source-specific cleaning, exact deduplication, and 5-word-shingle near deduplication;
 - `voa-afaan-oromoo-via-wura.v0.1`: 9,510 net-new records after conservative third-party provenance holds, quality processing, exact deduplication, and near deduplication;
 - `castorini-wura-orm` remains `reviewing` as a discovery layer and does not count as a whole toward the accepted corpus.
-- `allenai-madlad-400-om-clean` is technically qualified, quality-passed, and approved under the upstream MADLAD-400 **ODC-BY** dataset license. Its **17,873,390** reference tokens now count toward accepted OromoCorpus. The project preserves the provenance findings and records underlying individual content rights as not independently verified.
+- `allenai-madlad-400-om-clean` is technically qualified, quality-passed, and approved under the upstream MADLAD-400 **ODC-BY** dataset license. Its **17,873,390** reference tokens count toward accepted OromoCorpus. The project preserves the provenance findings and records underlying individual content rights as not independently verified.
+- `hplt3-gaz-latn.v0.1` is approved/frozen after WDS 8–10 selection, cross-source deduplication, structural screening, and full GlotLID verification. Its **19,771,727** reference tokens bring the accepted planning total above the 50M minimum.
 
 Frozen source-level reports:
 
@@ -850,18 +879,20 @@ Frozen source-level reports:
 - `docs/sources/MADLAD_400_OROMO_REPORT.md`
 - `docs/sources/MADLAD400_PROVENANCE_REVIEW.md`
 - `docs/sources/MADLAD_400_LICENSE_DECISION.md`
+- `docs/sources/HPLT3_OROMO_REPORT.md`
+- `docs/sources/HPLT3_LICENSE_DECISION.md`
 
 ### Next acquisition priorities
 
 The next data-engineering priorities are:
 
 ```text
-1. Target rights-clear sources or publisher clusters capable of roughly 5M–15M+ net-new tokens
+1. Continue expansion toward the preferred 100M target
 2. Preserve source-level licensing and provenance decisions
 3. Continue exact and near deduplication against every accepted source
-4. Improve domain and dialect balance rather than maximizing raw volume
+4. Improve domain, dialect, literary, educational, technical, and conversational balance rather than maximizing raw volume
 5. Use smaller curated sources when they add unusually valuable linguistic diversity
-6. Keep OromoBench/evaluation data isolated from training
+6. Keep OromoBench/evaluation data isolated from trainingd from training
 7. Freeze OromoCorpus v0.2 only after the 50M release gates pass
 8. Continue toward 100M with broader domain and dialect coverage
 ```
@@ -938,7 +969,7 @@ It should not yet be treated as the final Oromo foundation-model training corpus
 
 Since v0.1.2 was frozen, two additional source-level expansions have been qualified and frozen: Wikimedia omwiki and the provenance-cleared VOA Afaan Oromoo subset recovered through WURA. Together they contribute **2,970,707 net-new 48K reference tokens** beyond the AfriBERTa seed.
 
-The current accepted planning total is **32,366,076 48K reference tokens**, or **64.73%** of the 50M v0.2 minimum. These are source-level planning measurements; a final OromoCorpus release still requires the selected/versioned OromoLM tokenizer and all v0.2 release gates.
+The current accepted planning total is **52,137,803 48K reference tokens**, or **104.28%** of the 50M v0.2 minimum. The token-volume gate is achieved; a formal OromoCorpus v0.2 release still requires the selected/versioned OromoLM tokenizer and the remaining release checks.
 
 ---
 
@@ -957,7 +988,8 @@ The current accepted planning total is **32,366,076 48K reference tokens**, or *
 │  v0.1.2 processing        COMPLETE       │
 │  Integrity validation     COMPLETE       │
 │                                          │
-│  Corpus expansion         ACTIVE 28.99%  │
+│  50M corpus minimum       ACHIEVED       │
+│  Corpus expansion         ACTIVE → 100M  │
 │  Source registry          ACTIVE         │
 │  Tokenizer research       ACTIVE         │
 │  Model training           LATER          │
