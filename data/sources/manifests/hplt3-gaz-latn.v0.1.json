@@ -1,0 +1,106 @@
+{
+  "source_id": "hplt3-gaz-latn",
+  "version": "v0.1",
+  "source_name": "HPLT 3.0 West Central Oromo (gaz_Latn)",
+  "owner_or_publisher": "HPLT Project",
+  "source_url": "https://hplt-project.org/datasets/v3.0",
+  "upstream_dataset": "HPLT/HPLT3.0",
+  "acquired_at": "2026-09-27",
+  "acquisition_method": "HPLT 3.0 language-slice shard download",
+  "language": "gaz_Latn",
+  "selected_wds_bins": [
+    8,
+    9,
+    10
+  ],
+  "review_status": "approved",
+  "corpus_status": "approved",
+  "counts_toward_natural_language_target": true,
+  "packaging_license": "CC0-1.0",
+  "underlying_content_rights": "not_independently_verified",
+  "training_permission": "approved_under_project_policy_with_terms_caveat",
+  "redistribution_permission": "packaging_cc0_underlying_text_rights_not_independently_verified",
+  "downstream_model_weight_license": "separate_review_required",
+  "license_scope_note": "HPLT states that it does not own the underlying extracted text and licenses the packaging under CC0. Oromo AI's approval is a documented project-policy decision for this filtered research subset and is not an assertion that every underlying webpage is CC0 or independently copyright-cleared.",
+  "provenance": {
+    "url_coverage": "100% in raw gaz_Latn slice",
+    "final_unique_domains": 1091,
+    "upstream_origin": "Internet Archive / Common Crawl",
+    "document_urls_preserved": true
+  },
+  "pipeline": {
+    "raw_records": 63063,
+    "raw_characters": 251115477,
+    "raw_whitespace_tokens": 32787737,
+    "raw_reference_48k_tokens": 57174408,
+    "exact_net_new_records": 62066,
+    "exact_net_new_reference_48k_tokens": 56960928,
+    "within_exact_duplicates": 3,
+    "cross_exact_duplicates": 994,
+    "within_near_duplicates": 100,
+    "cross_near_duplicates": 7909,
+    "near_dedup_net_new_records": 54057,
+    "near_dedup_reference_48k_tokens": 53064224,
+    "structural_candidate_records_wds_8_10": 27931,
+    "structural_review_records_excluded": 315,
+    "structural_candidate_reference_48k_tokens": 22206734,
+    "glotlid_ambiguous_records_excluded": 164,
+    "glotlid_strong_non_oromo_records_excluded": 1112
+  },
+  "final_artifact": {
+    "path": "data/interim/hplt3-gaz-latn/final/hplt3-gaz-latn.v0.1.jsonl",
+    "committed_to_git": false,
+    "records": 26655,
+    "characters": 104275394,
+    "whitespace_tokens": 13581841,
+    "reference_48k_tokens": 19771727,
+    "sha256": "b39bae97f09990d3ccfac141ae86ecfeb2c75ab30ce6674ee73e5504b419f856",
+    "statistics_path": "data/interim/hplt3-gaz-latn/final/hplt3-gaz-latn.v0.1.stats.json",
+    "statistics_sha256": "0860a7d309f25245d5d288973fd94c30ec4431a7bfb91d553e2c6c00586f53cb",
+    "top1_language_labels": {
+      "__label__gaz_Latn": 26570,
+      "__label__hae_Latn": 85
+    },
+    "by_wds_bin": {
+      "8": {
+        "records": 22132,
+        "reference_48k_tokens": 13392090
+      },
+      "9": {
+        "records": 4511,
+        "reference_48k_tokens": 6344963
+      },
+      "10": {
+        "records": 12,
+        "reference_48k_tokens": 34674
+      }
+    }
+  },
+  "deduplication": {
+    "method": "5-word shingles + bottom-k candidate signature + exact Jaccard verification",
+    "shingle_size": 5,
+    "signature_size": 32,
+    "jaccard_threshold": 0.85,
+    "cross_near_matches": {
+      "voa-afaan-oromoo-via-wura.v0.1": 6346,
+      "allenai-madlad-400-om-clean.v0.2": 1111,
+      "wikimedia-omwiki.v0.1": 441,
+      "afriberta_oromo_v0.1.2": 11
+    }
+  },
+  "quality": {
+    "structural_policy": "WDS 8-10 only for v0.1; heuristic flags routed to review rather than automatic deletion",
+    "language_verification": "GlotLID v3 full-pass on all 27,931 structurally clean candidates",
+    "accepted_top1_labels": [
+      "__label__gaz_Latn",
+      "__label__hae_Latn"
+    ]
+  },
+  "oromocorpus": {
+    "accepted_before_reference_48k_tokens": 32366076,
+    "contribution_reference_48k_tokens": 19771727,
+    "accepted_after_reference_48k_tokens": 52137803,
+    "progress_to_50m": 1.04275606,
+    "progress_to_100m": 0.52137803
+  }
+}
