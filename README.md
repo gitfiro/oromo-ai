@@ -6,6 +6,11 @@
 </p>
 
 <p align="center">
+  🌐 <strong><a href="https://gitfiro.github.io/oromo-ai-research-hub/">Explore the Oromo AI Research Hub</a></strong><br>
+  <em>Browse our research, documentation, corpus work, tokenizer experiments, model roadmap, and project progress as an interactive website.</em>
+</p>
+
+<p align="center">
   <strong>OromoCorpus → OromoTokenizer → OromoLM → OromoBench → Applications</strong>
 </p>
 
