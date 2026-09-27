@@ -75,36 +75,36 @@ The current accepted corpus planning total is measured with the **Oromo Unigram 
 | Wikimedia omwiki v0.1 | 2,254 | 1,070,896 |
 | VOA Afaan Oromoo via WURA v0.1 | 9,510 | 1,899,811 |
 | WaxalNLP Oromo ASR v0.1 | 44,194 | 1,934,045 |
-| **Accepted total** | **466,151** | **14,492,686** |
+| MADLAD-400 Oromo v0.2 | 18,704 | 17,873,390 |
+| **Accepted total** | **484,855** | **32,366,076** |
 
-### Research-qualified source on HOLD
+### MADLAD-400 licensing basis
 
-MADLAD-400 Oromo v0.1 has passed technical processing, cross-source
-deduplication, conservative language-quality review, tokenizer-reference
-measurement, and a first provenance-recovery audit. Official MADLAD v1.5
-provenance was recovered for **1,917 final research-clean records / 1,874,398
-48K-reference tokens (10.49%)**. The remaining **16,787 records / 15,998,992
-reference tokens** remain provenance-unresolved.
+MADLAD-400 Oromo v0.2 is now **accepted** into OromoCorpus under the upstream
+AllenAI MADLAD-400 dataset's published **ODC-BY** license. The approved frozen
+research-clean artifact contains **18,704 records / 17,873,390 48K-reference
+tokens**.
 
-| Source | Research-clean records | 48K reference tokens | Status |
-|---|---:|---:|---|
-| MADLAD-400 Oromo v0.1 | 18,704 | 17,873,390 | research hold |
+This approval relies on the upstream dataset-level license representation and
+preserves attribution to AllenAI / MADLAD-400. It does **not** claim that Oromo
+AI independently cleared copyright for every underlying Common Crawl page.
+That scope limitation, along with the completed provenance investigation, is
+permanently documented in
+[`MADLAD_400_LICENSE_DECISION.md`](docs/sources/MADLAD_400_LICENSE_DECISION.md).
 
-Accepted OromoCorpus remains **14,492,686** 48K-reference tokens.
-
-MADLAD contributes **17,873,390** additional research-clean tokens to a
-separate technical pool of **32,366,076** tokens, but it is not counted toward
-the accepted OromoCorpus. Provenance is only partially recovered and
-source-level licensing review remains incomplete.
+Official v1.5 provenance was independently recovered for **1,917 final
+records / 1,874,398 reference tokens (10.49%)** across **182 domains**. Those
+findings remain part of the audit trail even though the full frozen subset is
+accepted under the upstream dataset license.
 
 ```text
 OromoCorpus v0.2 minimum: 50,000,000 tokens
-Current planning total:   14,492,686
-Progress:                 28.99%
-Remaining:                35,507,314
+Current planning total:   32,366,076
+Progress:                 64.73%
+Remaining:                17,633,924
 
 OromoCorpus v0.3 target: 100,000,000 tokens
-Current progress:         14.49%
+Current progress:         32.37%
 ```
 
 The full WURA Oromo package remains under source-level review and does not count as an accepted source by itself. Only independently audited and rights-cleared subsets are admitted.
@@ -252,6 +252,7 @@ Detailed technical material lives in `docs/` rather than being duplicated in thi
 | [Tokenizer Research Report](docs/TOKENIZER_RESEARCH_REPORT.md) | Tokenizer benchmarks and experiments |
 | [Evaluation](docs/EVALUATION.md) | OromoBench evaluation direction |
 | [Roadmap](docs/ROADMAP.md) | Project phases and current milestone |
+| [MADLAD License Decision](docs/sources/MADLAD_400_LICENSE_DECISION.md) | ODC-BY approval basis, attribution obligations, and scope limitations |
 | [MADLAD Provenance Review](docs/sources/MADLAD400_PROVENANCE_REVIEW.md) | Partial source-level provenance recovery, URL/domain audit, and VOA review |
 | [Naming](docs/NAMING.md) | Canonical project naming |
 
