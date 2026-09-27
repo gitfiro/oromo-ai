@@ -122,27 +122,28 @@ Using the Oromo Unigram 48K + byte-fallback research tokenizer as the current pl
 | Wikimedia omwiki v0.1 | 2,254 | 1,070,896 | approved/frozen |
 | VOA Afaan Oromoo via WURA v0.1 | 9,510 | 1,899,811 | approved/frozen |
 | WaxalNLP Oromo ASR v0.1 | 44,194 | 1,934,045 | approved/frozen |
-| **Accepted total** | **466,151** | **14,492,686** | **28.99% of v0.2 minimum** |
+| MADLAD-400 Oromo v0.2 | 18,704 | 17,873,390 | approved/frozen — ODC-BY |
+| **Accepted total** | **484,855** | **32,366,076** | **64.73% of v0.2 minimum** |
 
-### Research-qualified HOLD source
+### MADLAD-400 approval
 
-| Source | Records | 48K reference tokens | Status |
-|---|---:|---:|---|
-| MADLAD-400 Oromo v0.1 | 18,704 | 17,873,390 | research hold |
+MADLAD-400 Oromo v0.2 is accepted under the upstream AllenAI MADLAD-400
+dataset's published **ODC-BY** license. The project preserves AllenAI /
+MADLAD-400 attribution and explicitly records that the approval relies on the
+dataset-level license representation rather than independent clearance of
+every underlying Common Crawl content item.
 
-The separate technical research pool is now **32,366,076 reference tokens**,
-or **64.73% of the 50M minimum**.
+The approved artifact contributes **18,704 records / 17,873,390 48K-reference
+tokens**. Provenance recovery independently mapped **1,917 records / 1,874,398
+tokens (10.49%)** to official v1.5 URLs and timestamps across 182 domains; the
+remaining source-level provenance is not independently verified, but this no
+longer blocks project acceptance under the upstream dataset license.
 
-MADLAD is not counted toward the accepted OromoCorpus release target. A
-subsequent provenance-recovery audit mapped **1,917 final research-clean
-records / 1,874,398 48K-reference tokens (10.49%)** to official MADLAD v1.5
-URLs and timestamps. The remaining **16,787 records / 15,998,992 reference
-tokens** remain provenance-unresolved, and source-level licensing review is
-incomplete.
+See `docs/sources/MADLAD_400_LICENSE_DECISION.md`.
 
 ```text
-remaining to 50M: 35,507,314 reference tokens
-progress to 100M: 14.49%
+remaining to 50M: 17,633,924 reference tokens
+progress to 100M: 32.37%
 ```
 
 The full WURA Oromo package remains under review and does not count toward the accepted total. WURA is currently used as a source-discovery/provenance layer; only independently rights-cleared subsets enter OromoCorpus.
@@ -454,16 +455,14 @@ The project is currently here:
 ✅ MADLAD-400 Oromo technical + quality qualification complete
 ✅ MADLAD provenance recovery: 1,917 records / 1,874,398 tokens mapped to official v1.5 URLs
 ✅ MADLAD recovered-domain inventory: 182 domains
-✅ MADLAD→VOA candidate tranche isolated: 326 records / 128,693 tokens
-⏸️ MADLAD remains research HOLD; 16,787 records / 15,998,992 tokens unresolved
-✅ Current accepted 48K-reference corpus measurement: 14,492,686 tokens
-✅ Separate technical research pool measurement: 32,366,076 tokens
+✅ MADLAD-400 Oromo v0.2 approved under upstream ODC-BY dataset license
+✅ Current accepted 48K-reference corpus measurement: 32,366,076 tokens
 ✅ Frozen tokenizer evaluation
 ✅ Multilingual/custom tokenizer baselines
 ✅ Native causal-LM tokenizer benchmark (Phase 4A)
 ✅ Whole-word augmentation study (Phase 4B1)
         ↓
-🔄 Expand accepted OromoCorpus from 14.49M toward 50M net unique tokens
+🔄 Expand accepted OromoCorpus from 32.37M toward 50M net unique tokens
         ↓
 🔄 Audit next rights-clear 5M–15M+ token source / publisher cluster
         ↓
