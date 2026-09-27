@@ -779,16 +779,24 @@ The current accepted sources measure:
 | Wikimedia omwiki v0.1 | 2,254 | 4,749,893 | 1,070,896 |
 | VOA Afaan Oromoo via WURA v0.1 | 9,510 | 10,433,883 | 1,899,811 |
 | WaxalNLP Oromo ASR v0.1 | 44,194 | 10,637,213 | 1,934,045 |
-| **Accepted total** | **466,151** | **77,943,356** | **14,492,686** |
+| MADLAD-400 Oromo v0.2 | 18,704 | 87,930,775 | 17,873,390 |
+| **Accepted total** | **484,855** | **165,874,131** | **32,366,076** |
 
-### MADLAD-400 research-clean HOLD
+### MADLAD-400 approved source
 
-MADLAD-400 Oromo v0.1 has passed technical and language-quality qualification
-but remains outside the accepted OromoCorpus. Provenance recovery is now
-partially complete: **1,917 final research-clean records / 1,874,398
-48K-reference tokens (10.49%)** were deterministically mapped to official
-MADLAD v1.5 URLs and timestamps. **16,787 records / 15,998,992 reference
-tokens** remain provenance-unresolved.
+MADLAD-400 Oromo v0.2 is approved for OromoCorpus under the upstream
+AllenAI/MADLAD-400 dataset's published **ODC-BY** license after technical and
+language-quality qualification. The approval relies on the upstream
+dataset-level license representation and requires preservation of
+AllenAI/MADLAD-400 attribution; it does not claim independent copyright
+clearance of every underlying Common Crawl page.
+
+The prior provenance investigation remains documented: **1,917 final
+research-clean records / 1,874,398 48K-reference tokens (10.49%)** were
+deterministically mapped to official MADLAD v1.5 URLs and timestamps across
+182 domains. **16,787 records / 15,998,992 reference tokens** remain without
+directly recovered source-level provenance, recorded as
+`not_independently_verified` rather than as a release blocker.
 
 | Metric | Value |
 |---|---:|
@@ -810,25 +818,22 @@ Research-clean SHA-256:
 
 `4a28bde40c0c3f973fa2d503edee80a7a5e06330ddb74d7249f23bc662dcaf11`
 
-Accepted OromoCorpus remains **14,492,686** reference tokens.
+Accepted OromoCorpus is now **32,366,076** reference tokens.
 
-MADLAD adds **17,873,390** research-clean reference tokens to a separate
-technical pool of **32,366,076** tokens.
+MADLAD contributes **17,873,390** accepted research-clean reference tokens.
 
-The combined technical pool is **64.73% of the 50M minimum**, but MADLAD
-does not count toward the accepted corpus while its status remains
-`research_hold`.
+The accepted corpus is **64.73% of the 50M minimum**.
 
 The token total uses the Oromo Unigram 48K + byte-fallback tokenizer as the current **planning reference**, not as the final OromoLM tokenizer.
 
 ```text
 OromoCorpus v0.2 minimum: 50,000,000 reference tokens
-current planning total:   14,492,686
-progress:                 28.99%
-remaining:                35,507,314
+current planning total:   32,366,076
+progress:                 64.73%
+remaining:                17,633,924
 
 OromoCorpus v0.3 target: 100,000,000 reference tokens
-progress:                 14.49%
+progress:                 32.37%
 ```
 
 Approved source expansion completed so far:
@@ -836,7 +841,7 @@ Approved source expansion completed so far:
 - `wikimedia-omwiki.v0.1`: 2,254 net-new records after source-specific cleaning, exact deduplication, and 5-word-shingle near deduplication;
 - `voa-afaan-oromoo-via-wura.v0.1`: 9,510 net-new records after conservative third-party provenance holds, quality processing, exact deduplication, and near deduplication;
 - `castorini-wura-orm` remains `reviewing` as a discovery layer and does not count as a whole toward the accepted corpus.
-- `allenai-madlad-400-om-clean` is technically qualified and quality-passed but remains `research_hold`; official v1.5 provenance has been recovered for 1,917 final records / 1,874,398 tokens, while 16,787 records / 15,998,992 tokens remain unresolved. Its **17,873,390** total reference tokens do not count toward the accepted corpus.
+- `allenai-madlad-400-om-clean` is technically qualified, quality-passed, and approved under the upstream MADLAD-400 **ODC-BY** dataset license. Its **17,873,390** reference tokens now count toward accepted OromoCorpus. The project preserves the provenance findings and records underlying individual content rights as not independently verified.
 
 Frozen source-level reports:
 
@@ -932,7 +937,7 @@ It should not yet be treated as the final Oromo foundation-model training corpus
 
 Since v0.1.2 was frozen, two additional source-level expansions have been qualified and frozen: Wikimedia omwiki and the provenance-cleared VOA Afaan Oromoo subset recovered through WURA. Together they contribute **2,970,707 net-new 48K reference tokens** beyond the AfriBERTa seed.
 
-The current accepted planning total is **14,492,686 48K reference tokens**, or **28.99%** of the 50M v0.2 minimum. These are source-level planning measurements; a final OromoCorpus release still requires the selected/versioned OromoLM tokenizer and all v0.2 release gates.
+The current accepted planning total is **32,366,076 48K reference tokens**, or **64.73%** of the 50M v0.2 minimum. These are source-level planning measurements; a final OromoCorpus release still requires the selected/versioned OromoLM tokenizer and all v0.2 release gates.
 
 ---
 
