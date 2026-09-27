@@ -5,7 +5,8 @@
 **Source:** AllenAI MADLAD-400 Oromo  
 **Legacy research-clean corpus:** 18,704 records  
 **48K reference tokens:** 17,873,390  
-**Overall corpus status:** `research_hold`
+**Overall corpus status:** `approved` under upstream dataset-level ODC-BY  
+**Provenance status:** partially recovered
 
 This review records the provenance-recovery investigation performed against
 the official MADLAD v1.5 release.
@@ -68,7 +69,7 @@ Remaining unresolved:
 - records: **16,787**
 - 48K-reference tokens: **15,998,992**
 
-Those unresolved records remain on HOLD.
+Those records remain without directly recovered source-level provenance. Under the later v0.2 licensing decision, this limitation is retained in the audit trail but does not block corpus acceptance under the upstream MADLAD-400 ODC-BY dataset license.
 
 ---
 
@@ -208,25 +209,33 @@ Substantive reliance on third-party reporting, interviews, or source material:
 
 ## 7. Current Decision
 
-MADLAD-400 Oromo remains:
+The provenance findings above remain unchanged. A later project licensing
+decision approved MADLAD-400 Oromo v0.2 by relying on the upstream
+AllenAI/MADLAD-400 dataset's published **ODC-BY** license.
+
+Current status:
 
 - technical status: **qualified**
 - quality status: **passed**
 - provenance status: **partially recovered**
-- licensing status: **incomplete**
-- OromoCorpus status: **research_hold**
-- approved for OromoCorpus release: **false**
+- dataset license: **ODC-BY**
+- approval basis: **upstream dataset-level ODC-BY**
+- underlying individual content rights: **not independently verified**
+- OromoCorpus status: **approved**
+- approved for OromoCorpus release: **true**
+- downstream model-weight licensing: **separate review required**
 
-No MADLAD tokens are added to the accepted OromoCorpus total at this stage.
-
-Accepted OromoCorpus remains:
-
-**14,492,686 48K-reference tokens**
-
-MADLAD research-clean HOLD remains:
+MADLAD now contributes:
 
 **17,873,390 48K-reference tokens**
 
-Future work may create independently versioned, provenance-cleared subsets
-from specific domains after their rights and content-level screening gates
-are completed.
+Updated accepted OromoCorpus:
+
+**32,366,076 48K-reference tokens**
+
+The provenance work remains valuable because it documents source composition
+and limitations; approval does not erase or reinterpret that evidence.
+
+See the controlling licensing decision:
+
+`docs/sources/MADLAD_400_LICENSE_DECISION.md`.
