@@ -849,6 +849,7 @@ Frozen source-level reports:
 - `docs/sources/VOA_AFAAN_OROMOO_WURA_REPORT.md`
 - `docs/sources/MADLAD_400_OROMO_REPORT.md`
 - `docs/sources/MADLAD400_PROVENANCE_REVIEW.md`
+- `docs/sources/MADLAD_400_LICENSE_DECISION.md`
 
 ### Next acquisition priorities
 
