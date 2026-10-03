@@ -55,8 +55,8 @@ The goal is not to build a quick chatbot. The goal is to create reusable, docume
 | Component | Purpose | Status |
 | --- | --- | --- |
 | **OromoCorpus** | Versioned, provenance-tracked Afaan Oromoo training corpus | ✅ 50M minimum achieved; expanding toward 100M |
-| **OromoTokenizer** | Tokenization research and Oromo-aware tokenizer candidates | ✅ Core benchmarks complete |
-| **OromoLM** | Continued-pretrained Afaan Oromoo causal language models | ⏳ Base-model strategy in progress |
+| **OromoTokenizer** | Tokenization research and Oromo-aware tokenizer candidates | ✅ Gemma +8K training candidate validated |
+| **OromoLM** | Continued-pretrained Afaan Oromoo causal language models | 🧪 First controlled CPT pilot complete |
 | **OromoBench** | Afaan Oromoo evaluation framework | 🔄 In development |
 
 Canonical naming is documented in [`docs/NAMING.md`](docs/NAMING.md).
@@ -140,6 +140,24 @@ Tokenizer research has established:
 Native causal-model tokenizers were also benchmarked on the frozen Oromo evaluation set. Whole-word vocabulary augmentation improved fragmentation substantially, but it did not match the custom Oromo tokenizer's sequence efficiency.
 
 Full results: [`docs/TOKENIZER_RESEARCH_REPORT.md`](docs/TOKENIZER_RESEARCH_REPORT.md).
+
+### OromoLM CPT pilot
+
+The first controlled model-level CPT comparison is complete on `google/gemma-3-1b-pt`, comparing the native tokenizer against the frozen Gemma +8K Afaan Oromoo whole-word augmentation on the same six-source pilot text.
+
+| Metric | Native Gemma | Oromo +8K | Change |
+| --- | ---: | ---: | ---: |
+| Training tokens | 5,708,421 | **4,811,939** | **-15.70%** |
+| Optimizer steps | 349 | **294** | **-15.76%** |
+| Train wall time | 1,437.05 s | **1,176.71 s** | **-18.12%** |
+| Training throughput | 3,972.59 tok/s | **4,090.03 tok/s** | **+2.96%** |
+| Peak reserved VRAM | 12.21 GiB | 12.55 GiB | +2.78% |
+
+The comparison ran on the same NVIDIA A100-SXM4-80GB environment with sequence length 1024, BF16, gradient accumulation 16, and one epoch of identical underlying text exposure.
+
+The efficiency result is positive, but final tokenizer selection remains open. Raw token-level eval loss is not comparable across different tokenizations. A reconstruction normalized by the exact validation bytes currently places the +8K arm about **6.23% higher in NLL/byte after one pilot epoch**, but this is not yet an exact dedicated BPB measurement. The next gate is exact summed-NLL/BPB evaluation plus additional CPT to test whether the newly added lexical embeddings close that gap.
+
+Full experiment record: [`docs/CPT_PILOT_REPORT.md`](docs/CPT_PILOT_REPORT.md).
 
 ### Build verification
 
@@ -239,13 +257,17 @@ The repository is research infrastructure under active development; commands and
 ✅ Custom tokenizer benchmark
 ✅ Native causal-tokenizer benchmark
 ✅ Whole-word augmentation study
+✅ Cleaned Gemma +8K tokenizer frozen as a training candidate
+✅ Dual-tokenizer workload audit and 1024-token packing
+✅ Native-vs-+8K 10-step GPU smoke tests
+✅ First controlled Gemma native-vs-+8K CPT pilot
 
 ✅ OromoCorpus 50M minimum achieved — 52,137,803 reference tokens
 🔄 Expand OromoCorpus toward the preferred 100M target
-🔄 Select OromoLM base-model + tokenizer strategy
+🔄 Exact byte-normalized LM evaluation + longer CPT validation
 🔄 Develop OromoBench
 
-⏳ Tiny CPT proof
+✅ Tiny CPT proof
 ⏳ Scaled continued pretraining
 ⏳ Supervised instruction tuning
 ⏳ Model release engineering
@@ -267,7 +289,8 @@ Detailed technical material lives in `docs/` rather than being duplicated in thi
 | [Corpus Quality Report](docs/CORPUS_QUALITY_REPORT.md) | Quality analysis |
 | [Cleaning Policy](docs/CLEANING_POLICY.md) | Conservative preprocessing rules |
 | [Tokenizer Research Report](docs/TOKENIZER_RESEARCH_REPORT.md) | Tokenizer benchmarks and experiments |
-| [Evaluation](docs/EVALUATION.md) | OromoBench evaluation direction |
+| [CPT Pilot Report](docs/CPT_PILOT_REPORT.md) | Gemma native-vs-+8K workload, GPU, quality, and reproducibility evidence |
+| [Evaluation](docs/EVALUATION.md) | OromoBench and normalized model-evaluation direction |
 | [Roadmap](docs/ROADMAP.md) | Project phases and current milestone |
 | [MADLAD License Decision](docs/sources/MADLAD_400_LICENSE_DECISION.md) | ODC-BY approval basis, attribution obligations, and scope limitations |
 | [MADLAD Provenance Review](docs/sources/MADLAD400_PROVENANCE_REVIEW.md) | Partial source-level provenance recovery, URL/domain audit, and VOA review |
