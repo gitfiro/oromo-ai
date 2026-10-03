@@ -2,12 +2,12 @@
 
 **Project:** Oromo AI  
 **Phase:** 4C — base-model and tokenizer strategy  
-**Status:** provisional selection for tiny continued-pretraining proof  
+**Status:** provisional selection pending cleaned whole-word candidate v2 verification  
 **Decision date:** 2026-10-03
 
 ## 1. Decision
 
-The first controlled OromoLM continued-pretraining proof will use:
+The current leading configuration for the first controlled OromoLM continued-pretraining proof is:
 
 ```text
 Primary base model:
@@ -29,8 +29,11 @@ google/gemma-3-1b-pt
 ```
 
 This is a **proof-stage engineering decision**, not a declaration that Qwen3
-is the final OromoLM release base. The tiny CPT and OromoBench results must
-validate the choice before scaled continued pretraining.
+is the final OromoLM release base. Before the vocabulary is frozen, the +4K
+result must be revalidated against the cleaned whole-word candidate v2 pool,
+which rejects internal mixed-case extraction concatenations found in the
+original Phase 4B1 candidates. Tiny CPT and OromoBench must then validate the
+choice before scaled continued pretraining.
 
 ## 2. Why the project is ready for this decision
 
@@ -268,3 +271,35 @@ decide whether to:
 
 No scaled CPT, SFT, LoRA/QLoRA instruction tuning, or production model release
 should occur before this proof is evaluated.
+
+
+---
+
+## 10. Whole-word candidate v2 quality gate
+
+Before freezing the Qwen +4K proof vocabulary, a manual inspection of the
+historical Phase 4B1 selected-token list found extraction-concatenation
+artifacts such as:
+
+```text
+jiruSa'aatii
+ibseSa'aatii
+ajjeefaman'Sa'aatii
+```
+
+These forms passed the original conservative Latin lexical regex but should not
+be embedded as dedicated model vocabulary.
+
+A new builder is therefore introduced:
+
+```text
+tokenizer/augmentation/build_word_candidates_v2.py
+```
+
+The v2 policy keeps lowercase, uppercase-acronym, and ordinary title-case
+lexical forms while rejecting internal mixed-case/CamelCase patterns. It still
+uses only the leakage-safe 400,193-record tokenizer-training split.
+
+The primary Qwen +4K and Gemma +4K tokenizer results must be rerun against this
+v2 pool before the proof vocabulary is frozen. The original Phase 4B1 results
+remain historical evidence and are not deleted.
