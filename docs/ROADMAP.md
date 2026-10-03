@@ -11,11 +11,13 @@ The working sequence is:
 ```text
 OromoCorpus
   ↓
-OromoTokenizer research
+OromoTokenizer research                 ✅
   ↓
-Causal base-model selection
+Controlled native-vs-augmented CPT     ✅ first pilot
   ↓
-Tiny CPT proof
+Exact normalized LM evaluation         🔄
+  ↓
+Longer CPT / forgetting controls       🔄 next gate
   ↓
 Scale experiments
   ↓
@@ -364,19 +366,23 @@ Full report: `docs/CPT_PILOT_REPORT.md`
 
 ---
 
-## Phase 6 — OromoLM-1B-class experiment
+## Phase 6 — Extended OromoLM CPT validation
 
-**Status: planned**
+**Status: next experimental gate**
 
-Only proceed after the tiny proof demonstrates:
+The first Gemma 1B-class proof is complete. The next phase is not a blind model-size increase; it is a stronger validation of the selected tokenizer/model candidate.
 
-- stable training;
-- reproducible checkpoints;
-- useful validation improvement;
-- manageable compute cost;
-- no major tokenizer/data failure.
+Required work:
 
-This phase should establish whether additional model capacity produces enough value to justify later scaling.
+- implement exact summed-NLL / bits-per-byte evaluation on identical underlying text;
+- run longer Gemma +8K CPT to measure whether newly added lexical embeddings close the current normalized-likelihood gap;
+- preserve a native baseline/control where needed;
+- add a general-language control set for catastrophic-forgetting measurement;
+- report source-level validation across AfriBERTa, omwiki, VOA, Waxal, MADLAD, and HPLT3;
+- record wall-clock time, tokens/sec, words/sec, characters/sec, VRAM, and optimizer-step accounting;
+- decide whether a +4K ablation is needed to characterize the quality/compute frontier.
+
+Only after this phase should the project decide whether to keep Gemma +8K, revisit another base family, alter augmentation budget, or proceed toward scaled CPT.
 
 ---
 
