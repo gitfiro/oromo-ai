@@ -11,11 +11,11 @@
 
 ## 1. Purpose
 
-This report records the reproducible OromoTokenizer research completed before Oromo AI begins OromoLM continued-pretraining experiments.
+This report records the reproducible OromoTokenizer research from pre-CPT tokenizer benchmarking through the first controlled OromoLM continued-pretraining proof.
 
 The project does **not** assume that a custom tokenizer is automatically preferable. The objective is to measure how efficiently established and Oromo-specialized tokenizers represent Afaan Oromoo, identify failure modes, and preserve enough evidence to make the later base-model/tokenizer decision deliberately.
 
-The current decision sequence remains:
+The research sequence now stands at:
 
 ```text
 Validated corpus
@@ -28,9 +28,15 @@ Custom tokenizer candidates
       ↓
 Causal-LM tokenizer benchmarks
       ↓
-Tokenizer/base-model decision
+Whole-word / internal-subword experiments
       ↓
-Tiny CPT proof
+Cleaned Gemma +8K freeze
+      ↓
+Embedding initialization audit
+      ↓
+Controlled native-vs-+8K CPT proof
+      ↓
+Exact normalized evaluation + longer CPT
 ```
 
 No tokenizer has been declared the final production tokenizer yet. Gemma +8K is currently a validated training candidate, not a final production freeze.
