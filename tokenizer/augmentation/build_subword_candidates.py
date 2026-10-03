@@ -394,9 +394,12 @@ def main() -> None:
     print()
     print("Top 40 internal subwords:")
 
-    for item in candidates[:40]:
+    for rank, item in enumerate(
+        candidates[:40],
+        start=1,
+    ):
         print(
-            f"{item['rank_by_frequency']:>4} "
+            f"{rank:>4} "
             f"{item['frequency']:>9,} "
             f"{item['characters']:>2} "
             f"{item['piece']}"
