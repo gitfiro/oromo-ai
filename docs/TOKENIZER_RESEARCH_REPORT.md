@@ -542,3 +542,75 @@ tiny continued-pretraining proof
 ```
 
 The project should still avoid SFT, LoRA/QLoRA instruction tuning, and large-scale training until the base-model/tokenizer strategy is resolved with evidence.
+
+
+---
+
+## 18. Phase 4B2 — internal subword augmentation
+
+Phase 4B2 tested whether leakage-safe internal Oromo subword pieces could be
+appended to a pretrained causal tokenizer without replacing its native token
+IDs.
+
+Candidate construction used only the 400,193-record tokenizer-training split
+and the Oromo Unigram 48K byte-fallback SentencePiece reference. The frozen
+10K evaluation holdout was not used to construct or rank corpus frequencies.
+
+Candidate pool:
+
+```text
+reference pieces observed: 9,355,684
+eligible internal piece types: 6,615
+frequency >=20 candidates: 5,030
+candidate SHA-256:
+a6a9ae1279943f461ea6f7b7520028cd4d14ff447b43fa3c895008efa8be15ec
+```
+
+High-frequency pieces included Oromo morphological/internal forms such as
+`tti`, `dha`, `uun`, `tiin`, `dhaan`, `rraa`, `wwan`,
+`rratti`, and `oota`.
+
+Gemma 3 could rank 3,919 candidates as fragmented/useful under the synthetic
+internal-frame ranking test.
+
+Measured Gemma results:
+
+| Budget | Tok/Word | Change vs native | Frag % | Single % | UNK |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Native | 2.7855 | — | 85.91% | 14.09% | 0 |
+| +1K internal | 3.1846 | **14.33% worse** | 75.58% | 24.42% | 0 |
+| +2K internal | 3.0121 | **8.13% worse** | 67.15% | 32.85% | 0 |
+| +3K internal | 2.9184 | **4.77% worse** | 62.18% | 37.82% | 0 |
+
+### Interpretation
+
+The experiment is a negative result.
+
+`AddedToken(single_word=False)` performs tokenizer-level substring matching;
+it does not merge Oromo pieces into Gemma's learned native subword model.
+Consequently the added internal pieces can split text before native
+segmentation. Offset-based word fragmentation improves while total token count
+gets worse.
+
+This distinction is important:
+
+```text
+lower word-fragmentation metric
+does not necessarily imply
+shorter model sequences
+```
+
+### Phase 4B2 decision
+
+The generic internal-`AddedToken` approach is **rejected** and will not be
+repeated on Qwen or Llama.
+
+Viable strategies remaining:
+
+1. native tokenizer;
+2. native tokenizer + whole-word augmentation;
+3. deeper tokenizer replacement/adaptation only if later model-level evidence
+   justifies the disruption.
+
+Phase 4C therefore selects whole-word augmentation for the first model-level
+proof. See `docs/BASE_MODEL_SELECTION_REPORT.md`.
