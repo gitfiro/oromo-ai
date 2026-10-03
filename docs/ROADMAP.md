@@ -250,7 +250,7 @@ Detailed report:
 
 ## Phase 4 — Causal-LM tokenizer and base-model research
 
-**Status: Phase 4A and Phase 4B1 complete; strategy decision in progress**
+**Status: core tokenizer strategy experiments complete; Gemma +8K validated as a training candidate**
 
 ### Phase 4A — native causal tokenizer benchmark
 
@@ -290,57 +290,77 @@ Results:
 
 The largest early gain occurs in the first few thousand additions. At +4K, all three tokenizers reach approximately 38% word fragmentation, close to the custom Oromo 48K reference. Token-per-word efficiency, however, remains well above the custom reference of 1.4000.
 
-### Current decision point
+### Current decision state
 
-Phase 4 has established that:
+Phase 4 has now progressed beyond tokenizer-only feasibility:
 
 - native causal tokenizers cover Oromo but tokenize it inefficiently;
-- whole-word vocabulary augmentation is highly effective for frequent lexical forms;
-- augmentation preserves the original tokenizer vocabulary/ID space and appends new IDs;
-- whole-word augmentation alone does not fully solve Oromo subword inefficiency.
+- whole-word augmentation materially improves Oromo sequence efficiency while preserving native token IDs;
+- the generic internal-subword `AddedToken(single_word=False)` experiment was rejected because it increased total token count;
+- the cleaned Gemma +8K whole-word candidate was frozen as a model-level training candidate;
+- the +8K tokenizer reduces the frozen 10K holdout from 2.7855 to 2.2907 tokens/word, a 17.77% reduction;
+- deterministic scaled native-subtoken-centroid initialization was selected for the 8,000 new embeddings;
+- a controlled native-vs-+8K CPT pilot has now been completed.
 
-Before model-level CPT begins, the next research decision is whether to:
+The first model-level evidence shows that +8K reduces the same-text training workload by 15.70% and measured A100 training wall time by 18.12%, with only a small VRAM increase. Quality equivalence is not yet established: a reconstructed byte-normalized comparison after one pilot epoch currently favors native Gemma by about 6.23% NLL/byte, and an exact summed-NLL/BPB evaluator is still required.
 
-1. proceed with a practical whole-word augmentation budget;
-2. run a Phase 4B2 Oromo subword-augmentation experiment;
-3. retain the native tokenizer despite sequence inflation; or
-4. pursue deeper tokenizer replacement only if the evidence justifies its pretrained-embedding cost.
+Detailed model-level evidence is frozen in `docs/CPT_PILOT_REPORT.md`.
 
-The base model must ultimately be selected from the combined evidence of tokenizer efficiency, model quality, architecture, license, compute requirements, and CPT feasibility—not tokenizer metrics alone.
+The base model/tokenizer strategy therefore remains evidence-gated rather than final: Gemma +8K is retained as a validated training candidate while longer CPT and exact normalized evaluation determine whether its quality gap closes.
 
 ---
 
 ## Phase 5 — Tiny OromoLM continued-pretraining proof
 
-**Status: planned**
+**Status: completed for first controlled Gemma native-vs-+8K pilot**
 
-Target:
-
-A small, affordable OromoLM proof that validates the complete training pipeline before scaling.
-
-The proof should test:
-
-- causal-LM data packing;
-- tokenizer/model compatibility;
-- checkpoint loading/saving;
-- optimizer/scheduler configuration;
-- mixed precision;
-- gradient accumulation;
-- loss behavior;
-- validation loss;
-- held-out Oromo improvement;
-- catastrophic-forgetting controls;
-- reproducibility.
-
-Approximate model scale under consideration:
+The first proof used the same deterministic six-source Afaan Oromoo pilot text under two tokenization/model configurations:
 
 ```text
-~0.5B class
+A: google/gemma-3-1b-pt + native tokenizer
+B: initialized Gemma 3 1B + frozen +8K Oromo whole-word tokenizer
 ```
 
-The exact model depends on Phase 4 evidence.
+Training policy:
 
-Success means the training architecture works and produces measurable Oromo-language gains. It does not mean the model is release-ready.
+```text
+sequence length: 1024
+epochs: 1
+learning rate: 2e-5
+weight decay: 0.1
+gradient accumulation: 16
+gradient checkpointing: true
+BF16: true
+seed/data_seed: 42
+GPU: NVIDIA A100-SXM4-80GB
+```
+
+Pilot dataset:
+
+```text
+train:      29,377 records / 2,001,161 words / 15,539,012 characters
+validation:  1,503 records /   102,818 words /    805,382 characters
+train/validation overlap: 0
+```
+
+Measured result:
+
+| Metric | Native Gemma | Oromo +8K | Change |
+| --- | ---: | ---: | ---: |
+| Training tokens | 5,708,421 | **4,811,939** | **-15.70%** |
+| Optimizer steps | 349 | **294** | **-15.76%** |
+| Train wall time | 1,437.05 s | **1,176.71 s** | **-18.12%** |
+| Total wall time | 1,450.93 s | **1,189.96 s** | **-17.99%** |
+| Throughput | 3,972.59 tok/s | **4,090.03 tok/s** | **+2.96%** |
+| Peak reserved VRAM | 12.21 GiB | 12.55 GiB | +2.78% |
+
+This validates the training pipeline and demonstrates a real compute advantage for +8K on the same underlying text.
+
+The quality gate remains open. Raw token-level losses cannot be compared directly across tokenizers. A reconstructed same-text byte-normalized calculation currently places +8K about 6.23% higher in NLL/byte after one epoch, but publication-quality comparison requires an explicit summed-NLL/BPB evaluator.
+
+The first Oromo +8K full attempt also exposed an operational requirement: a 30 GB RunPod overlay filled while serializing the step-200 checkpoint. After removing unneeded native intermediate checkpoints and disabling intermediate saving for the clean rerun, the full +8K experiment completed successfully. This storage event is documented as part of reproducibility rather than treated as a model failure.
+
+Full report: `docs/CPT_PILOT_REPORT.md`
 
 ---
 
@@ -483,14 +503,19 @@ The project is currently here:
 ✅ Multilingual/custom tokenizer baselines
 ✅ Native causal-LM tokenizer benchmark (Phase 4A)
 ✅ Whole-word augmentation study (Phase 4B1)
+✅ Internal AddedToken subword experiment rejected (Phase 4B2)
+✅ Cleaned Gemma +8K tokenizer frozen as training candidate
+✅ Dual-tokenizer workload audit + deterministic packing
+✅ Native-vs-+8K 10-step GPU smoke tests
+✅ First controlled Gemma native-vs-+8K CPT pilot
+        ↓
+🔄 Exact summed-NLL / BPB evaluation
+        ↓
+🔄 Longer +8K CPT to test quality-gap closure
         ↓
 🔄 Expand accepted OromoCorpus from 52.14M toward the preferred 100M target
         ↓
 🔄 Improve corpus domain/dialect balance while expanding toward 100M / publisher cluster
-        ↓
-⏳ Continue base-model + tokenizer strategy decision
-        ↓
-⏳ Tiny CPT proof
 ```
 
 The immediate data task is to identify and audit the next high-yield, rights-clear Afaan Oromoo source or publisher cluster while preserving the partially recovered MADLAD provenance evidence. Each new source must pass provenance review, conservative quality processing, exact and near cross-source deduplication, and source-level manifest/report freezing before its tokens are added to the planning total.
