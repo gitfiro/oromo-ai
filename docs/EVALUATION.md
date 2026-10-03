@@ -196,44 +196,118 @@ The current 32K-byte and 48K-byte tokenizers are OromoTokenizer research referen
 
 ## 4. Causal-LM tokenizer and augmentation evaluation
 
-Native causal-tokenizer benchmarking is complete for the current candidate set, and Phase 4B1 has established that whole-word vocabulary augmentation can recover a large amount of Oromo word-level efficiency without replacing the original tokenizer.
+Native causal-tokenizer benchmarking, whole-word augmentation, and the first model-level Gemma +8K proof are complete.
 
-Current evidence supports three conclusions:
-
-1. native causal tokenizers are lossless on the frozen holdout but inefficient for Oromo;
-2. 2K–4K high-value lexical additions produce the largest early gains;
-3. whole-word augmentation alone does not recover the strongest OromoTokenizer candidate's token-per-word efficiency.
-
-The next tokenizer decision should compare:
+The frozen Gemma +8K training candidate is:
 
 ```text
-native tokenizer
-      vs
-whole-word augmentation
-      vs
-Oromo subword augmentation
-      vs
-full tokenizer replacement
+base: google/gemma-3-1b-pt
+augmentation: +8,000 cleaned leakage-safe Oromo whole-word tokens
+native tokenizer length: 262,145
+augmented tokenizer/model vocab: 270,145
 ```
 
-Before any model weights are modified, the project should quantify diminishing returns, vocabulary/embedding parameter cost, and whether subword augmentation closes the remaining sequence-efficiency gap.
+Frozen 10K tokenizer-holdout result:
+
+| Metric | Native Gemma | Gemma +8K |
+| --- | ---: | ---: |
+| Tokens/word | 2.7855 | **2.2907** |
+| Fragmentation | 85.91% | **32.38%** |
+| Single-token words | 14.09% | **67.62%** |
+| UNK | 0 | 0 |
+| Tok/word reduction | — | **17.77%** |
+
+The later six-source CPT workload audit confirmed that this tokenizer-level gain survives on the actual model-training mixture:
+
+```text
+train token reduction:       15.7046%
+validation token reduction:  15.7138%
+1024-sequence reduction:     15.6951% train
+model vocabulary growth:      3.0521%
+```
+
+The model-level pilot measured an 18.12% reduction in training wall time on the same A100 and same underlying text.
+
+Full experiment record:
+
+`docs/CPT_PILOT_REPORT.md`
 
 ---
 
-## 5. Tiny CPT proof evaluation
+## 5. Continued-pretraining evaluation
 
-Before scaling model size, the first continued-pretraining proof should evaluate:
+### First controlled proof
 
-- held-out Oromo loss/perplexity;
-- catastrophic forgetting on a small general-language control set;
+The first completed CPT proof compares native Gemma against the initialized Gemma +8K candidate on exactly the same deterministic six-source text selection.
+
+Validation text:
+
+```text
+records:          1,503
+characters:       805,382
+UTF-8 bytes:      814,153
+whitespace words: 102,818
+```
+
+Full-run measurements:
+
+| Metric | Native | Oromo +8K |
+| --- | ---: | ---: |
+| Training tokens | 5,708,421 | 4,811,939 |
+| Optimizer steps | 349 | 294 |
+| Train wall time | 1,437.05 s | 1,176.71 s |
+| Throughput | 3,972.59 tok/s | 4,090.03 tok/s |
+| Peak reserved VRAM | 12.21 GiB | 12.55 GiB |
+| Raw eval loss | 3.265455 | 4.115734 |
+
+### Cross-tokenizer loss rule
+
+Raw token-level loss/perplexity must **not** be used as the primary head-to-head quality metric when tokenizer vocabularies differ.
+
+A native Gemma token and an Oromo +8K token do not represent the same amount of text. Therefore the project requires normalization against the same underlying characters/bytes.
+
+A provisional reconstruction from Trainer aggregate losses and causal-shift scored-token counts gives:
+
+| Metric | Native | Oromo +8K |
+| --- | ---: | ---: |
+| Approx. scored tokens | 296,170 | 249,630 |
+| Reconstructed NLL/character | ~1.20083 | ~1.27568 |
+| Reconstructed NLL/UTF-8 byte | ~1.18790 | ~1.26194 |
+| Reconstructed bits/byte | ~1.71377 | ~1.82059 |
+
+This reconstruction places the +8K arm about **6.23% higher in NLL/byte** after one pilot epoch.
+
+This is **not yet an exact BPB benchmark**. It is retained as pilot evidence only.
+
+### Required exact evaluator
+
+Before a final tokenizer/model-quality decision, the evaluation stack must implement an explicit cross-tokenizer evaluator that:
+
+1. reads the exact same original validation records for both models;
+2. computes unreduced causal negative log-likelihood;
+3. masks only positions excluded by the causal objective/padding policy;
+4. sums exact NLL across all valid predicted positions;
+5. reports exact scored-token count;
+6. reports characters and UTF-8 bytes from the original text;
+7. reports NLL/character, NLL/byte, and bits/byte;
+8. reports the same metrics per source family;
+9. writes a versioned JSON report with model/tokenizer/data hashes.
+
+### Additional CPT success criteria
+
+The next training proof should also evaluate:
+
+- whether the augmented-token quality gap narrows with additional CPT exposure;
+- catastrophic forgetting on a separate general-language control set;
 - Oromo completion quality;
-- Oromo spelling/orthographic behavior;
+- spelling and orthographic behavior;
 - morphology-sensitive examples;
 - context utilization;
 - training stability;
-- checkpoint reproducibility.
+- exact checkpoint/run reproducibility;
+- source-level performance rather than only aggregate loss.
 
-The first OromoLM proof exists to validate the pipeline, not to maximize benchmark headlines.
+A tokenizer should not be selected simply because it is faster. The final decision must consider normalized model quality and compute cost together.
 
 ---
 
