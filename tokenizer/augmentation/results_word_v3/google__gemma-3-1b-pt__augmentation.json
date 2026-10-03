@@ -1,0 +1,104 @@
+{
+  "base_tokenizer": {
+    "effective_tokenizer_length": 262145,
+    "preexisting_added_or_special_entries": 1,
+    "reported_vocab_size": 262144
+  },
+  "candidate_count": 168205,
+  "evaluation_record_count": 10000,
+  "experiment": {
+    "augmentation_budget_definition": "exact increase in len(tokenizer) relative to the original loaded tokenizer",
+    "base_tokenizer": "google/gemma-3-1b-pt",
+    "budgets": [
+      4000,
+      8000
+    ],
+    "candidate_pool": "tokenizer/augmentation/candidates/oromo_word_candidates.v2.cleaned.jsonl",
+    "evaluation_corpus": "tokenizer/evaluation/samples/afriberta_oromo_v0.1.2_n10000.jsonl",
+    "ranking": "frequency * (native_pieces - 1)",
+    "ranking_data_source": "candidate frequencies derived only from tokenizer training split",
+    "timestamp_utc": "2026-10-03T16:16:12.360452+00:00",
+    "type": "whole_word_tokenizer_augmentation"
+  },
+  "ranked_fragmented_candidate_count": 160399,
+  "results": [
+    {
+      "added_tokens": 0,
+      "budget": 0,
+      "metrics": {
+        "bytes": 1267115,
+        "bytes_per_token": 2.742340755233132,
+        "characters": 1254943,
+        "characters_per_token": 2.7159976279931435,
+        "effective_vocabulary_size": 262145,
+        "fragmented_words": 142506,
+        "reported_base_vocabulary_size": 262144,
+        "single_token_word_rate": 0.14089355365722794,
+        "single_token_words": 23371,
+        "tokens": 462056,
+        "tokens_per_word": 2.78553385942596,
+        "unaligned_word_rate": 0.0,
+        "unaligned_words": 0,
+        "unknown_token_rate": 0.0,
+        "unknown_tokens": 0,
+        "word_fragmentation_rate": 0.859106446342772,
+        "words": 165877
+      },
+      "selected_word_count": 0
+    },
+    {
+      "added_tokens": 4000,
+      "budget": 4000,
+      "metrics": {
+        "bytes": 1267115,
+        "bytes_per_token": 3.2236206089469612,
+        "characters": 1254943,
+        "characters_per_token": 3.192654271990882,
+        "effective_vocabulary_size": 266145,
+        "fragmented_words": 63379,
+        "reported_base_vocabulary_size": 262144,
+        "single_token_word_rate": 0.6179156845132237,
+        "single_token_words": 102498,
+        "tokens": 393072,
+        "tokens_per_word": 2.3696594464573146,
+        "unaligned_word_rate": 0.0,
+        "unaligned_words": 0,
+        "unknown_token_rate": 0.0,
+        "unknown_tokens": 0,
+        "word_fragmentation_rate": 0.38208431548677635,
+        "words": 165877
+      },
+      "selected_word_count": 4000,
+      "tokens_per_word_reduction_vs_native": 0.14929792059836908
+    },
+    {
+      "added_tokens": 8000,
+      "budget": 8000,
+      "metrics": {
+        "bytes": 1267115,
+        "bytes_per_token": 3.3347764297181355,
+        "characters": 1254943,
+        "characters_per_token": 3.3027423217622442,
+        "effective_vocabulary_size": 270145,
+        "fragmented_words": 53707,
+        "reported_base_vocabulary_size": 262144,
+        "single_token_word_rate": 0.6762239490706969,
+        "single_token_words": 112170,
+        "tokens": 379970,
+        "tokens_per_word": 2.2906732096674043,
+        "unaligned_word_rate": 0.0,
+        "unaligned_words": 0,
+        "unknown_token_rate": 0.0,
+        "unknown_tokens": 0,
+        "word_fragmentation_rate": 0.32377605092930306,
+        "words": 165877
+      },
+      "selected_word_count": 8000,
+      "tokens_per_word_reduction_vs_native": 0.1776537908824904
+    }
+  ],
+  "versions": {
+    "tokenizers": "0.23.2",
+    "transformers": "5.17.0"
+  }
+}

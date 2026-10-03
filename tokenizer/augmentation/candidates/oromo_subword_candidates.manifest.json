@@ -1,0 +1,37 @@
+{
+  "created_utc": "2026-10-03T15:46:46.869842+00:00",
+  "format_version": 1,
+  "input": {
+    "path": "tokenizer/training/afriberta_oromo_v0.1.2_tokenizer_train.txt",
+    "records": 400193,
+    "sha256": "a733419e61ed4751e7f4da950e8c05c893ecbbc63be12c1551a1493507162dff"
+  },
+  "output": {
+    "path": "tokenizer/augmentation/candidates/oromo_subword_candidates.jsonl",
+    "sha256": "a6a9ae1279943f461ea6f7b7520028cd4d14ff447b43fa3c895008efa8be15ec"
+  },
+  "phase": "4B2",
+  "policy": {
+    "byte_fallback_pieces_excluded": true,
+    "candidate_type": "internal_subword",
+    "evaluation_data_used": false,
+    "latin_qubee_like_only": true,
+    "max_length": 16,
+    "min_frequency": 20,
+    "min_length": 2,
+    "sentencepiece_boundary_pieces_excluded": true,
+    "special_control_pieces_excluded": true
+  },
+  "purpose": "Leakage-safe internal Oromo subword augmentation candidate pool.",
+  "reference_tokenizer": {
+    "path": "tokenizer/training/candidates/oromo_unigram_48k_byte/tokenizer.model",
+    "piece_count": 48000,
+    "sha256": "79d64021d85877c1544e7e3a26bb21d2ad15f0aa7c6e76aeeeed3efddc5c3d2f"
+  },
+  "statistics": {
+    "candidate_types_after_frequency_filter": 5030,
+    "eligible_piece_occurrences": 1157107,
+    "eligible_piece_types": 6615,
+    "reference_pieces_seen": 9355684
+  }
+}

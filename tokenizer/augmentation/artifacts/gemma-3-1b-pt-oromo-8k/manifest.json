@@ -1,0 +1,47 @@
+{
+  "artifact": "gemma-3-1b-pt-oromo-lexical-augmentation",
+  "artifact_files": {
+    "tokenizer.json": "44f015312316d19ba8337a1807ca26d1a76e868ada0d709f2fb81c2ffce53806",
+    "tokenizer_config.json": "dd3333ae52ab7e8d543ca05cfbd0a1e483999e8d39b0b7e05e9b1fe60f26d926"
+  },
+  "augmentation": {
+    "added_token_configuration": {
+      "lstrip": false,
+      "normalized": true,
+      "rstrip": false,
+      "single_word": true,
+      "special": false
+    },
+    "added_tokens": 8000,
+    "final_tokenizer_length": 270145,
+    "native_tokenizer_length": 262145,
+    "type": "whole_word_lexical"
+  },
+  "base_model": "google/gemma-3-1b-pt",
+  "benchmark": {
+    "augmented_fragmentation_percent": 32.38,
+    "augmented_single_token_percent": 67.62,
+    "augmented_tokens_per_word": 2.2907,
+    "evaluation_corpus": "tokenizer/evaluation/samples/afriberta_oromo_v0.1.2_n10000.jsonl",
+    "native_fragmentation_percent": 85.91,
+    "native_single_token_percent": 14.09,
+    "native_tokens_per_word": 2.7855,
+    "tokens_per_word_reduction_percent": 17.77,
+    "unknown_tokens": 0
+  },
+  "created_at_utc": "2026-10-03T16:19:28.501116+00:00",
+  "format_version": 1,
+  "provenance": {
+    "benchmark_result": "tokenizer/augmentation/results_word_v3/google__gemma-3-1b-pt__augmentation.json",
+    "benchmark_result_sha256": "116189d283efae678de1339f9031bab8f7c3a78e47f46b03993929a1737073fb",
+    "candidate_pool": "tokenizer/augmentation/candidates/oromo_word_candidates.v2.cleaned.jsonl",
+    "candidate_pool_sha256": "7747fd5f230bcec779324138ac3cc0854f620f92a2284e8757135de3dabfd17f",
+    "selected_token_ledger": "tokenizer/augmentation/results_word_v3/google__gemma-3-1b-pt__selected_tokens.jsonl",
+    "selected_token_ledger_sha256": "68ac896b2db54dece77eb677953d03c174b4100368d6da0e351a8b3cb72ae952"
+  },
+  "software": {
+    "tokenizers": "0.23.2",
+    "transformers": "5.17.0"
+  },
+  "status": "frozen_training_candidate"
+}

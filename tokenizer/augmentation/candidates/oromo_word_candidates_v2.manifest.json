@@ -1,0 +1,36 @@
+{
+  "created_utc": "2026-10-03T15:59:48.734307+00:00",
+  "filters": {
+    "case_policy": "lowercase_or_uppercase_or_titlecase_only",
+    "internal_apostrophes": [
+      "'",
+      "ʼ",
+      "’"
+    ],
+    "internal_hyphen": true,
+    "internal_mixed_case_rejected": true,
+    "latin_ascii_letters_only": true,
+    "lemmatized": false,
+    "lowercased": false,
+    "max_length": 64,
+    "min_frequency": 2,
+    "min_length": 2
+  },
+  "format_version": 1,
+  "input": {
+    "lines": 400193,
+    "path": "tokenizer/training/afriberta_oromo_v0.1.2_tokenizer_train.txt",
+    "sha256": "a733419e61ed4751e7f4da950e8c05c893ecbbc63be12c1551a1493507162dff"
+  },
+  "output": {
+    "path": "tokenizer/augmentation/candidates/oromo_word_candidates_v2.jsonl",
+    "sha256": "43f09192506f32230c79063aca4cf568f99a86ddb66d8848e2ebf1592d910a6c"
+  },
+  "purpose": "Leakage-safe lexical candidate pool v2 for tokenizer augmentation research; rejects internal mixed-case concatenation artifacts.",
+  "statistics": {
+    "accepted_lexical_occurrences": 6386934,
+    "candidate_forms": 166592,
+    "unique_lexical_forms": 398654,
+    "whitespace_tokens_seen": 6716499
+  }
+}

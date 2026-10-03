@@ -1,0 +1,125 @@
+{
+  "experiment": {
+    "phase": "4B2",
+    "type": "internal_subword_tokenizer_augmentation",
+    "base_tokenizer": "google/gemma-3-1b-pt",
+    "candidate_pool": "tokenizer/augmentation/candidates/oromo_subword_candidates.jsonl",
+    "evaluation_corpus": "tokenizer/evaluation/samples/afriberta_oromo_v0.1.2_n10000.jsonl",
+    "budgets": [
+      1000,
+      2000,
+      3000
+    ],
+    "candidate_boundary_policy": "SentencePiece boundary pieces excluded; internal pieces only",
+    "added_token_policy": {
+      "single_word": false,
+      "lstrip": false,
+      "rstrip": false,
+      "normalized": true
+    },
+    "created_utc": "2026-10-03T15:50:02.114627+00:00",
+    "transformers_version": "5.17.0",
+    "tokenizers_version": "0.23.2"
+  },
+  "ranked_candidate_count": 3919,
+  "results": [
+    {
+      "budget": 0,
+      "added_tokens": 0,
+      "metrics": {
+        "effective_vocabulary_size": 262145,
+        "reported_base_vocabulary_size": 262144,
+        "characters": 1254943,
+        "words": 165877,
+        "tokens": 462056,
+        "tokens_per_word": 2.78553385942596,
+        "characters_per_token": 2.7159976279931435,
+        "bytes": 1267115,
+        "bytes_per_token": 2.742340755233132,
+        "unknown_tokens": 0,
+        "unknown_token_rate": 0.0,
+        "fragmented_words": 142506,
+        "single_token_words": 23371,
+        "unaligned_words": 0,
+        "word_fragmentation_rate": 0.859106446342772,
+        "single_token_word_rate": 0.14089355365722794,
+        "unaligned_word_rate": 0.0
+      }
+    },
+    {
+      "budget": 1000,
+      "added_tokens": 1000,
+      "selected_subwords": 1000,
+      "tokens_per_word_reduction_vs_native": -0.14326834842529904,
+      "metrics": {
+        "effective_vocabulary_size": 263145,
+        "reported_base_vocabulary_size": 262144,
+        "characters": 1254943,
+        "words": 165877,
+        "tokens": 528254,
+        "tokens_per_word": 3.1846126949486666,
+        "characters_per_token": 2.3756431565118294,
+        "bytes": 1267115,
+        "bytes_per_token": 2.398685102242482,
+        "unknown_tokens": 0,
+        "unknown_token_rate": 0.0,
+        "fragmented_words": 125368,
+        "single_token_words": 40509,
+        "unaligned_words": 0,
+        "word_fragmentation_rate": 0.7557889279405825,
+        "single_token_word_rate": 0.24421107205941753,
+        "unaligned_word_rate": 0.0
+      }
+    },
+    {
+      "budget": 2000,
+      "added_tokens": 2000,
+      "selected_subwords": 2000,
+      "tokens_per_word_reduction_vs_native": -0.08131914746264526,
+      "metrics": {
+        "effective_vocabulary_size": 264145,
+        "reported_base_vocabulary_size": 262144,
+        "characters": 1254943,
+        "words": 165877,
+        "tokens": 499630,
+        "tokens_per_word": 3.0120510981028112,
+        "characters_per_token": 2.5117446910713928,
+        "bytes": 1267115,
+        "bytes_per_token": 2.5361067189720394,
+        "unknown_tokens": 0,
+        "unknown_token_rate": 0.0,
+        "fragmented_words": 111389,
+        "single_token_words": 54488,
+        "unaligned_words": 0,
+        "word_fragmentation_rate": 0.6715156411075677,
+        "single_token_word_rate": 0.3284843588924323,
+        "unaligned_word_rate": 0.0
+      }
+    },
+    {
+      "budget": 3000,
+      "added_tokens": 3000,
+      "selected_subwords": 3000,
+      "tokens_per_word_reduction_vs_native": -0.04768469622729715,
+      "metrics": {
+        "effective_vocabulary_size": 265145,
+        "reported_base_vocabulary_size": 262144,
+        "characters": 1254943,
+        "words": 165877,
+        "tokens": 484089,
+        "tokens_per_word": 2.9183611953435378,
+        "characters_per_token": 2.5923807399052654,
+        "bytes": 1267115,
+        "bytes_per_token": 2.6175248766239267,
+        "unknown_tokens": 0,
+        "unknown_token_rate": 0.0,
+        "fragmented_words": 103140,
+        "single_token_words": 62737,
+        "unaligned_words": 0,
+        "word_fragmentation_rate": 0.6217860221730559,
+        "single_token_word_rate": 0.37821397782694405,
+        "unaligned_word_rate": 0.0
+      }
+    }
+  ]
+}

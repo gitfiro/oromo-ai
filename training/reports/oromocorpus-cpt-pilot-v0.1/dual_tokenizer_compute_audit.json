@@ -1,0 +1,402 @@
+{
+  "audit": "oromolm_dual_tokenizer_compute_audit",
+  "boundary_policy": "add_special_tokens=false; exactly one EOS token counted per source record",
+  "format_version": 1,
+  "pilot": {
+    "train_path": "training/data/oromocorpus-cpt-pilot-v0.1/train.jsonl",
+    "train_sha256": "9c71050faca4be2700ccbfb94737a8e8f190f3d9a3325b70fec60745c48b1a0a",
+    "validation_path": "training/data/oromocorpus-cpt-pilot-v0.1/validation.jsonl",
+    "validation_sha256": "cd1872643749992c7d4e22dad9b7dbe34907f0a5f96204c3040d428fc749a3d8"
+  },
+  "splits": {
+    "train": {
+      "derived": {
+        "character_capacity_gain_percent": 18.630369171346516,
+        "native_characters_per_token": 2.7221208807128976,
+        "native_tokens_per_word": 2.8525545920593096,
+        "oromo_characters_per_token": 3.2292620500800195,
+        "oromo_tokens_per_word": 2.404573644999078,
+        "packing": {
+          "1024": {
+            "native_sequences": 5575,
+            "oromo_sequences": 4700,
+            "sequence_reduction_percent": 15.695067264573993
+          },
+          "2048": {
+            "native_sequences": 2788,
+            "oromo_sequences": 2350,
+            "sequence_reduction_percent": 15.710186513629843
+          },
+          "4096": {
+            "native_sequences": 1394,
+            "oromo_sequences": 1175,
+            "sequence_reduction_percent": 15.710186513629843
+          },
+          "512": {
+            "native_sequences": 11150,
+            "oromo_sequences": 9399,
+            "sequence_reduction_percent": 15.704035874439462
+          }
+        },
+        "token_reduction_percent": 15.704552975332408
+      },
+      "per_source": {
+        "afriberta_oromo_v0.1.2": {
+          "characters": 2988359,
+          "native_content_tokens": 1100777,
+          "native_total_tokens": 1124364,
+          "oromo_content_tokens": 904510,
+          "oromo_total_tokens": 928097,
+          "records": 23587,
+          "words": 394560
+        },
+        "allenai-madlad-400-om-clean.v0.2": {
+          "characters": 5058489,
+          "native_content_tokens": 1856482,
+          "native_total_tokens": 1857558,
+          "oromo_content_tokens": 1596243,
+          "oromo_total_tokens": 1597319,
+          "records": 1076,
+          "words": 635730
+        },
+        "google-waxalnlp-orm-asr-v2.v0.1": {
+          "characters": 610250,
+          "native_content_tokens": 221210,
+          "native_total_tokens": 223739,
+          "oromo_content_tokens": 182540,
+          "oromo_total_tokens": 185069,
+          "records": 2529,
+          "words": 79545
+        },
+        "hplt3-gaz-latn.v0.1": {
+          "characters": 5999761,
+          "native_content_tokens": 2183995,
+          "native_total_tokens": 2185496,
+          "oromo_content_tokens": 1832462,
+          "oromo_total_tokens": 1833963,
+          "records": 1501,
+          "words": 779261
+        },
+        "voa-afaan-oromoo-via-wura.v0.1": {
+          "characters": 599688,
+          "native_content_tokens": 211381,
+          "native_total_tokens": 211910,
+          "oromo_content_tokens": 176255,
+          "oromo_total_tokens": 176784,
+          "records": 529,
+          "words": 76723
+        },
+        "wikimedia-omwiki.v0.1": {
+          "characters": 282465,
+          "native_content_tokens": 105199,
+          "native_total_tokens": 105354,
+          "oromo_content_tokens": 90552,
+          "oromo_total_tokens": 90707,
+          "records": 155,
+          "words": 35342
+        }
+      },
+      "raw": {
+        "characters": 15539012,
+        "native_content_tokens": 5679044,
+        "native_total_tokens": 5708421,
+        "oromo_content_tokens": 4782562,
+        "oromo_total_tokens": 4811939,
+        "records": 29377,
+        "words": 2001161
+      }
+    },
+    "validation": {
+      "derived": {
+        "character_capacity_gain_percent": 18.64332166083041,
+        "native_characters_per_token": 2.7166632935303245,
+        "native_tokens_per_word": 2.8833472738236496,
+        "oromo_characters_per_token": 3.2231395697848924,
+        "oromo_tokens_per_word": 2.4302651286739674,
+        "packing": {
+          "1024": {
+            "native_sequences": 290,
+            "oromo_sequences": 245,
+            "sequence_reduction_percent": 15.517241379310345
+          },
+          "2048": {
+            "native_sequences": 145,
+            "oromo_sequences": 123,
+            "sequence_reduction_percent": 15.172413793103448
+          },
+          "4096": {
+            "native_sequences": 73,
+            "oromo_sequences": 62,
+            "sequence_reduction_percent": 15.068493150684931
+          },
+          "512": {
+            "native_sequences": 580,
+            "oromo_sequences": 489,
+            "sequence_reduction_percent": 15.689655172413794
+          }
+        },
+        "token_reduction_percent": 15.713755650003373
+      },
+      "per_source": {
+        "afriberta_oromo_v0.1.2": {
+          "characters": 149858,
+          "native_content_tokens": 54995,
+          "native_total_tokens": 56174,
+          "oromo_content_tokens": 45300,
+          "oromo_total_tokens": 46479,
+          "records": 1179,
+          "words": 19728
+        },
+        "allenai-madlad-400-om-clean.v0.2": {
+          "characters": 262550,
+          "native_content_tokens": 97351,
+          "native_total_tokens": 97396,
+          "oromo_content_tokens": 84036,
+          "oromo_total_tokens": 84081,
+          "records": 45,
+          "words": 32310
+        },
+        "google-waxalnlp-orm-asr-v2.v0.1": {
+          "characters": 30818,
+          "native_content_tokens": 11199,
+          "native_total_tokens": 11329,
+          "oromo_content_tokens": 9150,
+          "oromo_total_tokens": 9280,
+          "records": 130,
+          "words": 3988
+        },
+        "hplt3-gaz-latn.v0.1": {
+          "characters": 303171,
+          "native_content_tokens": 109732,
+          "native_total_tokens": 109841,
+          "oromo_content_tokens": 91250,
+          "oromo_total_tokens": 91359,
+          "records": 109,
+          "words": 39386
+        },
+        "voa-afaan-oromoo-via-wura.v0.1": {
+          "characters": 31261,
+          "native_content_tokens": 11078,
+          "native_total_tokens": 11105,
+          "oromo_content_tokens": 9390,
+          "oromo_total_tokens": 9417,
+          "records": 27,
+          "words": 3968
+        },
+        "wikimedia-omwiki.v0.1": {
+          "characters": 27724,
+          "native_content_tokens": 10602,
+          "native_total_tokens": 10615,
+          "oromo_content_tokens": 9246,
+          "oromo_total_tokens": 9259,
+          "records": 13,
+          "words": 3438
+        }
+      },
+      "raw": {
+        "characters": 805382,
+        "native_content_tokens": 294957,
+        "native_total_tokens": 296460,
+        "oromo_content_tokens": 248372,
+        "oromo_total_tokens": 249875,
+        "records": 1503,
+        "words": 102818
+      }
+    }
+  },
+  "tokenizers": {
+    "model_vocab_growth_percent": 3.0521392822265625,
+    "native": {
+      "identifier": "google/gemma-3-1b-pt",
+      "model_vocab_size": 262144,
+      "tokenizer_length": 262145
+    },
+    "oromo_8k": {
+      "identifier": "tokenizer/augmentation/artifacts/gemma-3-1b-pt-oromo-8k",
+      "model_vocab_size": 270145,
+      "tokenizer_length": 270145
+    }
+  },
+  "train_per_source_derived": {
+    "afriberta_oromo_v0.1.2": {
+      "character_capacity_gain_percent": 21.147250772279193,
+      "native_characters_per_token": 2.657821666293122,
+      "native_tokens_per_word": 2.8496654501216545,
+      "oromo_characters_per_token": 3.2198778791440983,
+      "oromo_tokens_per_word": 2.352232866991079,
+      "packing": {
+        "1024": {
+          "native_sequences": 1099,
+          "oromo_sequences": 907,
+          "sequence_reduction_percent": 17.470427661510467
+        },
+        "2048": {
+          "native_sequences": 550,
+          "oromo_sequences": 454,
+          "sequence_reduction_percent": 17.454545454545457
+        },
+        "4096": {
+          "native_sequences": 275,
+          "oromo_sequences": 227,
+          "sequence_reduction_percent": 17.454545454545457
+        },
+        "512": {
+          "native_sequences": 2197,
+          "oromo_sequences": 1813,
+          "sequence_reduction_percent": 17.478379608557123
+        }
+      },
+      "token_reduction_percent": 17.45582391467532
+    },
+    "allenai-madlad-400-om-clean.v0.2": {
+      "character_capacity_gain_percent": 16.292237179924612,
+      "native_characters_per_token": 2.723193030850181,
+      "native_tokens_per_word": 2.9219291208531923,
+      "oromo_characters_per_token": 3.16686209830347,
+      "oromo_tokens_per_word": 2.512574520629827,
+      "packing": {
+        "1024": {
+          "native_sequences": 1815,
+          "oromo_sequences": 1560,
+          "sequence_reduction_percent": 14.049586776859504
+        },
+        "2048": {
+          "native_sequences": 908,
+          "oromo_sequences": 780,
+          "sequence_reduction_percent": 14.096916299559473
+        },
+        "4096": {
+          "native_sequences": 454,
+          "oromo_sequences": 390,
+          "sequence_reduction_percent": 14.096916299559473
+        },
+        "512": {
+          "native_sequences": 3629,
+          "oromo_sequences": 3120,
+          "sequence_reduction_percent": 14.025902452466244
+        }
+      },
+      "token_reduction_percent": 14.009737515598436
+    },
+    "google-waxalnlp-orm-asr-v2.v0.1": {
+      "character_capacity_gain_percent": 20.89490946619909,
+      "native_characters_per_token": 2.7275083914739944,
+      "native_tokens_per_word": 2.8127349299138853,
+      "oromo_characters_per_token": 3.2974188005554685,
+      "oromo_tokens_per_word": 2.326595009114338,
+      "packing": {
+        "1024": {
+          "native_sequences": 219,
+          "oromo_sequences": 181,
+          "sequence_reduction_percent": 17.35159817351598
+        },
+        "2048": {
+          "native_sequences": 110,
+          "oromo_sequences": 91,
+          "sequence_reduction_percent": 17.272727272727273
+        },
+        "4096": {
+          "native_sequences": 55,
+          "oromo_sequences": 46,
+          "sequence_reduction_percent": 16.363636363636363
+        },
+        "512": {
+          "native_sequences": 437,
+          "oromo_sequences": 362,
+          "sequence_reduction_percent": 17.162471395881006
+        }
+      },
+      "token_reduction_percent": 17.283531257402597
+    },
+    "hplt3-gaz-latn.v0.1": {
+      "character_capacity_gain_percent": 19.167943955248816,
+      "native_characters_per_token": 2.7452628602385913,
+      "native_tokens_per_word": 2.8045751038483897,
+      "oromo_characters_per_token": 3.271473306713385,
+      "oromo_tokens_per_word": 2.353464372013998,
+      "packing": {
+        "1024": {
+          "native_sequences": 2135,
+          "oromo_sequences": 1791,
+          "sequence_reduction_percent": 16.11241217798595
+        },
+        "2048": {
+          "native_sequences": 1068,
+          "oromo_sequences": 896,
+          "sequence_reduction_percent": 16.10486891385768
+        },
+        "4096": {
+          "native_sequences": 534,
+          "oromo_sequences": 448,
+          "sequence_reduction_percent": 16.10486891385768
+        },
+        "512": {
+          "native_sequences": 4269,
+          "oromo_sequences": 3582,
+          "sequence_reduction_percent": 16.092761770906534
+        }
+      },
+      "token_reduction_percent": 16.08481552928946
+    },
+    "voa-afaan-oromoo-via-wura.v0.1": {
+      "character_capacity_gain_percent": 19.86944519866051,
+      "native_characters_per_token": 2.8299183615685903,
+      "native_tokens_per_word": 2.762013998409864,
+      "oromo_characters_per_token": 3.3922074395872928,
+      "oromo_tokens_per_word": 2.3041851856679223,
+      "packing": {
+        "1024": {
+          "native_sequences": 207,
+          "oromo_sequences": 173,
+          "sequence_reduction_percent": 16.425120772946862
+        },
+        "2048": {
+          "native_sequences": 104,
+          "oromo_sequences": 87,
+          "sequence_reduction_percent": 16.346153846153847
+        },
+        "4096": {
+          "native_sequences": 52,
+          "oromo_sequences": 44,
+          "sequence_reduction_percent": 15.384615384615385
+        },
+        "512": {
+          "native_sequences": 414,
+          "oromo_sequences": 346,
+          "sequence_reduction_percent": 16.425120772946862
+        }
+      },
+      "token_reduction_percent": 16.575904865272996
+    },
+    "wikimedia-omwiki.v0.1": {
+      "character_capacity_gain_percent": 16.147596106143965,
+      "native_characters_per_token": 2.681103707500427,
+      "native_tokens_per_word": 2.9809857959368458,
+      "oromo_characters_per_token": 3.1140375053744473,
+      "oromo_tokens_per_word": 2.5665497142210403,
+      "packing": {
+        "1024": {
+          "native_sequences": 103,
+          "oromo_sequences": 89,
+          "sequence_reduction_percent": 13.592233009708737
+        },
+        "2048": {
+          "native_sequences": 52,
+          "oromo_sequences": 45,
+          "sequence_reduction_percent": 13.461538461538462
+        },
+        "4096": {
+          "native_sequences": 26,
+          "oromo_sequences": 23,
+          "sequence_reduction_percent": 11.538461538461538
+        },
+        "512": {
+          "native_sequences": 206,
+          "oromo_sequences": 178,
+          "sequence_reduction_percent": 13.592233009708737
+        }
+      },
+      "token_reduction_percent": 13.902652011314236
+    }
+  }
+}

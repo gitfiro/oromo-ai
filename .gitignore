@@ -25,3 +25,20 @@ data/interim/
 
 # External language-identification models
 models/language_id/glotlid/
+
+# Large model and training artifacts
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.tar.gz
+
+# Local trained model outputs / checkpoints
+training/runs/
+training/checkpoints/
+models/initialization/*/model*.safetensors
+
+# Hugging Face / experiment caches
+.cache/
+wandb/

@@ -1,0 +1,22 @@
+{
+  "output": "tokenizer/augmentation/candidates/oromo_word_candidates.v2.cleaned.jsonl",
+  "policy": "Exact exclusion of manually confirmed malformed concatenated lexical artifacts.",
+  "remaining_candidates": 168205,
+  "removed": [
+    {
+      "characters": 30,
+      "frequency": 190,
+      "rank_by_frequency": 3836,
+      "word": "OROMIYAANWANOFITIABBAATUUEGATA"
+    },
+    {
+      "characters": 31,
+      "frequency": 22,
+      "rank_by_frequency": 21867,
+      "word": "OROMIYAANWANOFITIABBAATUUEGATAA"
+    }
+  ],
+  "removed_count": 2,
+  "sha256": "7747fd5f230bcec779324138ac3cc0854f620f92a2284e8757135de3dabfd17f",
+  "source": "tokenizer/augmentation/candidates/oromo_word_candidates.jsonl"
+}
