@@ -266,32 +266,25 @@ Raw token-level loss/perplexity must **not** be used as the primary head-to-head
 
 A native Gemma token and an Oromo +8K token do not represent the same amount of text. Therefore the project requires normalization against the same underlying characters/bytes.
 
-A provisional reconstruction from Trainer aggregate losses and causal-shift scored-token counts gives:
+The earlier Trainer-loss reconstruction has now been superseded by an exact dedicated evaluator.
 
-| Metric | Native | Oromo +8K |
-| --- | ---: | ---: |
-| Approx. scored tokens | 296,170 | 249,630 |
-| Reconstructed NLL/character | ~1.20083 | ~1.27568 |
-| Reconstructed NLL/UTF-8 byte | ~1.18790 | ~1.26194 |
-| Reconstructed bits/byte | ~1.71377 | ~1.82059 |
+### Exact document-reset BPB result
 
-This reconstruction places the +8K arm about **6.23% higher in NLL/byte** after one pilot epoch.
+The v0.2 reproduction evaluates all three model states on the same frozen 1,503-record Oromo validation set using `document-bos-sliding-v1`: independent document resets, one BOS conditioning token, no scored EOS, exact text round-trip, unreduced causal NLL summation, and normalization by the original UTF-8 byte count.
 
-This is **not yet an exact BPB benchmark**. It is retained as pilot evidence only.
+| Model state | Scored tokens | NLL / UTF-8 byte | Exact BPB |
+| --- | ---: | ---: | ---: |
+| Original `google/gemma-3-1b-pt` | 294,957 | 1.850734532 | 2.670045532 |
+| Native tokenizer + Oromo CPT | 294,957 | 1.201801036 | **1.733832395** |
+| OromoLM +8K + Oromo CPT | 248,372 | 1.291568093 | 1.863338883 |
 
-### Required exact evaluator
+Lower is better.
 
-Before a final tokenizer/model-quality decision, the evaluation stack must implement an explicit cross-tokenizer evaluator that:
+Relative to untouched Gemma, native-tokenizer Oromo CPT reduces BPB by **35.06%** and OromoLM +8K reduces BPB by **30.21%**. The +8K model remains approximately **7.47% higher/worse in BPB than native-tokenizer CPT** after one epoch.
 
-1. reads the exact same original validation records for both models;
-2. computes unreduced causal negative log-likelihood;
-3. masks only positions excluded by the causal objective/padding policy;
-4. sums exact NLL across all valid predicted positions;
-5. reports exact scored-token count;
-6. reports characters and UTF-8 bytes from the original text;
-7. reports NLL/character, NLL/byte, and bits/byte;
-8. reports the same metrics per source family;
-9. writes a versioned JSON report with model/tokenizer/data hashes.
+This exact result establishes that Oromo continued pretraining works on the frozen holdout. It does **not** establish that +8K is the best tokenizer/model configuration.
+
+The authoritative evaluator is `training/tools/evaluate_bpb.py`, with protocol tests in `tests/training/test_bpb_protocol.py`. Full v0.2 results are documented in `docs/CPT_RERUN_V0_2_RESULTS.md`.
 
 ### Additional CPT success criteria
 
