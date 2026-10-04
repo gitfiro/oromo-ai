@@ -1054,7 +1054,6 @@ def main():
             / "checkpoints"
         ),
 
-        overwrite_output_dir=False,
 
         num_train_epochs=cfg[
             "num_train_epochs"
@@ -1088,7 +1087,7 @@ def main():
             "weight_decay"
         ],
 
-        warmup_ratio=cfg[
+        warmup_steps=cfg[
             "warmup_ratio"
         ],
 
