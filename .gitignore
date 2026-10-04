@@ -42,3 +42,18 @@ models/initialization/*/model*.safetensors
 # Hugging Face / experiment caches
 .cache/
 wandb/
+
+# Local CPT datasets and packed training artifacts
+
+# Local initialized/trained model directories
+
+# Local CPT corpus text and packed token data
+training/data/**/*.jsonl
+training/packed/**/*.jsonl
+
+# Keep initialization metadata/configs visible to Git;
+# only large model weights are ignored above.
+
+# Duplicate tokenizer copy inside initialized model directory.
+# Canonical frozen tokenizer is tracked under tokenizer/augmentation/artifacts/.
+models/initialization/*/tokenizer.json

@@ -1,0 +1,68 @@
+{
+  "artifact": "OromoLM Gemma-3-1B +8K initialization",
+  "artifact_files": {
+    "config.json": {
+      "bytes": 1757,
+      "sha256": "f2568c7a195db7c553f5aa89364eedeaf6736129a2641d33aa033e5fc4fd2555"
+    },
+    "generation_config.json": {
+      "bytes": 210,
+      "sha256": "6ca0b50d26cb08f2e11efb74ccf78690863cb4b592418636eeebc8dd27b03c9a"
+    },
+    "model.safetensors": {
+      "bytes": 2018245512,
+      "sha256": "9cc4cece57346c2767b9df24a946816195595373e5b09c24a172f389cd24ccf9"
+    },
+    "tokenizer.json": {
+      "bytes": 34858950,
+      "sha256": "44f015312316d19ba8337a1807ca26d1a76e868ada0d709f2fb81c2ffce53806"
+    },
+    "tokenizer_config.json": {
+      "bytes": 704,
+      "sha256": "93e3c8fa384c65227bad4c627b6872bdeb08e9d6f5136f67511cdffb4e392091"
+    }
+  },
+  "base_model": "google/gemma-3-1b-pt",
+  "behavioral_audit": {
+    "hf_mean_resize": {
+      "mean_kl": 10.189774,
+      "mean_logit_cosine": 0.729729,
+      "top20_overlap": 0.041
+    },
+    "raw_centroid": {
+      "mean_kl": 8.425408,
+      "mean_logit_cosine": 0.867015,
+      "top20_overlap": 0.2062
+    },
+    "sample_size": 128,
+    "scaled_centroid": {
+      "mean_kl": 7.667944,
+      "mean_logit_cosine": 0.88099,
+      "top20_overlap": 0.2523
+    }
+  },
+  "created_at_utc": "2026-10-03T16:31:48.682623+00:00",
+  "format_version": 1,
+  "initialization": {
+    "installed_mean_l2_norm": 1.0467232465744019,
+    "installed_std_l2_norm": 0.00010150244634132832,
+    "mean_native_pieces_per_word": 3.415625,
+    "method": "native_subtoken_centroid_scaled_to_native_mean_l2_norm",
+    "native_mean_l2_norm": 1.046724796295166
+  },
+  "status": "initialized_not_trained",
+  "tokenizer_ledger": {
+    "path": "tokenizer/augmentation/results_word_v3/google__gemma-3-1b-pt__selected_tokens.jsonl",
+    "sha256": "68ac896b2db54dece77eb677953d03c174b4100368d6da0e351a8b3cb72ae952"
+  },
+  "version": "v0.1",
+  "vocabulary": {
+    "base_tokenizer_length": 262145,
+    "final_rows": 270145,
+    "image_soft_token_id": 262144,
+    "native_model_rows": 262144,
+    "oromo_additions": 8000,
+    "oromo_end_id": 270144,
+    "oromo_start_id": 262145
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "dataset": "oromocorpus-cpt-pilot-v0.1",
+  "format_version": 1,
+  "purpose": "Controlled continued-pretraining pilot comparing native Gemma with OromoLM Gemma +8K.",
+  "selection": {
+    "method": "deterministic SHA-256 record ordering",
+    "source_weighting": "proportional_to_available_accepted_source_words",
+    "tokenizer_independent": true,
+    "train_target_words": 2000000,
+    "unit": "whitespace_words",
+    "validation_selected_first": true,
+    "validation_target_words": 100000
+  },
+  "sources": [
+    {
+      "available_characters": 52122264,
+      "available_records": 410193,
+      "available_words": 6882376,
+      "path": "data/processed/afriberta_oromo_v0.1.2/train.jsonl",
+      "sha256": "6f990088c8fb319b46c9a25a1c463e7a700cc8d292da781cfcc44ac4391ee0f6",
+      "source_id": "afriberta_oromo_v0.1.2",
+      "text_field": "text"
+    },
+    {
+      "available_characters": 4749893,
+      "available_records": 2254,
+      "available_words": 612144,
+      "path": "data/interim/wikimedia-omwiki/near_dedup/articles.near-dedup-new.jsonl",
+      "sha256": "3db0136f942e535a1be9db3a421ff31086766d3ac9bf32856ea0c1d58eff41b9",
+      "source_id": "wikimedia-omwiki.v0.1",
+      "text_field": "text"
+    },
+    {
+      "available_characters": 10428230,
+      "available_records": 9510,
+      "available_words": 1334704,
+      "path": "data/interim/wura-orm/voa/near_dedup/voa.near-dedup-new.jsonl",
+      "sha256": "4abe7c6b938de5714707303a8f56a82bea48a624a5719a8e2beb1d46434b426d",
+      "source_id": "voa-afaan-oromoo-via-wura.v0.1",
+      "text_field": "text"
+    },
+    {
+      "available_characters": 10637213,
+      "available_records": 44194,
+      "available_words": 1387505,
+      "path": "data/interim/google-waxalnlp-orm-asr-v2/near_dedup/waxal.near-dedup-new.jsonl",
+      "sha256": "15c713b20186787d31ad7e9144b7ff96e16ac7a58776c2f1b009d9b724357e3b",
+      "source_id": "google-waxalnlp-orm-asr-v2.v0.1",
+      "text_field": "text"
+    },
+    {
+      "available_characters": 87930647,
+      "available_records": 18704,
+      "available_words": 11088537,
+      "path": "data/interim/allenai-madlad-400-om-clean/madlad-om.research-clean.jsonl",
+      "sha256": "4a28bde40c0c3f973fa2d503edee80a7a5e06330ddb74d7249f23bc662dcaf11",
+      "source_id": "allenai-madlad-400-om-clean.v0.2",
+      "text_field": "text"
+    },
+    {
+      "available_characters": 104275389,
+      "available_records": 26655,
+      "available_words": 13581841,
+      "path": "data/interim/hplt3-gaz-latn/final/hplt3-gaz-latn.v0.1.jsonl",
+      "sha256": "b39bae97f09990d3ccfac141ae86ecfeb2c75ab30ce6674ee73e5504b419f856",
+      "source_id": "hplt3-gaz-latn.v0.1",
+      "text_field": "text"
+    }
+  ],
+  "splits": {
+    "train": {
+      "characters": 15539012,
+      "path": "training/data/oromocorpus-cpt-pilot-v0.1/train.jsonl",
+      "per_source": {
+        "afriberta_oromo_v0.1.2": {
+          "characters": 2988359,
+          "records": 23587,
+          "words": 394560
+        },
+        "allenai-madlad-400-om-clean.v0.2": {
+          "characters": 5058489,
+          "records": 1076,
+          "words": 635730
+        },
+        "google-waxalnlp-orm-asr-v2.v0.1": {
+          "characters": 610250,
+          "records": 2529,
+          "words": 79545
+        },
+        "hplt3-gaz-latn.v0.1": {
+          "characters": 5999761,
+          "records": 1501,
+          "words": 779261
+        },
+        "voa-afaan-oromoo-via-wura.v0.1": {
+          "characters": 599688,
+          "records": 529,
+          "words": 76723
+        },
+        "wikimedia-omwiki.v0.1": {
+          "characters": 282465,
+          "records": 155,
+          "words": 35342
+        }
+      },
+      "records": 29377,
+      "sha256": "9c71050faca4be2700ccbfb94737a8e8f190f3d9a3325b70fec60745c48b1a0a",
+      "words": 2001161
+    },
+    "validation": {
+      "characters": 805382,
+      "path": "training/data/oromocorpus-cpt-pilot-v0.1/validation.jsonl",
+      "per_source": {
+        "afriberta_oromo_v0.1.2": {
+          "characters": 149858,
+          "records": 1179,
+          "words": 19728
+        },
+        "allenai-madlad-400-om-clean.v0.2": {
+          "characters": 262550,
+          "records": 45,
+          "words": 32310
+        },
+        "google-waxalnlp-orm-asr-v2.v0.1": {
+          "characters": 30818,
+          "records": 130,
+          "words": 3988
+        },
+        "hplt3-gaz-latn.v0.1": {
+          "characters": 303171,
+          "records": 109,
+          "words": 39386
+        },
+        "voa-afaan-oromoo-via-wura.v0.1": {
+          "characters": 31261,
+          "records": 27,
+          "words": 3968
+        },
+        "wikimedia-omwiki.v0.1": {
+          "characters": 27724,
+          "records": 13,
+          "words": 3438
+        }
+      },
+      "records": 1503,
+      "sha256": "cd1872643749992c7d4e22dad9b7dbe34907f0a5f96204c3040d428fc749a3d8",
+      "words": 102818
+    }
+  },
+  "status": "frozen_pilot_dataset"
+}

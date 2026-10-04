@@ -1,0 +1,31 @@
+{
+  "dataset": "oromocorpus-cpt-pilot-v0.1",
+  "format_version": 1,
+  "packing_policy": "concatenate documents with one EOS separator; fixed-length blocks; retain final partial block",
+  "sequence_length": 1024,
+  "splits": {
+    "train": {
+      "content_tokens": 4782562,
+      "final_partial_tokens": 163,
+      "output_path": "training/packed/oromocorpus-cpt-pilot-v0.1/oromo8k/seq1024/train.jsonl",
+      "output_sha256": "aa5183850ad2f93300ec7ca691349e26f47d428144cbf07de971b5439b11bb51",
+      "packed_sequences": 4700,
+      "sequence_length": 1024,
+      "source_records": 29377,
+      "total_tokens_with_eos": 4811939
+    },
+    "validation": {
+      "content_tokens": 248372,
+      "final_partial_tokens": 19,
+      "output_path": "training/packed/oromocorpus-cpt-pilot-v0.1/oromo8k/seq1024/validation.jsonl",
+      "output_sha256": "abb452f63a504884a875b7989fd31b34e4da5c6edfaa9cbf622ecc9cfb6c80dc",
+      "packed_sequences": 245,
+      "sequence_length": 1024,
+      "source_records": 1503,
+      "total_tokens_with_eos": 249875
+    }
+  },
+  "tokenizer": "tokenizer/augmentation/artifacts/gemma-3-1b-pt-oromo-8k",
+  "tokenizer_length": 270145,
+  "variant": "oromo8k"
+}
