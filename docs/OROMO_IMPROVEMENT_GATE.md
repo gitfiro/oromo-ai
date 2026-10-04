@@ -69,6 +69,26 @@ acceptance threshold has been approved yet; this gate remains open.
 - Schedule a bounded additional training run only after this comparison; keep
   the same holdouts and record its compute limit before launching.
 
+## v0.2 gate result — 2026-10-04
+
+The exact three-way Oromo evaluation has now been completed on the frozen 1,503-record validation set.
+
+| Model state | Exact BPB | Result |
+| --- | ---: | --- |
+| Original `google/gemma-3-1b-pt` | 2.670046 | baseline |
+| Native tokenizer + Oromo CPT | **1.733832** | best current quality checkpoint |
+| OromoLM +8K + Oromo CPT | 1.863339 | strong improvement over base; not yet parity with native CPT |
+
+Lower is better.
+
+The native-tokenizer CPT model reduces BPB by **35.06%** relative to untouched Gemma. OromoLM +8K reduces BPB by **30.21%** relative to untouched Gemma, but remains approximately **7.47% higher/worse than native-tokenizer CPT** after one epoch.
+
+This closes the first part of the improvement gate: **Oromo continued pretraining is demonstrably effective.** It does not close the tokenizer-selection gate. The +8K candidate must still show that additional adaptation can cross below **1.733832 BPB** without unacceptable general-language regression.
+
+The next gate is therefore a bounded +8K learning-curve experiment with a frozen general-language control and predeclared forgetting threshold.
+
+See `docs/CPT_RERUN_V0_2_RESULTS.md`.
+
 ## Implementation status
 
 The evaluator and three protocol unit tests are committed. Window coverage,
