@@ -15,9 +15,9 @@ OromoTokenizer research                 ✅
   ↓
 Controlled native-vs-augmented CPT     ✅ first pilot
   ↓
-Exact normalized LM evaluation         🔄
+Exact normalized LM evaluation         ✅
   ↓
-Longer CPT / forgetting controls       🔄 next gate
+Longer +8K CPT / forgetting controls   🔄 next gate
   ↓
 Scale experiments
   ↓
@@ -372,15 +372,24 @@ Full report: `docs/CPT_PILOT_REPORT.md`
 
 The first Gemma 1B-class proof is complete. The next phase is not a blind model-size increase; it is a stronger validation of the selected tokenizer/model candidate.
 
+Exact three-way document-reset BPB evaluation is now complete on the frozen 1,503-record Oromo validation set:
+
+| Model state | Exact BPB |
+| --- | ---: |
+| Original Gemma | 2.670046 |
+| Native tokenizer + Oromo CPT | **1.733832** |
+| OromoLM +8K + Oromo CPT | 1.863339 |
+
+The native-tokenizer CPT arm is the current quality benchmark. OromoLM +8K improves substantially over base Gemma but remains approximately **7.47% higher/worse in BPB** than native-tokenizer CPT after one epoch.
+
 Required work:
 
-- implement exact summed-NLL / bits-per-byte evaluation on identical underlying text;
-- run longer Gemma +8K CPT to measure whether newly added lexical embeddings close the current normalized-likelihood gap;
-- preserve a native baseline/control where needed;
-- add a general-language control set for catastrophic-forgetting measurement;
+- freeze a separate general-language control set and predeclare an acceptable forgetting threshold;
+- continue Gemma +8K CPT in bounded increments from the preserved v0.2 checkpoint;
+- run exact Oromo BPB at each checkpoint and test whether +8K crosses below **1.733832 BPB**;
 - report source-level validation across AfriBERTa, omwiki, VOA, Waxal, MADLAD, and HPLT3;
 - record wall-clock time, tokens/sec, words/sec, characters/sec, VRAM, and optimizer-step accounting;
-- decide whether a +4K ablation is needed to characterize the quality/compute frontier.
+- decide whether a +4K ablation is needed if +8K plateaus above the native-CPT frontier.
 
 Only after this phase should the project decide whether to keep Gemma +8K, revisit another base family, alter augmentation budget, or proceed toward scaled CPT.
 
