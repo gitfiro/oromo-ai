@@ -564,6 +564,26 @@ Until that evaluator exists, the ~6.23% figure is useful pilot evidence but must
 
 ---
 
+## 12A. Exact v0.2 follow-up evaluation
+
+The reconstruction above was later superseded by a dedicated exact evaluator and fresh reproducibility rerun. All three model states were evaluated on the identical frozen 1,503-record Oromo validation set with the `document-bos-sliding-v1` protocol.
+
+| Model state | Exact BPB |
+| --- | ---: |
+| Original Gemma | 2.670046 |
+| Native tokenizer + Oromo CPT | **1.733832** |
+| OromoLM +8K + Oromo CPT | 1.863339 |
+
+Lower is better.
+
+The exact result confirms a large Oromo-language gain from CPT itself: native-tokenizer CPT improves BPB by **35.06%** relative to untouched Gemma. OromoLM +8K improves BPB by **30.21%** relative to untouched Gemma, but after one epoch remains approximately **7.47% higher/worse than native-tokenizer CPT**.
+
+Therefore, the earlier ~6.23% reconstructed gap should be treated as historical pilot evidence only. The v0.2 exact result is authoritative for the reproduced checkpoints.
+
+See `docs/CPT_RERUN_V0_2_RESULTS.md`.
+
+---
+
 ## 13. Current decision
 
 The model-level pilot changes the project decision state.
