@@ -1,0 +1,26 @@
+{
+  "characters": 1140054,
+  "config": "wikitext-103-raw-v1",
+  "control_id": "general-control-wikitext103raw-v0.1",
+  "dataset": "Salesforce/wikitext",
+  "format_version": 1,
+  "output": "training/data/general-control-v0.1/validation.jsonl",
+  "output_sha256": "8c5897eb2104eaf328a56d25e15f84fa459fbebc1576761c9ed298877fc4a47f",
+  "purpose": "General-language catastrophic-forgetting control; never training data.",
+  "records": 2361,
+  "requested_revision": "844b6323027b47fc4c54b8c88faf7e188b540d76",
+  "resolved_revision": "844b6323027b47fc4c54b8c88faf7e188b540d76",
+  "selection_policy": {
+    "empty_rows_excluded": true,
+    "exact_text_deduplication": true,
+    "sampling": "none; all unique non-empty validation rows",
+    "source_order_preserved": true,
+    "text_normalization": "none"
+  },
+  "source_file": "wikitext-103-raw-v1/wikitext-validation.parquet",
+  "source_file_sha256": "082475960351d7717cc21a58f89646aaaae5d394596de8960ef3d35eba5c8f00",
+  "source_id": "salesforce-wikitext-103-raw-v1",
+  "split": "validation",
+  "utf8_bytes": 1142152,
+  "whitespace_words": 213354
+}
