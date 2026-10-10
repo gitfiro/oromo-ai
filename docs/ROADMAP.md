@@ -384,7 +384,7 @@ The native-tokenizer CPT arm is the current quality benchmark. OromoLM +8K impro
 
 Required work:
 
-- freeze a separate general-language control set and predeclare an acceptable forgetting threshold;
+- freeze a separate general-language control set and predeclare an acceptable forgetting threshold — **source/policy now defined in `docs/GENERAL_LANGUAGE_CONTROL.md`; local artifact freeze pending**;
 - continue Gemma +8K CPT in bounded increments from the preserved v0.2 checkpoint;
 - run exact Oromo BPB at each checkpoint and test whether +8K crosses below **1.733832 BPB**;
 - report source-level validation across AfriBERTa, omwiki, VOA, Waxal, MADLAD, and HPLT3;
