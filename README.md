@@ -56,7 +56,7 @@ The goal is not to build a quick chatbot. The goal is to create reusable, docume
 | --- | --- | --- |
 | **OromoCorpus** | Versioned, provenance-tracked Afaan Oromoo training corpus | ✅ 50M minimum achieved; expanding toward 100M |
 | **OromoTokenizer** | Tokenization research and Oromo-aware tokenizer candidates | ✅ Gemma +8K training candidate validated |
-| **OromoLM** | Continued-pretrained Afaan Oromoo causal language models | 🧪 Exact three-way Oromo BPB evaluation complete |
+| **OromoLM** | Continued-pretrained Afaan Oromoo causal language models | 🧪 +8K v0.3 near-parity result complete; next ablation/continuation decision pending |
 | **OromoBench** | Afaan Oromoo evaluation framework | 🔄 In development |
 
 Canonical naming is documented in [`docs/NAMING.md`](docs/NAMING.md).
@@ -163,11 +163,26 @@ The efficiency result remains positive, but final tokenizer selection remains op
 | Native tokenizer + Oromo CPT | **1.733832** | **-35.06%** |
 | OromoLM +8K + Oromo CPT | 1.863339 | **-30.21%** |
 
-Lower BPB is better. This establishes that OromoCorpus continued pretraining substantially improves held-out Afaan Oromoo modeling. The +8K candidate also improves strongly over base Gemma, but after one epoch it remains about **7.47% higher/worse in BPB than native-tokenizer CPT**.
+Lower BPB is better. This establishes that OromoCorpus continued pretraining substantially improves held-out Afaan Oromoo modeling.
 
-The next gate is controlled longer +8K CPT with exact BPB checkpoints and a frozen general-language forgetting control. The current native-CPT quality benchmark to beat is **1.733832 BPB**.
+A later fresh-data +8K continuation experiment (v0.3) closed almost all of the remaining quality gap:
 
-Full experiment records: [`docs/CPT_PILOT_REPORT.md`](docs/CPT_PILOT_REPORT.md) and [`docs/CPT_RERUN_V0_2_RESULTS.md`](docs/CPT_RERUN_V0_2_RESULTS.md).
+| +8K v0.3 step | Exact Oromo BPB |
+| ---: | ---: |
+| 250 | 1.799051 |
+| 500 | 1.758330 |
+| 750 | 1.741555 |
+| 1,000 | 1.735902 |
+| 1,250 | 1.734836 |
+| 1,470 | **1.734823** |
+
+The native-tokenizer CPT benchmark remains **1.733832395 BPB**. The best +8K v0.3 checkpoint therefore remains just above it by about **0.057%**, so the project does **not** claim a +8K quality win yet.
+
+General-language retention remained within the predeclared gate. Untouched Gemma scored **1.013254631 WikiText BPB**, setting a +5% ceiling at **1.063917363**; the final +8K checkpoint scored **1.033754855** and passed.
+
+The v0.3 result was preserved locally from the A100 environment and **53/53 hashed files matched with zero integrity failures**.
+
+Full experiment records: [`docs/CPT_PILOT_REPORT.md`](docs/CPT_PILOT_REPORT.md), [`docs/CPT_RERUN_V0_2_RESULTS.md`](docs/CPT_RERUN_V0_2_RESULTS.md), and [`docs/CPT_LEARNING_CURVE_V0_3_RESULTS.md`](docs/CPT_LEARNING_CURVE_V0_3_RESULTS.md).
 
 ### Build verification
 
@@ -275,7 +290,7 @@ The repository is research infrastructure under active development; commands and
 ✅ OromoCorpus 50M minimum achieved — 52,137,803 reference tokens
 🔄 Expand OromoCorpus toward the preferred 100M target
 ✅ Exact byte-normalized three-way LM evaluation
-🔄 Longer +8K CPT learning curve + forgetting controls
+✅ +8K v0.3 fresh-data learning curve + forgetting controls
 🔄 Develop OromoBench
 
 ✅ Tiny CPT proof
