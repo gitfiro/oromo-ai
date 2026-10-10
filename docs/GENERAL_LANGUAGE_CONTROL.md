@@ -12,11 +12,10 @@ The control is evaluation-only and must never be mixed into OromoLM training dat
 dataset:  Salesforce/wikitext
 config:   wikitext-103-raw-v1
 split:    validation
-revision: 8aaa8b27d493dba10b8553290236799e6dc57829
-license:  CC BY-SA 4.0
+revision: 844b6323027b47fc4c54b8c88faf7e188b540d76
 ```
 
-WikiText contains verified Good and Featured English Wikipedia articles and is published under Creative Commons Attribution-ShareAlike. The project uses the raw validation split as a general English language-modeling control.
+WikiText contains verified Good and Featured English Wikipedia articles. The project uses the raw validation split as a general English language-modeling control. Licensing/attribution details follow the upstream dataset card and source repository; this control is evaluation-only.
 
 The freeze builder is:
 
@@ -35,7 +34,8 @@ Policy:
 - no normalization;
 - record source-row indices and text SHA-256 hashes;
 - write a frozen JSONL plus manifest;
-- require an immutable Hugging Face dataset revision.
+- require an immutable Hugging Face dataset revision;
+- hash the exact Parquet source artifact used to build the frozen control.
 
 ## Evaluation
 
