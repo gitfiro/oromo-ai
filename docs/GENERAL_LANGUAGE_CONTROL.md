@@ -79,9 +79,23 @@ The **+5% relative BPB ceiling** is a project guardrail selected before inspecti
 
 If the candidate beats the Oromo target but exceeds the +5% general-control ceiling, it does not advance without a documented mitigation experiment.
 
-## Freeze status
+## Frozen artifact
 
-The source, revision, transformation policy, and acceptance rule are frozen. The generated JSONL counts and SHA-256 will be added after the builder is run in the local development environment.
+The control was successfully frozen in the local development environment.
+
+```text
+records:          2,361
+characters:       1,140,054
+UTF-8 bytes:      1,142,152
+whitespace words: 213,354
+source revision:  844b6323027b47fc4c54b8c88faf7e188b540d76
+source Parquet SHA-256:
+082475960351d7717cc21a58f89646aaaae5d394596de8960ef3d35eba5c8f00
+```
+
+The generated `validation.jsonl` SHA-256 was independently recomputed after freezing and matched the `output_sha256` stored in the manifest exactly.
+
+The JSONL is an evaluation artifact and remains outside normal Git. The small manifest is intended to be versioned so the frozen control can be reconstructed and audited.
 
 ## References
 
