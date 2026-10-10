@@ -303,6 +303,44 @@ The +5% ceiling is a project guardrail chosen before inspecting the general-cont
 
 See `docs/GENERAL_LANGUAGE_CONTROL.md`.
 
+### v0.3 fresh-data +8K learning curve
+
+The v0.3 experiment continued the preserved v0.2 +8K model on a fresh
+10,039,123-word Oromo continuation corpus with zero exact-text overlap against
+the frozen pilot train and validation sets.
+
+Exact Oromo BPB:
+
+| Step | BPB |
+| ---: | ---: |
+| 250 | 1.799051259 |
+| 500 | 1.758329918 |
+| 750 | 1.741555246 |
+| 1,000 | 1.735902233 |
+| 1,250 | 1.734835917 |
+| 1,470 | **1.734823064** |
+
+The native-tokenizer CPT quality benchmark remains **1.733832395 BPB**. The
+final +8K checkpoint remained approximately **0.057% higher/worse**, so it did
+not satisfy the predeclared Oromo quality gate.
+
+General-language retention did satisfy the predeclared gate:
+
+| Model/checkpoint | WikiText BPB | Result |
+| --- | ---: | --- |
+| Untouched Gemma | 1.013254631 | baseline |
+| +8K step 1,000 | 1.033682489 | PASS |
+| +8K step 1,250 | 1.033754204 | PASS |
+| +8K step 1,470 | 1.033754855 | PASS |
+
+The predeclared ceiling was **1.063917363 BPB** (105% of untouched Gemma).
+
+The result therefore establishes near-parity, not a +8K quality win. It also
+shows that the earlier large +8K deficit was substantially reducible with
+additional fresh Oromo adaptation.
+
+Full result: `docs/CPT_LEARNING_CURVE_V0_3_RESULTS.md`.
+
 ### Additional CPT success criteria
 
 The next training proof should also evaluate:
