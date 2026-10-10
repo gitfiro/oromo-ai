@@ -1150,6 +1150,11 @@ def main():
             2,
         ),
 
+        save_only_model=cfg.get(
+            "save_only_model",
+            False,
+        ),
+
         logging_strategy="steps",
 
         logging_steps=cfg.get(
