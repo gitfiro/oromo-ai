@@ -286,6 +286,21 @@ This exact result establishes that Oromo continued pretraining works on the froz
 
 The authoritative evaluator is `training/tools/evaluate_bpb.py`, with protocol tests in `tests/training/test_bpb_protocol.py`. Full v0.2 results are documented in `docs/CPT_RERUN_V0_2_RESULTS.md`.
 
+### Frozen general-language control
+
+Before any additional +8K CPT, the project has predeclared a general-language forgetting control based on `Salesforce/wikitext`, config `wikitext-103-raw-v1`, validation split, pinned to immutable revision `8aaa8b27d493dba10b8553290236799e6dc57829`.
+
+The source text is preserved exactly except empty rows are excluded and exact duplicate texts are removed. No sampling or normalization is allowed.
+
+The next +8K checkpoint advances only if:
+
+- exact Oromo BPB is below the current native-CPT benchmark **1.733832395**; and
+- WikiText control BPB is no more than **5% higher than untouched Gemma** on the same frozen control.
+
+The +5% ceiling is a project guardrail chosen before inspecting the general-control results, not a universal catastrophic-forgetting threshold.
+
+See `docs/GENERAL_LANGUAGE_CONTROL.md`.
+
 ### Additional CPT success criteria
 
 The next training proof should also evaluate:
