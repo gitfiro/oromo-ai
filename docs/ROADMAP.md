@@ -17,7 +17,7 @@ Controlled native-vs-augmented CPT     ✅ first pilot
   ↓
 Exact normalized LM evaluation         ✅
   ↓
-Longer +8K CPT / forgetting controls   🔄 next gate
+Longer +8K CPT / forgetting controls   ✅ v0.3 complete
   ↓
 Scale experiments
   ↓
@@ -309,6 +309,61 @@ The first model-level evidence shows that +8K reduces the same-text training wor
 Detailed model-level evidence is frozen in `docs/CPT_PILOT_REPORT.md`.
 
 The base model/tokenizer strategy therefore remains evidence-gated rather than final: Gemma +8K is retained as a validated training candidate while longer CPT and exact normalized evaluation determine whether its quality gap closes.
+
+---
+
+## Phase 4C — +8K fresh-data continuation v0.3
+
+**Status: complete**
+
+The Gemma +8K path was continued from the preserved v0.2 checkpoint on a fresh,
+deterministic six-source Oromo continuation set:
+
+```text
+records:          146,038
+whitespace words: 10,039,123
++8K tokens+EOS:   24,078,782
+packed sequences: 23,515
+optimizer steps:  1,470
+pilot train/validation exact-text overlap: 0
+```
+
+Exact Oromo BPB learning curve:
+
+| Step | BPB |
+| ---: | ---: |
+| 250 | 1.799051259 |
+| 500 | 1.758329918 |
+| 750 | 1.741555246 |
+| 1,000 | 1.735902233 |
+| 1,250 | 1.734835917 |
+| 1,470 | **1.734823064** |
+
+The native-tokenizer CPT reference remains **1.733832395 BPB**, leaving the
+final +8K checkpoint about **0.057% higher/worse**. The quality gate was
+therefore not crossed, although the earlier ~7.47% gap was almost entirely
+closed.
+
+The frozen WikiText retention gate also passed:
+
+```text
+untouched Gemma WikiText BPB: 1.013254631
+predeclared +5% ceiling:      1.063917363
+final +8K WikiText BPB:       1.033754855  PASS
+```
+
+The A100 run was copied back to the local research environment and 53 hashed
+files matched the RunPod-generated SHA-256 manifest with zero failures.
+
+Next decision:
+
+- one more fresh-data +8K continuation tranche; or
+- +4K model-level ablation to map the quality/efficiency frontier.
+
+Do not simply repeat the same v0.3 text for another epoch; the late learning
+curve was already nearly flat.
+
+Detailed result: `docs/CPT_LEARNING_CURVE_V0_3_RESULTS.md`.
 
 ---
 
