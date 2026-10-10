@@ -1,0 +1,139 @@
+{
+  "dataset": "oromocorpus-cpt-continuation-v0.3",
+  "format_version": 1,
+  "output": {
+    "characters": 77705868,
+    "path": "training/data/oromocorpus-cpt-continuation-v0.3/train.jsonl",
+    "pilot_exact_text_overlap": 0,
+    "records": 146038,
+    "sha256": "814f52575f4e4e38ff64b98b01bbe3837d17129cc2628d43cd8e571d1d2b298d",
+    "utf8_bytes": 78680181,
+    "words": 10039123
+  },
+  "pilot": {
+    "manifest_path": "training/data/oromocorpus-cpt-pilot-v0.1/manifest.json",
+    "manifest_sha256": "7791a25fe9f0bca389b7db71709685e5dce8fbd4effc7ee7b16e8aa87d8ee399",
+    "train_path": "training/data/oromocorpus-cpt-pilot-v0.1/train.jsonl",
+    "train_sha256": "9c71050faca4be2700ccbfb94737a8e8f190f3d9a3325b70fec60745c48b1a0a",
+    "unique_exact_text_hashes_excluded": 30880,
+    "validation_path": "training/data/oromocorpus-cpt-pilot-v0.1/validation.jsonl",
+    "validation_sha256": "cd1872643749992c7d4e22dad9b7dbe34907f0a5f96204c3040d428fc749a3d8"
+  },
+  "purpose": "Fresh OromoLM +8K continuation data; excludes all exact text from the frozen v0.1 pilot train and validation splits.",
+  "selected_per_source": {
+    "afriberta_oromo_v0.1.2": {
+      "selected_characters": 14920117,
+      "selected_records": 117192,
+      "selected_utf8_bytes": 15062037,
+      "selected_words": 1969346,
+      "target_words": 1969340
+    },
+    "allenai-madlad-400-om-clean.v0.2": {
+      "selected_characters": 25244773,
+      "selected_records": 5280,
+      "selected_utf8_bytes": 25615066,
+      "selected_words": 3181664,
+      "target_words": 3180730
+    },
+    "google-waxalnlp-orm-asr-v2.v0.1": {
+      "selected_characters": 3044551,
+      "selected_records": 12621,
+      "selected_utf8_bytes": 3044999,
+      "selected_words": 397022,
+      "target_words": 397013
+    },
+    "hplt3-gaz-latn.v0.1": {
+      "selected_characters": 29839950,
+      "selected_records": 7629,
+      "selected_utf8_bytes": 30259300,
+      "selected_words": 3888543,
+      "target_words": 3886036
+    },
+    "voa-afaan-oromoo-via-wura.v0.1": {
+      "selected_characters": 3063013,
+      "selected_records": 2784,
+      "selected_utf8_bytes": 3097614,
+      "selected_words": 392431,
+      "target_words": 392312
+    },
+    "wikimedia-omwiki.v0.1": {
+      "selected_characters": 1593464,
+      "selected_records": 532,
+      "selected_utf8_bytes": 1601165,
+      "selected_words": 210117,
+      "target_words": 174569
+    }
+  },
+  "selection": {
+    "method": "deterministic SHA-256 source-scoped text ordering",
+    "pilot_exclusion": "global exact-text SHA-256",
+    "source_weighting": "proportional_to_remaining_accepted_source_words",
+    "target_words": 10000000,
+    "text_normalization": "none",
+    "tokenizer_independent": true,
+    "unit": "whitespace_words"
+  },
+  "source_inventory": {
+    "afriberta_oromo_v0.1.2": {
+      "available_records": 410193,
+      "available_words_recounted": 6882376,
+      "pilot_overlap_records_excluded": 24757,
+      "pilot_overlap_words_excluded": 414164,
+      "remaining_records": 385436,
+      "remaining_words": 6468212,
+      "source_path": "data/processed/afriberta_oromo_v0.1.2/train.jsonl",
+      "source_sha256": "6f990088c8fb319b46c9a25a1c463e7a700cc8d292da781cfcc44ac4391ee0f6"
+    },
+    "allenai-madlad-400-om-clean.v0.2": {
+      "available_records": 18704,
+      "available_words_recounted": 11088537,
+      "pilot_overlap_records_excluded": 1113,
+      "pilot_overlap_words_excluded": 641565,
+      "remaining_records": 17591,
+      "remaining_words": 10446972,
+      "source_path": "data/interim/allenai-madlad-400-om-clean/madlad-om.research-clean.jsonl",
+      "source_sha256": "4a28bde40c0c3f973fa2d503edee80a7a5e06330ddb74d7249f23bc662dcaf11"
+    },
+    "google-waxalnlp-orm-asr-v2.v0.1": {
+      "available_records": 44194,
+      "available_words_recounted": 1387505,
+      "pilot_overlap_records_excluded": 2659,
+      "pilot_overlap_words_excluded": 83533,
+      "remaining_records": 41535,
+      "remaining_words": 1303972,
+      "source_path": "data/interim/google-waxalnlp-orm-asr-v2/near_dedup/waxal.near-dedup-new.jsonl",
+      "source_sha256": "15c713b20186787d31ad7e9144b7ff96e16ac7a58776c2f1b009d9b724357e3b"
+    },
+    "hplt3-gaz-latn.v0.1": {
+      "available_records": 26655,
+      "available_words_recounted": 13581841,
+      "pilot_overlap_records_excluded": 1609,
+      "pilot_overlap_words_excluded": 818320,
+      "remaining_records": 25046,
+      "remaining_words": 12763521,
+      "source_path": "data/interim/hplt3-gaz-latn/final/hplt3-gaz-latn.v0.1.jsonl",
+      "source_sha256": "b39bae97f09990d3ccfac141ae86ecfeb2c75ab30ce6674ee73e5504b419f856"
+    },
+    "voa-afaan-oromoo-via-wura.v0.1": {
+      "available_records": 9510,
+      "available_words_recounted": 1334704,
+      "pilot_overlap_records_excluded": 304,
+      "pilot_overlap_words_excluded": 46172,
+      "remaining_records": 9206,
+      "remaining_words": 1288532,
+      "source_path": "data/interim/wura-orm/voa/near_dedup/voa.near-dedup-new.jsonl",
+      "source_sha256": "4abe7c6b938de5714707303a8f56a82bea48a624a5719a8e2beb1d46434b426d"
+    },
+    "wikimedia-omwiki.v0.1": {
+      "available_records": 2254,
+      "available_words_recounted": 612144,
+      "pilot_overlap_records_excluded": 168,
+      "pilot_overlap_words_excluded": 38780,
+      "remaining_records": 2086,
+      "remaining_words": 573364,
+      "source_path": "data/interim/wikimedia-omwiki/near_dedup/articles.near-dedup-new.jsonl",
+      "source_sha256": "3db0136f942e535a1be9db3a421ff31086766d3ac9bf32856ea0c1d58eff41b9"
+    }
+  },
+  "status": "frozen_fresh_continuation"
+}
