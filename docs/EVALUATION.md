@@ -292,6 +292,8 @@ Before any additional +8K CPT, the project has predeclared a general-language fo
 
 The source text is preserved exactly except empty rows are excluded and exact duplicate texts are removed. No sampling or normalization is allowed.
 
+The frozen control contains **2,361 records / 1,142,152 UTF-8 bytes / 213,354 whitespace words**. Its source Parquet artifact SHA-256 is `082475960351d7717cc21a58f89646aaaae5d394596de8960ef3d35eba5c8f00`. The generated JSONL was independently rehashed and matched the output SHA recorded in its manifest.
+
 The next +8K checkpoint advances only if:
 
 - exact Oromo BPB is below the current native-CPT benchmark **1.733832395**; and
