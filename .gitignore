@@ -33,6 +33,7 @@ models/language_id/glotlid/
 *.pth
 *.ckpt
 *.tar.gz
+*.tar
 
 # Local trained model outputs / checkpoints
 training/runs/
@@ -57,3 +58,6 @@ training/packed/**/*.jsonl
 # Duplicate tokenizer copy inside initialized model directory.
 # Canonical frozen tokenizer is tracked under tokenizer/augmentation/artifacts/.
 models/initialization/*/tokenizer.json
+
+# Preserved local experiment exports / extracted checkpoints
+preserved/
