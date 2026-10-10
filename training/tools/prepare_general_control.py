@@ -1,7 +1,9 @@
 """Freeze a reproducible general-language control set for OromoLM.
 
-The default source is Salesforce/wikitext, config wikitext-103-raw-v1,
-validation split. Text is preserved exactly; only empty rows are excluded.
+The source is Salesforce/wikitext, config wikitext-103-raw-v1, validation split.
+The builder downloads the frozen Parquet validation artifact directly from an
+immutable Hugging Face dataset revision. Text is preserved exactly; only empty
+rows are excluded and exact duplicate texts are removed.
 """
 from __future__ import annotations
 
@@ -12,7 +14,8 @@ from pathlib import Path
 
 
 SOURCE_ID = "salesforce-wikitext-103-raw-v1"
-LICENSE = "CC BY-SA 4.0"
+DEFAULT_REVISION = "844b6323027b47fc4c54b8c88faf7e188b540d76"
+DEFAULT_FILENAME = "wikitext-103-raw-v1/wikitext-validation.parquet"
 
 
 def sha256_bytes(data: bytes) -> str:
@@ -59,13 +62,8 @@ def write_jsonl(path: Path, records) -> str:
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--dataset", default="Salesforce/wikitext")
-    p.add_argument("--config", default="wikitext-103-raw-v1")
-    p.add_argument("--split", default="validation")
-    p.add_argument(
-        "--revision",
-        required=True,
-        help="Immutable Hugging Face dataset commit SHA; never use a floating branch for a frozen control.",
-    )
+    p.add_argument("--revision", default=DEFAULT_REVISION)
+    p.add_argument("--filename", default=DEFAULT_FILENAME)
     p.add_argument(
         "--output",
         type=Path,
@@ -82,7 +80,7 @@ def main():
         p.error(f"Manifest exists; refusing to overwrite: {args.manifest}")
 
     from datasets import load_dataset
-    from huggingface_hub import HfApi
+    from huggingface_hub import HfApi, hf_hub_download
 
     info = HfApi().dataset_info(args.dataset, revision=args.revision)
     resolved_revision = info.sha
@@ -92,12 +90,20 @@ def main():
             f"requested={args.revision} resolved={resolved_revision}"
         )
 
-    ds = load_dataset(
-        args.dataset,
-        args.config,
-        split=args.split,
+    parquet_path = hf_hub_download(
+        repo_id=args.dataset,
+        repo_type="dataset",
+        filename=args.filename,
         revision=args.revision,
     )
+    parquet_sha = sha256_bytes(Path(parquet_path).read_bytes())
+
+    ds = load_dataset(
+        "parquet",
+        data_files={"validation": parquet_path},
+        split="validation",
+    )
+
     records = freeze_rows(ds)
     output_sha = write_jsonl(args.output, records)
 
@@ -110,12 +116,13 @@ def main():
         "control_id": "general-control-wikitext103raw-v0.1",
         "purpose": "General-language catastrophic-forgetting control; never training data.",
         "dataset": args.dataset,
-        "config": args.config,
-        "split": args.split,
+        "config": "wikitext-103-raw-v1",
+        "split": "validation",
         "requested_revision": args.revision,
         "resolved_revision": resolved_revision,
+        "source_file": args.filename,
+        "source_file_sha256": parquet_sha,
         "source_id": SOURCE_ID,
-        "license": LICENSE,
         "selection_policy": {
             "source_order_preserved": True,
             "text_normalization": "none",
@@ -130,6 +137,7 @@ def main():
         "output": str(args.output),
         "output_sha256": output_sha,
     }
+
     args.manifest.parent.mkdir(parents=True, exist_ok=True)
     args.manifest.write_text(
         json.dumps(manifest, indent=2, sort_keys=True) + "\n",
