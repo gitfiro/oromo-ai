@@ -1,6 +1,27 @@
+import importlib.util
+from pathlib import Path
 import unittest
 
-from training.tools.prepare_general_control import freeze_rows
+
+MODULE_PATH = (
+    Path(__file__).resolve().parents[2]
+    / "training"
+    / "tools"
+    / "prepare_general_control.py"
+)
+
+spec = importlib.util.spec_from_file_location(
+    "prepare_general_control",
+    MODULE_PATH,
+)
+if spec is None or spec.loader is None:
+    raise RuntimeError(
+        f"Unable to load general-control builder: {MODULE_PATH}"
+    )
+
+module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
+freeze_rows = module.freeze_rows
 
 
 class GeneralControlFreezeTest(unittest.TestCase):
@@ -12,11 +33,18 @@ class GeneralControlFreezeTest(unittest.TestCase):
             {"text": "Second record"},
         ]
         out = freeze_rows(rows)
-        self.assertEqual([r["text"] for r in out], ["Exact text.\n", "Second record"])
+        self.assertEqual(
+            [r["text"] for r in out],
+            ["Exact text.\n", "Second record"],
+        )
         self.assertEqual(out[0]["source_row"], 2)
 
     def test_exact_duplicates_are_removed(self):
-        rows = [{"text": "same"}, {"text": "same"}, {"text": "different"}]
+        rows = [
+            {"text": "same"},
+            {"text": "same"},
+            {"text": "different"},
+        ]
         out = freeze_rows(rows)
         self.assertEqual(len(out), 2)
         self.assertEqual(out[0]["text"], "same")
