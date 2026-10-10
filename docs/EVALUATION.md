@@ -288,7 +288,7 @@ The authoritative evaluator is `training/tools/evaluate_bpb.py`, with protocol t
 
 ### Frozen general-language control
 
-Before any additional +8K CPT, the project has predeclared a general-language forgetting control based on `Salesforce/wikitext`, config `wikitext-103-raw-v1`, validation split, pinned to immutable revision `8aaa8b27d493dba10b8553290236799e6dc57829`.
+Before any additional +8K CPT, the project has predeclared a general-language forgetting control based on `Salesforce/wikitext`, config `wikitext-103-raw-v1`, validation split, pinned to immutable revision `844b6323027b47fc4c54b8c88faf7e188b540d76`.
 
 The source text is preserved exactly except empty rows are excluded and exact duplicate texts are removed. No sampling or normalization is allowed.
 
