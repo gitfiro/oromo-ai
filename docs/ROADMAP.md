@@ -304,11 +304,16 @@ Phase 4 has now progressed beyond tokenizer-only feasibility:
 - deterministic scaled native-subtoken-centroid initialization was selected for the 8,000 new embeddings;
 - a controlled native-vs-+8K CPT pilot has now been completed.
 
-The first model-level evidence shows that +8K reduces the same-text training workload by 15.70% and measured A100 training wall time by 18.12%, with only a small VRAM increase. Quality equivalence is not yet established: a reconstructed byte-normalized comparison after one pilot epoch currently favors native Gemma by about 6.23% NLL/byte, and an exact summed-NLL/BPB evaluator is still required.
+The first model-level evidence showed that +8K reduces the same-text training workload by 15.70% and measured A100 training wall time by 18.12%, with only a small VRAM increase. That pilot's reconstructed ~6.23% quality estimate is now historical: exact v0.2 BPB measured a 7.47% +8K deficit, and the later v0.3 fresh-data continuation reduced that deficit to only ~0.057% while passing the frozen WikiText retention gate.
 
-Detailed model-level evidence is frozen in `docs/CPT_PILOT_REPORT.md`.
+Detailed evidence is frozen in `docs/CPT_PILOT_REPORT.md`,
+`docs/CPT_RERUN_V0_2_RESULTS.md`, and
+`docs/CPT_LEARNING_CURVE_V0_3_RESULTS.md`.
 
-The base model/tokenizer strategy therefore remains evidence-gated rather than final: Gemma +8K is retained as a validated training candidate while longer CPT and exact normalized evaluation determine whether its quality gap closes.
+The base model/tokenizer strategy therefore remains evidence-gated rather than
+final. Gemma +8K is retained as a validated efficiency-oriented candidate; the
+next decision is additional fresh-data +8K adaptation versus a +4K model-level
+ablation.
 
 ---
 
@@ -423,9 +428,12 @@ Full report: `docs/CPT_PILOT_REPORT.md`
 
 ## Phase 6 — Extended OromoLM CPT validation
 
-**Status: next experimental gate**
+**Status: active follow-up decision**
 
-The first Gemma 1B-class proof is complete. The next phase is not a blind model-size increase; it is a stronger validation of the selected tokenizer/model candidate.
+The first Gemma 1B-class proof, exact v0.2 evaluation, and v0.3 fresh-data +8K
+learning curve are complete. The next phase is not a blind model-size increase;
+it is a controlled quality/efficiency follow-up comparing additional fresh-data
++8K adaptation against a +4K model-level ablation.
 
 Exact three-way document-reset BPB evaluation is now complete on the frozen 1,503-record Oromo validation set:
 
