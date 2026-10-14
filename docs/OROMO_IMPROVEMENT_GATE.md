@@ -1,8 +1,11 @@
 # OromoLM language-improvement gate
 
 The immediate goal is reproducible improvement in Oromo language modeling.
-Current pilot results establish efficiency, while model-quality improvement
-remains unproven. Evaluate existing checkpoints before scheduling more training.
+That goal is now established: exact v0.2 evaluation proved Oromo CPT improves
+held-out Afaan Oromoo modeling, and the v0.3 +8K continuation reached near-parity
+with the native-tokenizer CPT benchmark while passing the frozen WikiText
+retention gate. Tokenizer selection remains open because +8K has not yet crossed
+the native-tokenizer BPB benchmark.
 
 ## Three-way comparison
 
@@ -54,10 +57,15 @@ or near-duplicate overlap by itself.
 
 ## General-language control and decision
 
-Freeze a separate general-language control JSONL and its hash, excluded from
-training. Evaluate all three arms using the same protocol. Agree on a maximum
-acceptable relative BPB regression before inspecting these results. No numeric
-acceptance threshold has been approved yet; this gate remains open.
+A separate general-language control was frozen before the v0.3 continuation.
+The approved retention rule was fixed before inspecting results:
+
+```text
+WikiText BPB <= 1.05 × untouched-Gemma WikiText BPB
+```
+
+Untouched Gemma measured 1.013254631 BPB on the frozen control, producing a
+predeclared ceiling of 1.063917363 BPB.
 
 - Lower Oromo BPB than original Gemma supports improvement through adaptation.
 - Lower Oromo BPB than native-tokenizer CPT supports the +8K strategy specifically.
@@ -83,16 +91,30 @@ Lower is better.
 
 The native-tokenizer CPT model reduces BPB by **35.06%** relative to untouched Gemma. OromoLM +8K reduces BPB by **30.21%** relative to untouched Gemma, but remains approximately **7.47% higher/worse than native-tokenizer CPT** after one epoch.
 
-This closes the first part of the improvement gate: **Oromo continued pretraining is demonstrably effective.** It does not close the tokenizer-selection gate. The +8K candidate must still show that additional adaptation can cross below **1.733832 BPB** without unacceptable general-language regression.
+This closed the first part of the improvement gate: **Oromo continued pretraining is demonstrably effective.**
 
-The next gate is therefore a bounded +8K learning-curve experiment with a frozen general-language control and predeclared forgetting threshold.
+## v0.3 gate result — 2026-10-10
 
-See `docs/CPT_RERUN_V0_2_RESULTS.md`.
+The bounded fresh-data +8K continuation experiment has now been completed.
+
+| Checkpoint | Exact Oromo BPB | WikiText BPB | Retention |
+| ---: | ---: | ---: | --- |
+| 1,000 | 1.735902233 | 1.033682489 | PASS |
+| 1,250 | 1.734835917 | 1.033754204 | PASS |
+| 1,470 | **1.734823064** | **1.033754855** | **PASS** |
+
+The native-tokenizer CPT benchmark remains **1.733832395 BPB**. The best +8K
+checkpoint is therefore only about **0.057% higher/worse**, but it did not cross
+the predeclared Oromo quality threshold. The tokenizer-selection gate remains
+open.
+
+See `docs/CPT_RERUN_V0_2_RESULTS.md` and
+`docs/CPT_LEARNING_CURVE_V0_3_RESULTS.md`.
 
 ## Implementation status
 
-The evaluator and three protocol unit tests are committed. Window coverage,
-normalization and CLI checks pass in the development environment. An actual
-model inference run remains required: this workspace has neither the pilot
-checkpoints nor frozen validation text, and no installed PyTorch/Transformers
-runtime. No new model-quality result or training run is claimed here.
+The evaluator and protocol tests are committed and have been used for the
+completed v0.2 and v0.3 GPU evaluations. The v0.3 A100 experiment was copied
+back to the local research environment and verified against the RunPod-generated
+SHA-256 manifest: **53 files checked, 0 failures**. Large checkpoints remain
+outside normal Git.
