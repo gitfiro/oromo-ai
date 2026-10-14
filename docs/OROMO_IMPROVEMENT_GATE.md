@@ -4,8 +4,10 @@ The immediate goal is reproducible improvement in Oromo language modeling.
 That goal is now established: exact v0.2 evaluation proved Oromo CPT improves
 held-out Afaan Oromoo modeling, and the v0.3 +8K continuation reached near-parity
 with the native-tokenizer CPT benchmark while passing the frozen WikiText
-retention gate. Tokenizer selection remains open because +8K has not yet crossed
-the native-tokenizer BPB benchmark.
+retention gate. A controlled +4K two-stage ablation has now completed training;
+its Stage A exact BPB is stronger than +8K at the same pilot-equivalent exposure,
+but Stage B exact Oromo BPB and WikiText retention remain pending. Tokenizer
+selection therefore remains open.
 
 ## Three-way comparison
 
@@ -118,3 +120,22 @@ completed v0.2 and v0.3 GPU evaluations. The v0.3 A100 experiment was copied
 back to the local research environment and verified against the RunPod-generated
 SHA-256 manifest: **53 files checked, 0 failures**. Large checkpoints remain
 outside normal Git.
+
+
+## +4K ablation status — 2026-10-14
+
+The predeclared Gemma +4K model-level ablation has completed both training stages.
+
+Stage A exact Oromo result:
+
+| Model state | Exact Oromo BPB |
+| --- | ---: |
+| Native-tokenizer CPT | **1.733832395** |
+| +8K Stage A / v0.2 | 1.863338883 |
+| +4K Stage A / v0.2-equivalent | **1.844463004** |
+
+At the pilot-equivalent exposure, +4K is about **1.01% lower/better than +8K**, while remaining about **6.38% higher/worse than native CPT**. This supports the hypothesis that the smaller lexical augmentation adapts faster than +8K, but it is not the final decision endpoint.
+
+Stage B completed the same fresh 10.039M-word continuation text used by the +8K v0.3 path and produced retained checkpoints at 250, 500, 750, 1000, 1250, 1500, and 1517 updates. Exact Stage B Oromo BPB and WikiText retention have not yet been measured, so the selection gate remains open.
+
+The complete +4K run was preserved locally and verified against the RunPod SHA-256 manifest: **66 files checked, 0 failures**. See `docs/CPT_4K_ABLATION_RESULTS.md` and `docs/CPT_4K_ABLATION_PROTOCOL.md`.
