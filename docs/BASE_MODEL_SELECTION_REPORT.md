@@ -224,12 +224,12 @@ validation records: 1,503
 characters:         805,382
 UTF-8 bytes:        814,153
 
-reconstructed native BPB:    ~1.71377
-reconstructed Oromo +8K BPB: ~1.82059
-relative NLL/byte gap:       ~6.23% higher for +8K
+historical reconstructed native BPB:    ~1.71377
+historical reconstructed Oromo +8K BPB: ~1.82059
+historical relative NLL/byte gap:       ~6.23% higher for +8K
 ```
 
-This means the first short pilot demonstrates a compute advantage but does **not** establish model-quality parity.
+This historical pilot result demonstrated a compute advantage but did **not** establish model-quality parity. It has since been superseded for quality comparison by exact v0.2 and v0.3 BPB evaluations.
 
 The BPB figures are reconstructed rather than produced by a dedicated summed-NLL evaluator. Exact byte-normalized evaluation remains a required gate.
 
@@ -261,16 +261,20 @@ deferred
 - catastrophic-forgetting behavior;
 - exact BPB and source-level model likelihood.
 
-## 10. Next gate
+## 10. Current gate
 
-The next sequence is:
+The current sequence, updated after the v0.3 result, is:
 
 ```text
 completed Gemma native-vs-+8K pilot
       ↓
 exact summed-NLL / BPB evaluator
       ↓
-longer +8K continued pretraining
+exact v0.2 BPB reproduction
+      ↓
+fresh-data +8K v0.3 continuation
+      ↓
++8K fresh-data vs +4K ablation decision
       ↓
 quality-gap trajectory + forgetting controls
       ↓
@@ -286,3 +290,17 @@ decide whether to:
 No scaled production CPT or instruction tuning should be justified solely by the current efficiency result.
 
 The complete experiment is documented in `docs/CPT_PILOT_REPORT.md`.
+
+
+## v0.3 update
+
+Exact follow-up work materially changed the base/tokenizer decision state:
+
+- untouched Gemma Oromo BPB: **2.670045532**;
+- native-tokenizer Oromo CPT: **1.733832395**;
+- +8K v0.2 Oromo CPT: **1.863338883**;
+- +8K v0.3 final Oromo BPB: **1.734823064**;
+- untouched Gemma WikiText BPB: **1.013254631**;
+- +8K v0.3 final WikiText BPB: **1.033754855** (PASS vs 1.063917363 ceiling).
+
+The +8K path has therefore reached near-parity with native-tokenizer CPT while retaining the measured sequence-efficiency advantage, but it has not yet crossed the native quality benchmark. Base/tokenizer selection remains open pending additional fresh-data +8K work versus a +4K ablation.
