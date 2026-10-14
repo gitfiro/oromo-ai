@@ -64,3 +64,6 @@ preserved/
 
 # Local artifact checksum sidecars
 *.sha256
+
+# Generated +4K tokenizer artifact
+/tokenizer/augmentation/artifacts/gemma-3-1b-pt-oromo-4k/tokenizer.json

@@ -1,0 +1,40 @@
+{
+  "artifact": "gemma-3-1b-pt-oromo-4k",
+  "artifact_files": {
+    "tokenizer.json": {
+      "bytes": 34120357,
+      "sha256": "cc2d83cbb65454deee2e274d8596ea0941ff3884e93b63df8fd7c0f84364b673"
+    },
+    "tokenizer_config.json": {
+      "bytes": 705,
+      "sha256": "dd3333ae52ab7e8d543ca05cfbd0a1e483999e8d39b0b7e05e9b1fe60f26d926"
+    }
+  },
+  "augmentation": {
+    "added_token_configuration": {
+      "lstrip": false,
+      "normalized": true,
+      "rstrip": false,
+      "single_word": true,
+      "special": false
+    },
+    "added_tokens": 4000,
+    "final_tokenizer_length": 266145,
+    "native_tokenizer_length": 262145,
+    "oromo_end_id": 266144,
+    "oromo_start_id": 262145,
+    "type": "whole_word_lexical"
+  },
+  "base_model": "google/gemma-3-1b-pt",
+  "derivation": "first 4,000 Oromo lexical additions from frozen cumulative +8K artifact",
+  "expected_frozen_holdout_metrics": {
+    "fragmentation_rate": 0.38208431548677635,
+    "single_token_word_rate": 0.6179156845132237,
+    "tokens_per_word": 2.3696594464573146,
+    "tokens_per_word_reduction_vs_native": 0.14929792059836908,
+    "unknown_tokens": 0
+  },
+  "format_version": 1,
+  "source_8k_artifact": "tokenizer/augmentation/artifacts/gemma-3-1b-pt-oromo-8k",
+  "status": "generated_ablation_candidate"
+}

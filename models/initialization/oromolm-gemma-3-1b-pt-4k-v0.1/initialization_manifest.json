@@ -1,0 +1,44 @@
+{
+  "artifact": "OromoLM Gemma-3-1B +4K initialization",
+  "artifact_files": {
+    "config.json": {
+      "bytes": 1756,
+      "sha256": "dd20e434de0be960585e1a74e5fa01abde9a6fcbdea579dbd2980b8c1406cd48"
+    },
+    "generation_config.json": {
+      "bytes": 210,
+      "sha256": "6ca0b50d26cb08f2e11efb74ccf78690863cb4b592418636eeebc8dd27b03c9a"
+    },
+    "model.safetensors": {
+      "bytes": 4018019568,
+      "sha256": "194bd10595d1e6b7b91c4c671349956a80f96b8605010ae87e7b4c9d1c96a518"
+    },
+    "tokenizer.json": {
+      "bytes": 34120357,
+      "sha256": "cc2d83cbb65454deee2e274d8596ea0941ff3884e93b63df8fd7c0f84364b673"
+    },
+    "tokenizer_config.json": {
+      "bytes": 704,
+      "sha256": "93e3c8fa384c65227bad4c627b6872bdeb08e9d6f5136f67511cdffb4e392091"
+    }
+  },
+  "base_model": "google/gemma-3-1b-pt",
+  "format_version": 1,
+  "initialization": {
+    "installed_mean_l2_norm": 1.0467246770858765,
+    "installed_std_l2_norm": 1.8825534198185778e-07,
+    "mean_native_pieces_per_word": 3.3275,
+    "method": "native_subtoken_centroid_scaled_to_native_mean_l2_norm",
+    "native_mean_l2_norm": 1.046724796295166
+  },
+  "status": "initialized_not_trained",
+  "tokenizer": "tokenizer/augmentation/artifacts/gemma-3-1b-pt-oromo-4k",
+  "vocabulary": {
+    "final_rows": 266145,
+    "image_soft_token_id": 262144,
+    "native_model_rows": 262144,
+    "oromo_additions": 4000,
+    "oromo_end_id": 266144,
+    "oromo_start_id": 262145
+  }
+}
