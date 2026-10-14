@@ -6,7 +6,7 @@
 **Base model:** `google/gemma-3-1b-pt`  
 **Comparison:** native Gemma tokenizer vs frozen Gemma +8K Oromo whole-word augmentation  
 **Run date:** 2026-10-03  
-**Status:** completed controlled pilot; efficiency benefit verified; quality-equivalence not yet established
+**Status:** completed controlled pilot; efficiency benefit verified; later exact v0.2/v0.3 results supersede the pilot's provisional quality estimate
 
 ---
 
@@ -595,12 +595,14 @@ The model-level pilot changes the project decision state.
 - The tokenizer reduces token workload broadly across all six accepted source families.
 - The larger vocabulary produces only a small VRAM increase in this setup.
 - The measured end-to-end training-time reduction is substantial: approximately 18% on this pilot.
-- A single short CPT epoch is **not yet enough** to establish quality parity with native Gemma under reconstructed byte-normalized likelihood.
+- The pilot's reconstructed quality estimate has been superseded by exact evaluation.
+- Exact v0.2 BPB placed +8K 7.47% behind native-tokenizer CPT after one epoch.
+- Fresh-data v0.3 continuation later reduced that deficit to ~0.057% while passing the frozen WikiText retention gate.
 
 ### Not established
 
 - that +8K is the final production tokenizer;
-- that the reconstructed ~6.23% normalized-likelihood gap persists after additional CPT;
+- that +8K can cross below the native-tokenizer CPT benchmark rather than merely reach near-parity;
 - that +8K is superior to +4K under model-level quality/compute tradeoffs;
 - that Gemma is the final OromoLM release base;
 - that the pilot result generalizes to longer sequence lengths or different GPU classes;
@@ -608,24 +610,28 @@ The model-level pilot changes the project decision state.
 
 ### Provisional research decision
 
-Retain Gemma +8K as a **validated training candidate** because its compute benefit is now demonstrated at model level, but do not freeze it as the final OromoLM production tokenizer until additional CPT and exact normalized evaluation test whether the quality gap closes.
+Retain Gemma +8K as a **validated efficiency-oriented training candidate**. Exact evaluation and additional fresh-data CPT have now closed nearly all of the quality gap, but +8K remains slightly above the native-tokenizer CPT benchmark and is not yet the final production tokenizer.
 
 ---
 
 ## 14. Next experiments
 
-Before scaled CPT:
+Completed since the pilot:
 
-1. implement an exact summed-NLL / bits-per-byte evaluator;
-2. reproduce native and +8K normalized validation metrics with that evaluator;
-3. run a longer controlled Oromo +8K CPT experiment to measure adaptation of the newly added embeddings;
-4. evaluate whether the normalized quality gap narrows with additional text exposure;
-5. include a general-language control set to quantify catastrophic forgetting;
-6. add source-level normalized likelihood for all six corpus families;
-7. consider a +4K model-level ablation only if it materially informs the quality/compute frontier;
-8. preserve all configs, manifests, hashes, runtime environment metadata, and run summaries.
+1. exact summed-NLL / bits-per-byte evaluator;
+2. exact native/+8K v0.2 BPB reproduction;
+3. frozen WikiText general-language control with predeclared +5% ceiling;
+4. fresh-data +8K v0.3 learning curve through 1,470 optimizer updates;
+5. local preservation of the A100 v0.3 run with 53/53 hashed files verified.
 
-The project should not scale training solely because the tokenizer is faster. The next gate is evidence that the augmented vocabulary can retain or recover model quality while preserving the measured compute advantage.
+Next controlled work:
+
+1. compare one additional fresh-data +8K continuation tranche against a +4K model-level ablation;
+2. keep the frozen Oromo and WikiText controls unchanged;
+3. extend source-level/prompt-based evaluation before any production-tokenizer decision;
+4. preserve all configs, manifests, hashes, runtime metadata, and run summaries.
+
+The project should not scale training solely because the tokenizer is faster.
 
 ---
 
@@ -668,8 +674,9 @@ Efficiency:
 
 Quality:
 raw token losses are not cross-tokenizer comparable
-reconstructed normalized NLL/byte currently favors native Gemma by ~6.23%
-exact BPB evaluation is still required
+exact v0.2 BPB initially favored native CPT by 7.47%
+fresh-data v0.3 reduced the remaining +8K gap to ~0.057%
+final v0.3 WikiText retention gate: PASS
 ```
 
 The evidence therefore supports continued investigation of Gemma +8K, not premature finalization.
