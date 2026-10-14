@@ -5,7 +5,7 @@
 
 **Research phase:** Tokenizer baseline and custom-candidate evaluation  
 **Corpus version:** `afriberta_oromo_v0.1.2`  
-**Status:** Core tokenizer research complete; cleaned Gemma +8K frozen and validated in first CPT pilot
+**Status:** Core tokenizer research complete; Gemma +8K validated through exact v0.2 and fresh-data v0.3 CPT evaluation
 
 ---
 
@@ -36,7 +36,11 @@ Embedding initialization audit
       ↓
 Controlled native-vs-+8K CPT proof
       ↓
-Exact normalized evaluation + longer CPT
+Exact v0.2 normalized evaluation
+      ↓
+Fresh-data +8K v0.3 learning curve + forgetting control
+      ↓
++8K fresh-data continuation vs +4K ablation decision
 ```
 
 No tokenizer has been declared the final production tokenizer yet. Gemma +8K is currently a validated training candidate, not a final production freeze.
@@ -516,7 +520,9 @@ This is the key Phase 4B1 finding.
 - the frozen Gemma +8K candidate reduces the 10K tokenizer holdout from 2.7855 to 2.2907 tokens/word (17.77%);
 - the six-source CPT workload audit measures a 15.70% train-token reduction and 15.71% validation-token reduction;
 - the first controlled A100 CPT pilot measures an 18.12% training wall-time reduction for +8K on the same underlying text;
-- model-quality parity has not yet been established.
+- exact v0.2 evaluation established a 7.47% +8K quality deficit after one pilot epoch;
+- fresh-data v0.3 continuation reduced that deficit to ~0.057% while passing the predeclared WikiText retention gate;
+- +8K has reached near-parity, but has not yet beaten the native-tokenizer CPT benchmark.
 
 **Still open:**
 
@@ -544,8 +550,8 @@ embedding initialization audit        ✅ complete
 dual-tokenizer workload audit         ✅ complete
 10-step GPU smoke tests               ✅ complete
 full native-vs-+8K CPT pilot          ✅ complete
-exact summed-NLL / BPB evaluator      ⏳ next
-longer +8K CPT quality validation     ⏳ next
+exact summed-NLL / BPB evaluator      ✅ complete
+fresh-data +8K v0.3 quality validation ✅ complete
 ```
 
 The project should still avoid scaled production training and instruction tuning until normalized quality, forgetting controls, and longer-CPT behavior are evaluated.
@@ -740,6 +746,6 @@ The controlled A100 pilot measured:
 
 This confirms that the +8K tokenizer's sequence savings survive real model training and are not canceled by the 3.05% larger vocabulary.
 
-However, the tokenizer is **not** declared final. A provisional reconstruction normalized against the exact validation bytes currently shows about a 6.23% higher NLL/byte for +8K after one short epoch. A dedicated exact summed-NLL/BPB evaluator and longer CPT are required before making a quality-equivalence claim.
+The tokenizer is **not** declared final. The earlier provisional ~6.23% reconstruction has been superseded by exact BPB evaluation. v0.2 measured +8K at 1.863338883 BPB versus 1.733832395 for native-tokenizer CPT; after the fresh-data v0.3 continuation, +8K reached 1.734823064 BPB, only ~0.057% above the native benchmark, while the final checkpoint passed the WikiText retention gate at 1.033754855 BPB.
 
 See `docs/CPT_PILOT_REPORT.md` for the complete training, runtime, storage-incident, hashing, and evaluation record.
