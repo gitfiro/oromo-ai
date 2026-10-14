@@ -61,3 +61,6 @@ models/initialization/*/tokenizer.json
 
 # Preserved local experiment exports / extracted checkpoints
 preserved/
+
+# Local artifact checksum sidecars
+*.sha256
