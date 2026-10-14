@@ -205,3 +205,40 @@ Do not launch a GPU unless the last command prints:
 ```text
 PREFLIGHT SUCCESS
 ```
+
+---
+
+## Execution status — 2026-10-14
+
+Both predeclared training stages are now complete.
+
+Stage A packed workload:
+
+```text
+training tokens:   4,964,141
+packed sequences:  4,848
+optimizer updates: 303
+```
+
+Stage A exact Oromo BPB:
+
+```text
+1.844463004
+```
+
+This is lower/better than the +8K Stage A reference of 1.863338883 by about 1.01%, but remains about 6.38% higher/worse than native-tokenizer CPT at 1.733832395.
+
+Stage B also completed the full fresh v0.3 continuation:
+
+```text
+training tokens:   24,838,669
+packed sequences:  24,257
+optimizer updates: 1,517
+retained steps:    250, 500, 750, 1000, 1250, 1500, 1517
+```
+
+The Stage B exact Oromo BPB curve and WikiText retention checks remain pending. Therefore the predeclared model-selection rules have **not yet been resolved** and no final +4K-vs-+8K winner is claimed.
+
+The completed run was preserved locally under `preserved/4k-ablation-2026-10-14/`. The RunPod-generated integrity manifest verified **66 files with 0 failures**; preserved size is approximately **18 GB**.
+
+See `docs/CPT_4K_ABLATION_RESULTS.md` for the current execution record.
