@@ -272,3 +272,29 @@ In addition to the v0.2 gates:
 > **Fifty million diverse, traceable, deduplicated tokens are more valuable than one hundred million repeated or legally ambiguous tokens.**
 
 Corpus growth must remain compatible with the project's core rule: data before model, evidence before scale.
+
+
+## Current candidate queue — 2026-10-16
+
+### Official CC100 Oromo
+
+**Status: audit complete; not promoted.**
+
+After filtering, exact cross-source deduplication removed 108,285 of 121,497
+rows (89.13%). Canonical near deduplication then removed 7,609 of the 13,212
+exact-net-new rows. The remaining **5,603 rows / 194,669 words** are preserved
+for provenance but do not count toward OromoCorpus because the marginal yield
+is too small relative to higher-value independent sources.
+
+See `docs/sources/CC100_OM_AUDIT.md`.
+
+### Mozilla Common Voice Oromo Scripted Speech 27.0
+
+**Status: next active source; paused after download.**
+
+The CC0-1.0 release has been downloaded locally. No transcript rows have yet
+been extracted or counted. Resume by inspecting the TSV metadata, extracting
+unique Oromo transcript sentences, and running the standard exact/near
+cross-source qualification pipeline.
+
+See `docs/sources/COMMON_VOICE_OROMO_STATUS.md`.
