@@ -78,7 +78,8 @@ The current accepted corpus planning total is measured with the **Oromo Unigram 
 | MADLAD-400 Oromo v0.2 | 18,704 | 17,873,390 |
 | HPLT 3.0 gaz_Latn v0.1 | 26,655 | 19,771,727 |
 | Michsethowusu Oromo Sentiments cleaned subset v0.1 | 193,681 | 3,877,136 |
-| **Accepted total** | **705,191** | **56,014,939** |
+| Michsethowusu English–Oromo cleaned monolingual subset v0.1 | 45,048 | 1,185,406 |
+| **Accepted total** | **750,239** | **57,200,345** |
 
 ### MADLAD-400 licensing basis
 
@@ -116,12 +117,12 @@ does not represent every source webpage as CC0. See
 
 ```text
 OromoCorpus v0.2 minimum: 50,000,000 tokens
-Current planning total:   56,014,939
-Progress:                 112.03%
-Margin above minimum:      6,014,939
+Current planning total:   57,200,345
+Progress:                 114.40%
+Margin above minimum:      7,200,345
 
 OromoCorpus v0.3 target: 100,000,000 tokens
-Current progress:         56.01%
+Current progress:         57.20%
 ```
 
 The full WURA Oromo package remains under source-level review and does not count as an accepted source by itself. Only independently audited and rights-cleared subsets are admitted.
@@ -133,6 +134,12 @@ With the 50M minimum now achieved, corpus acquisition continues toward the prefe
 The upstream `michsethowusu/oromo-sentiments-corpus` was **not** accepted wholesale because the original 825,272 rows contain substantial multilingual/noisy material and heavy overlap with AfriBERTa. Oromo AI accepted only a frozen cleaned text subset after Oromo/noise screening, exact cross-source deduplication, and canonical 5-word-shingle near deduplication at Jaccard 0.85.
 
 The accepted subset contributes **193,681 records / 3,877,136 48K-reference tokens**, raising the planning total to **56,014,939 tokens (56.01% of the 100M target)**. See [the source report](docs/sources/MICHSETHOWUSU_OROMO_SENTIMENTS_REPORT.md).
+
+### English–Oromo cleaned monolingual qualification
+
+The NLLB-derived `michsethowusu/english-oromo_sentence-pairs` source was highly noisy and redundant. Oromo AI therefore rejected its sentence-pair alignment for translation use and accepted only the cleaned Oromo-side monolingual residual after filtering plus exact and canonical near cross-source deduplication.
+
+The frozen subset contributes **45,048 records / 1,185,406 48K-reference tokens**, raising OromoCorpus to **57,200,345 reference tokens (57.20% of the 100M target)**. See [the source report](docs/sources/MICHSETHOWUSU_ENGLISH_OROMO_REPORT.md).
 
 ### OromoTokenizer
 
