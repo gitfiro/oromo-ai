@@ -253,3 +253,50 @@ Next work:
 3. expand OromoBench and generation/human evaluation;
 4. use +4K as the leading tokenizer/model path for the next scaled CPT design unless later evidence overturns it;
 5. avoid additional epochs over the same continuation text, because the learning curve has plateaued.
+
+
+## Source-level and paired-record analysis
+
+The preserved exact-BPB outputs were compared across the native CPT baseline,
++8K v0.3 final checkpoint, and +4K step 1517 on the same 1,503-record Oromo
+validation set.
+
+### Per-source Oromo BPB
+
+| Source | Native CPT | +8K v0.3 | +4K step 1517 | +4K vs native | +4K vs +8K |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| AfriBERTa Oromo v0.1.2 | 2.069977 | 2.086606 | **2.045153** | **-1.199%** | **-1.987%** |
+| MADLAD-400 Oromo v0.2 | 1.647904 | 1.648041 | **1.640854** | **-0.428%** | **-0.436%** |
+| WaxalNLP Oromo ASR v2 | 1.772030 | 1.772162 | **1.750583** | **-1.210%** | **-1.218%** |
+| HPLT3 gaz_Latn v0.1 | 1.640245 | 1.634172 | **1.627110** | **-0.801%** | **-0.432%** |
+| VOA Afaan Oromoo | 1.773451 | 1.770278 | **1.761404** | **-0.679%** | **-0.501%** |
+| Wikimedia omwiki v0.1 | **1.671917** | 1.679502 | 1.677692 | +0.345% | **-0.108%** |
+
+Interpretation:
+
+- +4K beats +8K on **all six** source groups.
+- +4K beats native CPT on **five of six** source groups.
+- The only source-level regression relative to native CPT is Wikimedia, where
+  +4K is **0.345% higher/worse**.
+- The aggregate win is therefore not driven by a single dominant source; it is
+  distributed across AfriBERTa, MADLAD, Waxal, HPLT3 and VOA, with a small
+  Wikimedia tradeoff.
+
+### Paired-record comparison
+
+All three reports contain the same 1,503 validation records and all 1,503 were
+matched by text SHA-256.
+
+| Comparison | +4K better | +4K worse | Ties | +4K win rate | Median BPB delta | Mean BPB delta |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| +4K vs native CPT | 860 | 643 | 0 | **57.22%** | **-0.012094948** | **-0.013883567** |
+| +4K vs +8K v0.3 | 1,086 | 417 | 0 | **72.26%** | **-0.033670352** | **-0.048155481** |
+
+Negative deltas favor +4K.
+
+These paired results strengthen the aggregate conclusion: +4K improves a
+majority of individual validation records versus native CPT and a substantial
+majority versus +8K. They also make clear that the improvement is not universal;
+643 records remain worse than native CPT and Wikimedia remains the one
+source-level regression. The next analysis should therefore quantify uncertainty
+and inspect the tails rather than treating the aggregate BPB win as uniform.
