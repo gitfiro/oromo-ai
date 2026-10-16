@@ -150,6 +150,27 @@ The accepted source-partitioned subset contains **80,069 records / 5,913,656 48K
 
 See [the Glot500 Oromo qualification report](docs/sources/GLOT500_OROMO_REPORT.md).
 
+### Latest corpus-expansion audit
+
+The official upstream **CC100 Oromo** release was audited after the Glot500
+CC100 tranche had already been accepted. After conservative filtering, 89.13%
+of the candidate was removed as exact overlap and a further 57.59% of the
+exact-net-new residual was removed by the canonical near-dedup gate. Only
+**5,603 rows / 194,669 words** remained, so this residual was preserved but
+**not promoted** into OromoCorpus.
+
+The accepted corpus therefore remains **830,308 records / 63,114,001
+48K-reference tokens (63.11% of the 100M planning target)**.
+
+The next independent source family is **Mozilla Common Voice Oromo Scripted
+Speech 27.0 (CC0-1.0)**. The archive has been downloaded locally, but transcript
+extraction, deduplication, and token measurement are intentionally paused for
+the next session.
+
+See:
+- [CC100 Oromo audit](docs/sources/CC100_OM_AUDIT.md)
+- [Common Voice Oromo status](docs/sources/COMMON_VOICE_OROMO_STATUS.md)
+
 ### OromoTokenizer
 
 Tokenizer research has established:
