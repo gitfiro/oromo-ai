@@ -55,8 +55,8 @@ The goal is not to build a quick chatbot. The goal is to create reusable, docume
 | Component | Purpose | Status |
 | --- | --- | --- |
 | **OromoCorpus** | Versioned, provenance-tracked Afaan Oromoo training corpus | ✅ 50M minimum achieved; expanding toward 100M |
-| **OromoTokenizer** | Tokenization research and Oromo-aware tokenizer candidates | 🧪 Gemma +8K and +4K model-level candidates under controlled comparison |
-| **OromoLM** | Continued-pretrained Afaan Oromoo causal language models | 🧪 +8K v0.3 near-parity complete; +4K two-stage ablation training complete, final evaluation pending |
+| **OromoTokenizer** | Tokenization research and Oromo-aware tokenizer candidates | ✅ Gemma +4K is the strongest current model-level candidate under the frozen gate |
+| **OromoLM** | Continued-pretrained Afaan Oromoo causal language models | ✅ +4K v0.3 ablation crosses native and +8K Oromo BPB references while passing WikiText retention |
 | **OromoBench** | Afaan Oromoo evaluation framework | 🔄 In development |
 
 Canonical naming is documented in [`docs/NAMING.md`](docs/NAMING.md).
@@ -182,7 +182,23 @@ General-language retention remained within the predeclared gate. Untouched Gemma
 
 The v0.3 result was preserved locally from the A100 environment and **53/53 hashed files matched with zero integrity failures**.
 
-A controlled **Gemma +4K model-level ablation** has now also completed both predeclared training stages. At the pilot-equivalent Stage A checkpoint, +4K measured **1.844463004 exact Oromo BPB**, improving on the +8K Stage A result of **1.863338883** by about **1.01%**, while remaining about **6.38% above/worse than native-tokenizer CPT**. Stage B completed the full fresh 10.039M-word continuation and produced checkpoints through step **1,517**; its exact Oromo BPB learning curve and WikiText retention evaluation are still pending, so no final +4K-vs-+8K winner is claimed.
+A controlled **Gemma +4K model-level ablation** has now completed both predeclared training stages **and the frozen evaluation gate**. Its Stage B exact Oromo BPB curve was:
+
+| +4K step | Exact Oromo BPB |
+| ---: | ---: |
+| 250 | 1.781058836 |
+| 500 | 1.744201370 |
+| 750 | **1.727396376** |
+| 1,000 | **1.721889019** |
+| 1,250 | **1.720904266** |
+| 1,500 | **1.720890953** |
+| 1,517 | **1.720890950** |
+
+The +4K path crosses both the native-tokenizer CPT reference (**1.733832395**) and the +8K v0.3 reference (**1.734823064**) by step 750. The final step-1517 result is about **0.75% lower/better than native CPT** and **0.80% lower/better than +8K v0.3** on the same frozen Oromo BPB protocol.
+
+General-language retention also passes the predeclared WikiText gate. Checkpoint 1,250 scored **1.030453326 BPB** and checkpoint 1,517 scored **1.030463994 BPB**, both below the fixed ceiling of **1.063917363** and both slightly better/lower than the +8K final WikiText result of **1.033754855**.
+
+Under the predeclared decision rules, **Gemma +4K is now the strongest current OromoLM tokenizer/model candidate**. This is a result on the declared frozen evaluation protocol, not a claim of universal superiority across every downstream task.
 
 The complete +4K run was copied back from RunPod and verified against its preservation manifest: **66 files checked, 0 failures**, totaling about **18 GB** locally. Large model artifacts remain outside normal Git tracking.
 
@@ -296,8 +312,8 @@ The repository is research infrastructure under active development; commands and
 ✅ Exact byte-normalized three-way LM evaluation
 ✅ +8K v0.3 fresh-data learning curve + forgetting controls
 ✅ +4K two-stage CPT ablation training complete
-🔄 +4K exact Stage B Oromo BPB curve + WikiText retention evaluation
-🔄 Final +4K vs +8K vs native Pareto decision
+✅ +4K exact Stage B Oromo BPB curve + WikiText retention evaluation
+✅ +4K selected as strongest current candidate under the frozen gate
 🔄 Develop OromoBench
 
 ✅ Tiny CPT proof
@@ -325,7 +341,7 @@ Detailed technical material lives in `docs/` rather than being duplicated in thi
 | [CPT Pilot Report](docs/CPT_PILOT_REPORT.md) | Gemma native-vs-+8K workload, GPU, quality, and reproducibility evidence |
 | [CPT Reproduction v0.2 Results](docs/CPT_RERUN_V0_2_RESULTS.md) | Exact three-way Oromo BPB results, rerun hashes, and next quality gate |
 | [CPT +4K Ablation Protocol](docs/CPT_4K_ABLATION_PROTOCOL.md) | Predeclared two-stage +4K comparison design and decision rules |
-| [CPT +4K Ablation Results](docs/CPT_4K_ABLATION_RESULTS.md) | Completed training status, Stage A BPB, preservation evidence, and pending Stage B evaluation |
+| [CPT +4K Ablation Results](docs/CPT_4K_ABLATION_RESULTS.md) | Full +4K learning curve, retention result, preservation evidence, and candidate-selection outcome |
 | [Evaluation](docs/EVALUATION.md) | OromoBench and normalized model-evaluation direction |
 | [Roadmap](docs/ROADMAP.md) | Project phases and current milestone |
 | [MADLAD License Decision](docs/sources/MADLAD_400_LICENSE_DECISION.md) | ODC-BY approval basis, attribution obligations, and scope limitations |
