@@ -15,7 +15,7 @@ The project optimizes for quality, diversity, licensing clarity, and reproducibi
 
 ## Current Measured Progress — 2026-09-27
 
-The current accepted multi-source corpus measures **56,014,939 tokens** under the Oromo Unigram 48K + byte-fallback tokenizer used as a planning reference. The 50M v0.2 minimum has been achieved; expansion now continues toward the preferred 100M target. This tokenizer is not yet the final OromoLM tokenizer, so the number is a versioned planning measurement rather than the final release count.
+The current accepted multi-source corpus measures **57,200,345 tokens** under the Oromo Unigram 48K + byte-fallback tokenizer used as a planning reference. The 50M v0.2 minimum has been achieved; expansion now continues toward the preferred 100M target. This tokenizer is not yet the final OromoLM tokenizer, so the number is a versioned planning measurement rather than the final release count.
 
 | Source | Final accepted records | 48K reference tokens | Registry status |
 | --- | ---: | ---: | --- |
@@ -26,7 +26,8 @@ The current accepted multi-source corpus measures **56,014,939 tokens** under th
 | MADLAD-400 Oromo v0.2 | 18,704 | 17,873,390 | approved — ODC-BY |
 | HPLT 3.0 gaz_Latn v0.1 | 26,655 | 19,771,727 | approved — CC0 packaging / underlying-text caveat |
 | Michsethowusu Oromo Sentiments cleaned subset v0.1 | 193,681 | 3,877,136 | approved cleaned subset — MIT |
-| **Accepted total** | **705,191** | **56,014,939** | — |
+| Michsethowusu English–Oromo cleaned monolingual subset v0.1 | 45,048 | 1,185,406 | approved monolingual subset — NLLB/ODC-BY basis |
+| **Accepted total** | **750,239** | **57,200,345** | — |
 
 ### Michsethowusu Oromo Sentiments cleaned subset
 
@@ -42,6 +43,19 @@ Final artifact SHA-256:
 
 The dataset-level license is recorded as MIT. Approval applies only to the cleaned
 subset. See `docs/sources/MICHSETHOWUSU_OROMO_SENTIMENTS_REPORT.md`.
+
+### Michsethowusu English–Oromo cleaned monolingual subset
+
+The upstream NLLB-derived sentence-pair dataset was not accepted as a parallel
+translation corpus. After conservative Oromo-side screening, exact cross-source
+deduplication, and canonical 5-word-shingle near deduplication at Jaccard 0.85,
+the final monolingual residual contains **45,048 records / 1,185,406
+48K-reference tokens**.
+
+The frozen artifact SHA-256 is
+`2c540ab00da91a78eaec021c859cc583e48a039c5a30c59d253a77827bdd7324`.
+The NLLB licensing basis is ODC-BY with original-source terms still applicable.
+See `docs/sources/MICHSETHOWUSU_ENGLISH_OROMO_REPORT.md`.
 
 ### MADLAD-400 licensing decision
 
@@ -77,17 +91,17 @@ underlying extracted text. Oromo AI records underlying individual-content
 rights as not independently verified. See
 `docs/sources/HPLT3_LICENSE_DECISION.md`.
 
-Accepted OromoCorpus: **56,014,939**
+Accepted OromoCorpus: **57,200,345**
 
-Margin above 50M: **6,014,939**
+Margin above 50M: **7,200,345**
 
 Progress:
 
 ```text
-50M minimum:  112.03% complete — achieved
-margin:        6,014,939 reference tokens
+50M minimum:  114.40% complete — achieved
+margin:        7,200,345 reference tokens
 
-100M target:   56.01% complete
+100M target:   57.20% complete
 ```
 
 `castorini-wura-orm` remains `reviewing`. WURA is used as a provenance-discovery layer; only source subsets that independently pass rights review and the full acceptance pipeline count toward OromoCorpus.
