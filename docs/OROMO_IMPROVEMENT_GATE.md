@@ -179,3 +179,25 @@ against the native CPT and +8K v0.3 references.
 This supports the gate decision while preserving an important caveat: the gain
 is broad but not universal. Wikimedia and the record-level regression tail
 should be explicitly represented in downstream OromoBench and error analysis.
+
+
+### Paired uncertainty check
+
+A 10,000-resample paired bootstrap over all 1,503 matched validation records
+produced:
+
+```text
++4K vs native CPT
+mean delta: -0.013883567 BPB
+95% CI:     [-0.020199325, -0.007414796]
+
++4K vs +8K v0.3
+mean delta: -0.048155481 BPB
+95% CI:     [-0.053106421, -0.043233026]
+```
+
+Both intervals remain entirely below zero, which strengthens the conclusion
+that +4K is the leading candidate on the frozen Oromo evaluation set rather
+than an aggregate-only fluctuation. This remains a holdout-specific result;
+Wikimedia and record-level regressions still require explicit downstream
+analysis.
