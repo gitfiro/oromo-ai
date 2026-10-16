@@ -200,6 +200,8 @@ General-language retention also passes the predeclared WikiText gate. Checkpoint
 
 Under the predeclared decision rules, **Gemma +4K is now the strongest current OromoLM tokenizer/model candidate**. This is a result on the declared frozen evaluation protocol, not a claim of universal superiority across every downstream task.
 
+A source-level robustness check supports that result: +4K beats +8K on **all six** Oromo validation sources and beats native CPT on **five of six**. The only source-level regression versus native CPT is Wikimedia at **+0.345% BPB**. At the record level, +4K wins **57.22%** of matched records versus native CPT and **72.26%** versus +8K. The gain is therefore broad, but not universal; Wikimedia and the regression tail remain explicit follow-up targets.
+
 The complete +4K run was copied back from RunPod and verified against its preservation manifest: **66 files checked, 0 failures**, totaling about **18 GB** locally. Large model artifacts remain outside normal Git tracking.
 
 Full experiment records: [`docs/CPT_PILOT_REPORT.md`](docs/CPT_PILOT_REPORT.md), [`docs/CPT_RERUN_V0_2_RESULTS.md`](docs/CPT_RERUN_V0_2_RESULTS.md), [`docs/CPT_LEARNING_CURVE_V0_3_RESULTS.md`](docs/CPT_LEARNING_CURVE_V0_3_RESULTS.md), and [`docs/CPT_4K_ABLATION_RESULTS.md`](docs/CPT_4K_ABLATION_RESULTS.md).
