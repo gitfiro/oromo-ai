@@ -79,7 +79,8 @@ The current accepted corpus planning total is measured with the **Oromo Unigram 
 | HPLT 3.0 gaz_Latn v0.1 | 26,655 | 19,771,727 |
 | Michsethowusu Oromo Sentiments cleaned subset v0.1 | 193,681 | 3,877,136 |
 | Michsethowusu English–Oromo cleaned monolingual subset v0.1 | 45,048 | 1,185,406 |
-| **Accepted total** | **750,239** | **57,200,345** |
+| Glot500 Oromo source-partitioned subset v0.1 | 80,069 | 5,913,656 |
+| **Accepted total** | **830,308** | **63,114,001** |
 
 ### MADLAD-400 licensing basis
 
@@ -117,12 +118,12 @@ does not represent every source webpage as CC0. See
 
 ```text
 OromoCorpus v0.2 minimum: 50,000,000 tokens
-Current planning total:   57,200,345
+Current planning total:   63,114,001
 Progress:                 114.40%
-Margin above minimum:      7,200,345
+Margin above minimum:      13,114,001
 
 OromoCorpus v0.3 target: 100,000,000 tokens
-Current progress:         57.20%
+Current progress:         63.11%
 ```
 
 The full WURA Oromo package remains under source-level review and does not count as an accepted source by itself. Only independently audited and rights-cleared subsets are admitted.
@@ -139,7 +140,15 @@ The accepted subset contributes **193,681 records / 3,877,136 48K-reference toke
 
 The NLLB-derived `michsethowusu/english-oromo_sentence-pairs` source was highly noisy and redundant. Oromo AI therefore rejected its sentence-pair alignment for translation use and accepted only the cleaned Oromo-side monolingual residual after filtering plus exact and canonical near cross-source deduplication.
 
-The frozen subset contributes **45,048 records / 1,185,406 48K-reference tokens**, raising OromoCorpus to **57,200,345 reference tokens (57.20% of the 100M target)**. See [the source report](docs/sources/MICHSETHOWUSU_ENGLISH_OROMO_REPORT.md).
+The frozen subset contributes **45,048 records / 1,185,406 48K-reference tokens**, raising OromoCorpus to **63,114,001 reference tokens (63.11% of the 100M target)**. See [the source report](docs/sources/MICHSETHOWUSU_ENGLISH_OROMO_REPORT.md).
+
+### Glot500 Oromo source-partitioned qualification
+
+Glot500 was audited as an aggregator rather than accepted wholesale. After excluding already represented and non-commercial source families, the priority Oromo candidate passed exact and canonical 5-word-shingle near cross-source deduplication against all eight previously accepted OromoCorpus sources.
+
+The accepted source-partitioned subset contains **80,069 records / 5,913,656 48K-reference tokens** from CC100, AAU, HornMT, and TICO. The `mtdata` tranche remains held for source-specific licensing review. The accepted artifact is frozen at SHA-256 `a896acf3a88f40e017dd802f821c4bf8bc9278cd8483760b21e0229ffd10914f`.
+
+See [the Glot500 Oromo qualification report](docs/sources/GLOT500_OROMO_REPORT.md).
 
 ### OromoTokenizer
 
