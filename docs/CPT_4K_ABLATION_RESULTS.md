@@ -2,11 +2,11 @@
 
 ## Status
 
-**Training complete; final normalized evaluation pending.**
+**Training and frozen evaluation complete; +4K is the strongest current candidate under the predeclared gate.**
 
 The +4K vocabulary-size ablation has completed both predeclared training stages on an NVIDIA A100-SXM4-80GB. The experiment preserves the same underlying Oromo text exposure as the +8K trajectory while using the smaller 4,000-token lexical augmentation.
 
-No final tokenizer/model winner is claimed yet. Stage B exact Oromo BPB and WikiText retention evaluation remain required.
+The Stage B exact Oromo BPB learning curve and frozen WikiText retention checks are complete. The +4K path beats both the native-tokenizer CPT and +8K v0.3 Oromo BPB references while passing the predeclared general-language retention ceiling.
 
 ## Frozen +4K tokenizer and initialization
 
@@ -141,7 +141,43 @@ Stage B completed the full predeclared one-epoch fresh-data continuation and pro
 
 A separate final model was also preserved.
 
-The Stage B exact Oromo BPB learning curve has **not yet been run**, and the WikiText retention gate has **not yet been evaluated** for the +4K candidates. Therefore no Stage B quality ranking is reported here yet.
+The Stage B exact Oromo BPB learning curve is complete:
+
+| Checkpoint | Exact Oromo BPB |
+| ---: | ---: |
+| 250 | 1.781058836 |
+| 500 | 1.744201370 |
+| 750 | **1.727396376** |
+| 1000 | **1.721889019** |
+| 1250 | **1.720904266** |
+| 1500 | **1.720890953** |
+| 1517 | **1.720890950** |
+
+Reference lines:
+
+```text
+native CPT: 1.733832395
++8K v0.3:   1.734823064
+```
+
+The +4K path crosses both references by checkpoint 750. Checkpoint 1517 is the lowest measured Oromo BPB, but the curve is effectively flat from 1250 onward.
+
+Frozen WikiText retention:
+
+| Checkpoint | WikiText BPB | Gate |
+| ---: | ---: | --- |
+| 1250 | **1.030453326** | PASS |
+| 1517 | **1.030463994** | PASS |
+
+```text
+untouched Gemma WikiText: 1.013254631
+predeclared +5% ceiling:  1.063917363
++8K v0.3 final:           1.033754855
+```
+
+Both +4K candidates pass comfortably, and both are slightly lower/better on WikiText than the +8K final checkpoint.
+
+Under the predeclared rules, **+4K is the strongest current candidate** because it beats the native CPT and +8K Oromo quality references while passing the retention gate. This selection is specific to the declared evaluation protocol and does not substitute for downstream OromoBench, generation, safety, or human evaluation.
 
 ## Runtime environment note
 
@@ -186,18 +222,34 @@ The preserved set includes:
 
 Large model artifacts remain intentionally outside normal Git tracking.
 
-## Remaining decision work
+## Decision
 
-Run the exact frozen evaluation protocol on all retained Stage B checkpoints, then apply the predeclared decision rules from `docs/CPT_4K_ABLATION_PROTOCOL.md`.
+The predeclared +4K ablation gate is closed.
 
-Required next measurements:
+Current ordering on frozen Oromo BPB:
 
-1. exact Oromo BPB at Stage B checkpoints 250/500/750/1000/1250/1500/1517;
-2. WikiText BPB for the checkpoint(s) considered for final selection;
-3. comparison against:
-   - native CPT: 1.733832395 Oromo BPB;
-   - +8K v0.3: 1.734823064 Oromo BPB;
-   - WikiText retention ceiling: 1.063917363 BPB;
-4. final Pareto analysis covering quality, vocabulary size, tokenizer efficiency, and compute.
+```text
++4K step 1517: 1.720890950
++4K step 1250: 1.720904266
+native CPT:     1.733832395
++8K v0.3:       1.734823064
+untouched base: 2.670045532
+```
 
-Until those measurements are complete, +4K is a **promising but unelected candidate**.
+Retention gate:
+
+```text
++4K step 1250 WikiText: 1.030453326 PASS
++4K step 1517 WikiText: 1.030463994 PASS
+ceiling:                  1.063917363
+```
+
+Because step 1250 and step 1517 are effectively tied on Oromo BPB, future release selection should consider checkpoint size, training cost, downstream evaluation, and reproducibility rather than assuming the numerically smallest BPB difference is practically meaningful.
+
+Next work:
+
+1. preserve the new Stage B Oromo and WikiText evaluation JSON outputs with hashes;
+2. run source-level and paired per-record analysis;
+3. expand OromoBench and generation/human evaluation;
+4. use +4K as the leading tokenizer/model path for the next scaled CPT design unless later evidence overturns it;
+5. avoid additional epochs over the same continuation text, because the learning curve has plateaued.
