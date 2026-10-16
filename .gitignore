@@ -67,3 +67,26 @@ preserved/
 
 # Generated +4K tokenizer artifact
 /tokenizer/augmentation/artifacts/gemma-3-1b-pt-oromo-4k/tokenizer.json
+
+# Local candidate corpus downloads and working artifacts
+data/candidates/**/raw/
+data/candidates/**/extracted/
+data/candidates/**/filtered/
+data/candidates/**/exact_dedup/
+data/candidates/**/near_dedup/
+
+# Local candidate corpus downloads and working artifacts
+data/candidates/**/raw/
+data/candidates/**/extracted/
+data/candidates/**/filtered/
+data/candidates/**/exact_dedup/
+data/candidates/**/near_dedup/
+
+# Candidate corpora are local research data; never commit them
+data/candidates/
+
+# Local Python environments
+.venv/
+venv/
+.env
+.env.*
