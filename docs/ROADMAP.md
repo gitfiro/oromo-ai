@@ -600,6 +600,8 @@ The project is currently here:
 ✅ Michsethowusu Oromo Sentiments cleaned subset approved: 193,681 records / 3,877,136 tokens
 ✅ Michsethowusu English–Oromo cleaned monolingual subset approved: 45,048 records / 1,185,406 tokens
 ✅ Glot500 Oromo source-partitioned subset approved: 80,069 records / 5,913,656 tokens; mtdata held
+✅ Official CC100 Oromo audit closed: 5,603-row residual preserved but not promoted due to redundancy
+🔄 Mozilla Common Voice Oromo 27.0 downloaded; transcript extraction/dedup resumes next session
 ✅ 50M minimum corpus milestone achieved
 ✅ Current accepted 48K-reference corpus measurement: 63,114,001 tokens
 ✅ Frozen tokenizer evaluation
@@ -624,6 +626,6 @@ The project is currently here:
 🔄 Improve corpus domain/dialect balance while expanding toward 100M / publisher cluster
 ```
 
-The immediate data task is to identify and audit the next high-yield, rights-clear Afaan Oromoo source or publisher cluster while preserving the partially recovered MADLAD provenance evidence. Each new source must pass provenance review, conservative quality processing, exact and near cross-source deduplication, and source-level manifest/report freezing before its tokens are added to the planning total.
+The immediate data task is to resume Mozilla Common Voice Oromo 27.0 transcript extraction and qualification, then continue identifying additional high-yield, rights-clear Afaan Oromoo source families while preserving the partially recovered MADLAD provenance evidence. Each new source must pass provenance review, conservative quality processing, exact and near cross-source deduplication, and source-level manifest/report freezing before its tokens are added to the planning total.
 
 Tokenizer/base-model research may continue in parallel, and a tiny CPT proof may validate the training architecture, but scaled continued pretraining waits for an evidence-backed expanded corpus.
