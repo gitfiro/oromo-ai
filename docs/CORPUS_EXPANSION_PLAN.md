@@ -15,7 +15,7 @@ The project optimizes for quality, diversity, licensing clarity, and reproducibi
 
 ## Current Measured Progress — 2026-09-27
 
-The current accepted multi-source corpus measures **57,200,345 tokens** under the Oromo Unigram 48K + byte-fallback tokenizer used as a planning reference. The 50M v0.2 minimum has been achieved; expansion now continues toward the preferred 100M target. This tokenizer is not yet the final OromoLM tokenizer, so the number is a versioned planning measurement rather than the final release count.
+The current accepted multi-source corpus measures **63,114,001 tokens** under the Oromo Unigram 48K + byte-fallback tokenizer used as a planning reference. The 50M v0.2 minimum has been achieved; expansion now continues toward the preferred 100M target. This tokenizer is not yet the final OromoLM tokenizer, so the number is a versioned planning measurement rather than the final release count.
 
 | Source | Final accepted records | 48K reference tokens | Registry status |
 | --- | ---: | ---: | --- |
@@ -27,7 +27,7 @@ The current accepted multi-source corpus measures **57,200,345 tokens** under th
 | HPLT 3.0 gaz_Latn v0.1 | 26,655 | 19,771,727 | approved — CC0 packaging / underlying-text caveat |
 | Michsethowusu Oromo Sentiments cleaned subset v0.1 | 193,681 | 3,877,136 | approved cleaned subset — MIT |
 | Michsethowusu English–Oromo cleaned monolingual subset v0.1 | 45,048 | 1,185,406 | approved monolingual subset — NLLB/ODC-BY basis |
-| **Accepted total** | **750,239** | **57,200,345** | — |
+| **Accepted total** | **750,239** | **63,114,001** | — |
 
 ### Michsethowusu Oromo Sentiments cleaned subset
 
@@ -91,17 +91,17 @@ underlying extracted text. Oromo AI records underlying individual-content
 rights as not independently verified. See
 `docs/sources/HPLT3_LICENSE_DECISION.md`.
 
-Accepted OromoCorpus: **57,200,345**
+Accepted OromoCorpus: **63,114,001**
 
-Margin above 50M: **7,200,345**
+Margin above 50M: **13,114,001**
 
 Progress:
 
 ```text
 50M minimum:  114.40% complete — achieved
-margin:        7,200,345 reference tokens
+margin:        13,114,001 reference tokens
 
-100M target:   57.20% complete
+100M target:   63.11% complete
 ```
 
 `castorini-wura-orm` remains `reviewing`. WURA is used as a provenance-discovery layer; only source subsets that independently pass rights review and the full acceptance pipeline count toward OromoCorpus.
