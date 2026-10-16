@@ -597,8 +597,9 @@ The project is currently here:
 ✅ MADLAD recovered-domain inventory: 182 domains
 ✅ MADLAD-400 Oromo v0.2 approved under upstream ODC-BY dataset license
 ✅ HPLT 3.0 gaz_Latn v0.1 approved/frozen: 26,655 records / 19,771,727 tokens
+✅ Michsethowusu Oromo Sentiments cleaned subset approved: 193,681 records / 3,877,136 tokens
 ✅ 50M minimum corpus milestone achieved
-✅ Current accepted 48K-reference corpus measurement: 52,137,803 tokens
+✅ Current accepted 48K-reference corpus measurement: 56,014,939 tokens
 ✅ Frozen tokenizer evaluation
 ✅ Multilingual/custom tokenizer baselines
 ✅ Native causal-LM tokenizer benchmark (Phase 4A)
@@ -616,7 +617,7 @@ The project is currently here:
 ✅ +4K WikiText retention PASS
 ✅ +4K selected over +8K/native under frozen gate
         ↓
-🔄 Expand accepted OromoCorpus from 52.14M toward the preferred 100M target
+🔄 Expand accepted OromoCorpus from 56.01M toward the preferred 100M target
         ↓
 🔄 Improve corpus domain/dialect balance while expanding toward 100M / publisher cluster
 ```
