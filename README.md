@@ -77,7 +77,8 @@ The current accepted corpus planning total is measured with the **Oromo Unigram 
 | WaxalNLP Oromo ASR v0.1 | 44,194 | 1,934,045 |
 | MADLAD-400 Oromo v0.2 | 18,704 | 17,873,390 |
 | HPLT 3.0 gaz_Latn v0.1 | 26,655 | 19,771,727 |
-| **Accepted total** | **511,510** | **52,137,803** |
+| Michsethowusu Oromo Sentiments cleaned subset v0.1 | 193,681 | 3,877,136 |
+| **Accepted total** | **705,191** | **56,014,939** |
 
 ### MADLAD-400 licensing basis
 
@@ -115,17 +116,23 @@ does not represent every source webpage as CC0. See
 
 ```text
 OromoCorpus v0.2 minimum: 50,000,000 tokens
-Current planning total:   52,137,803
-Progress:                 104.28%
-Margin above minimum:      2,137,803
+Current planning total:   56,014,939
+Progress:                 112.03%
+Margin above minimum:      6,014,939
 
 OromoCorpus v0.3 target: 100,000,000 tokens
-Current progress:         52.14%
+Current progress:         56.01%
 ```
 
 The full WURA Oromo package remains under source-level review and does not count as an accepted source by itself. Only independently audited and rights-cleared subsets are admitted.
 
 With the 50M minimum now achieved, corpus acquisition continues toward the preferred **100M** target with greater emphasis on domain, dialect, literary, educational, technical, and conversational diversity rather than raw volume alone.
+
+### Michsethowusu cleaned-subset qualification
+
+The upstream `michsethowusu/oromo-sentiments-corpus` was **not** accepted wholesale because the original 825,272 rows contain substantial multilingual/noisy material and heavy overlap with AfriBERTa. Oromo AI accepted only a frozen cleaned text subset after Oromo/noise screening, exact cross-source deduplication, and canonical 5-word-shingle near deduplication at Jaccard 0.85.
+
+The accepted subset contributes **193,681 records / 3,877,136 48K-reference tokens**, raising the planning total to **56,014,939 tokens (56.01% of the 100M target)**. See [the source report](docs/sources/MICHSETHOWUSU_OROMO_SENTIMENTS_REPORT.md).
 
 ### OromoTokenizer
 
@@ -309,7 +316,7 @@ The repository is research infrastructure under active development; commands and
 ✅ Native-vs-+8K 10-step GPU smoke tests
 ✅ First controlled Gemma native-vs-+8K CPT pilot
 
-✅ OromoCorpus 50M minimum achieved — 52,137,803 reference tokens
+✅ OromoCorpus 50M minimum achieved — current total 56,014,939 reference tokens
 🔄 Expand OromoCorpus toward the preferred 100M target
 ✅ Exact byte-normalized three-way LM evaluation
 ✅ +8K v0.3 fresh-data learning curve + forgetting controls
