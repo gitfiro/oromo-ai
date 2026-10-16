@@ -599,8 +599,9 @@ The project is currently here:
 ✅ HPLT 3.0 gaz_Latn v0.1 approved/frozen: 26,655 records / 19,771,727 tokens
 ✅ Michsethowusu Oromo Sentiments cleaned subset approved: 193,681 records / 3,877,136 tokens
 ✅ Michsethowusu English–Oromo cleaned monolingual subset approved: 45,048 records / 1,185,406 tokens
+✅ Glot500 Oromo source-partitioned subset approved: 80,069 records / 5,913,656 tokens; mtdata held
 ✅ 50M minimum corpus milestone achieved
-✅ Current accepted 48K-reference corpus measurement: 57,200,345 tokens
+✅ Current accepted 48K-reference corpus measurement: 63,114,001 tokens
 ✅ Frozen tokenizer evaluation
 ✅ Multilingual/custom tokenizer baselines
 ✅ Native causal-LM tokenizer benchmark (Phase 4A)
@@ -618,7 +619,7 @@ The project is currently here:
 ✅ +4K WikiText retention PASS
 ✅ +4K selected over +8K/native under frozen gate
         ↓
-🔄 Expand accepted OromoCorpus from 57.20M toward the preferred 100M target
+🔄 Expand accepted OromoCorpus from 63.11M toward the preferred 100M target
         ↓
 🔄 Improve corpus domain/dialect balance while expanding toward 100M / publisher cluster
 ```
