@@ -300,3 +300,34 @@ majority versus +8K. They also make clear that the improvement is not universal;
 643 records remain worse than native CPT and Wikimedia remains the one
 source-level regression. The next analysis should therefore quantify uncertainty
 and inspect the tails rather than treating the aggregate BPB win as uniform.
+
+
+## Paired bootstrap uncertainty
+
+A paired bootstrap was run over the 1,503 matched validation records using
+10,000 resamples and fixed seed `20261016`. Each bootstrap replicate sampled
+paired record-level BPB deltas with replacement.
+
+Results:
+
+| Comparison | Mean paired BPB delta | 95% bootstrap CI | Direction |
+| --- | ---: | ---: | --- |
+| +4K vs native CPT | **-0.013883567** | **[-0.020199325, -0.007414796]** | favors +4K |
+| +4K vs +8K v0.3 | **-0.048155481** | **[-0.053106421, -0.043233026]** | favors +4K |
+
+Negative deltas favor +4K. In both comparisons, the full 95% bootstrap interval
+remains below zero.
+
+Interpretation:
+
+- The observed +4K advantage is not supported only by the aggregate corpus BPB;
+  it is also stable under paired resampling of the frozen validation records.
+- This materially strengthens the evidence that +4K is better than both native
+  CPT and +8K on this specific frozen holdout and evaluation protocol.
+- This is not a universal statistical guarantee for all Afaan Oromoo domains,
+  prompts, or downstream tasks. Wikimedia remains a small source-level
+  regression versus native CPT, and 643/1,503 individual records are still
+  worse than native CPT.
+- The next useful analysis is the regression tail: identify the largest
+  +4K-vs-native and +4K-vs-+8K degradations, inspect their sources/text
+  properties, and convert recurring failure modes into OromoBench cases.
