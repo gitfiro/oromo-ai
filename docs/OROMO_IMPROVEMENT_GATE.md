@@ -161,3 +161,21 @@ Both remain below the fixed ceiling of **1.063917363** and slightly outperform t
 **Gate decision:** +4K is the strongest current candidate under the predeclared protocol. The numerical difference between steps 1250 and 1517 is negligible, so downstream selection should consider compute and broader evaluation rather than treating 1517's tiny edge as practically decisive.
 
 The complete +4K run was preserved locally and verified against the RunPod SHA-256 manifest: **66 files checked, 0 failures**. See `docs/CPT_4K_ABLATION_RESULTS.md` and `docs/CPT_4K_ABLATION_PROTOCOL.md`.
+
+
+### Source robustness check
+
+The +4K step-1517 result was compared source-by-source and record-by-record
+against the native CPT and +8K v0.3 references.
+
+- +4K beats +8K on **6/6** source groups.
+- +4K beats native CPT on **5/6** source groups.
+- Wikimedia is the only source-level regression versus native CPT:
+  **1.677692 vs 1.671917 BPB (+0.345%)**.
+- Across all 1,503 matched records, +4K beats native CPT on **860 records
+  (57.22%)** and beats +8K on **1,086 records (72.26%)**.
+- Mean/median paired BPB deltas favor +4K in both comparisons.
+
+This supports the gate decision while preserving an important caveat: the gain
+is broad but not universal. Wikimedia and the record-level regression tail
+should be explicitly represented in downstream OromoBench and error analysis.
