@@ -923,6 +923,12 @@ The next data-engineering priorities are:
 The goal is not merely to increase record count. The goal is to increase quality, coverage, diversity, provenance, and linguistic usefulness. No source's advertised size is counted before it passes the production pipeline.
 
 ---
+### BSSCO legal/government candidate audit — 2026-10-17
+
+A new BSSCO Oromia legal candidate has passed extraction-feasibility testing but is **not part of the accepted statistics**. The validated inventory contains **291 live PDFs / 2,176.06 MiB**. A stratified 30-file sample covered **1,018 pages** and yielded **212,457 directly extracted words** before language separation; 12 files were text-rich, 15 were scan-heavy/very-low-text, and 3 contained no direct text.
+
+OCR validation showed that scan-only Oromo legal pages are recoverable at useful quality, but the source is trilingual and page orientation/layout can change inside the same PDF. Production processing therefore requires page-level Oromo/English/Amharic/unknown routing. These audit figures are **not accepted corpus counts** and must not be added to the 94,230,190-token baseline. See `docs/sources/BSSCO_OROMIA_LEGAL_AUDIT.md`.
+
 # 30. Production Dataset Principle
 
 The current corpus pipeline follows:
