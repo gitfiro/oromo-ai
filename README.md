@@ -80,7 +80,8 @@ The current accepted corpus planning total is measured with the **Oromo Unigram 
 | Michsethowusu Oromo Sentiments cleaned subset v0.1 | 193,681 | 3,877,136 |
 | Michsethowusu English–Oromo cleaned monolingual subset v0.1 | 45,048 | 1,185,406 |
 | Glot500 Oromo source-partitioned subset v0.1 | 80,069 | 5,913,656 |
-| **Accepted total** | **830,308** | **63,114,001** |
+| FineWeb2 `gaz_Latn` v0.1 | 22,205 | 11,706,955 |
+| **Accepted total** | **852,513** | **74,820,956** |
 
 ### MADLAD-400 licensing basis
 
@@ -118,12 +119,13 @@ does not represent every source webpage as CC0. See
 
 ```text
 OromoCorpus v0.2 minimum: 50,000,000 tokens
-Current planning total:   63,114,001
-Progress:                 114.40%
-Margin above minimum:      13,114,001
+Current planning total:   74,820,956
+Progress:                 149.64%
+Margin above minimum:      24,820,956
 
 OromoCorpus v0.3 target: 100,000,000 tokens
-Current progress:         63.11%
+Current progress:         74.82%
+Remaining to target:      25,179,044
 ```
 
 The full WURA Oromo package remains under source-level review and does not count as an accepted source by itself. Only independently audited and rights-cleared subsets are admitted.
@@ -140,7 +142,7 @@ The accepted subset contributes **193,681 records / 3,877,136 48K-reference toke
 
 The NLLB-derived `michsethowusu/english-oromo_sentence-pairs` source was highly noisy and redundant. Oromo AI therefore rejected its sentence-pair alignment for translation use and accepted only the cleaned Oromo-side monolingual residual after filtering plus exact and canonical near cross-source deduplication.
 
-The frozen subset contributes **45,048 records / 1,185,406 48K-reference tokens**, raising OromoCorpus to **63,114,001 reference tokens (63.11% of the 100M target)**. See [the source report](docs/sources/MICHSETHOWUSU_ENGLISH_OROMO_REPORT.md).
+The frozen subset contributes **45,048 records / 1,185,406 48K-reference tokens**, raising OromoCorpus at that historical checkpoint to **57,200,345 reference tokens (57.20% of the 100M target)**. See [the source report](docs/sources/MICHSETHOWUSU_ENGLISH_OROMO_REPORT.md).
 
 ### Glot500 Oromo source-partitioned qualification
 
@@ -149,6 +151,16 @@ Glot500 was audited as an aggregator rather than accepted wholesale. After exclu
 The accepted source-partitioned subset contains **80,069 records / 5,913,656 48K-reference tokens** from CC100, AAU, HornMT, and TICO. The `mtdata` tranche remains held for source-specific licensing review. The accepted artifact is frozen at SHA-256 `a896acf3a88f40e017dd802f821c4bf8bc9278cd8483760b21e0229ffd10914f`.
 
 See [the Glot500 Oromo qualification report](docs/sources/GLOT500_OROMO_REPORT.md).
+
+### FineWeb2 `gaz_Latn` qualification
+
+FineWeb2 West Central Oromo (`gaz_Latn`) v0.1 is now **accepted/frozen** as the tenth OromoCorpus source. The full training partition contained **47,883 records / 17,158,432 whitespace words**. Exact cross-source deduplication against the nine previously accepted sources removed **11,622 records**, leaving **36,261 records / 12,951,748 words**. Canonical 5-word-shingle Jaccard near deduplication at threshold **0.85** removed **10 within-source** and **13,819 cross-source** near duplicates.
+
+The post-near-dedup candidate contained **22,432 records / 7,603,710 words**. A narrow quality pass rejected **227 records / 203,921 words (2.68%)** only where low upstream language score was corroborated by another quality signal, or where repeated-line/URL extraction noise was detected. English-marker-only, Ethiopic-only, low-score-only, and very-long-only records were not automatically rejected.
+
+The frozen accepted artifact contains **22,205 records / 7,399,789 words / 11,706,955 48K-reference tokens**. Its SHA-256 is `d1a6c58c2298d37ae49df6bafd6a4d03963ebc99cdac831490448cb21cfc56ec`. FineWeb2 is distributed under **ODC-By 1.0**; Oromo AI records underlying individual Common Crawl content rights as **not independently verified**.
+
+See [the FineWeb2 qualification report](docs/sources/FINEWEB2_OROMO_REPORT.md).
 
 ### Latest corpus-expansion audit
 
@@ -159,13 +171,10 @@ exact-net-new residual was removed by the canonical near-dedup gate. Only
 **5,603 rows / 194,669 words** remained, so this residual was preserved but
 **not promoted** into OromoCorpus.
 
-The accepted corpus therefore remains **830,308 records / 63,114,001
-48K-reference tokens (63.11% of the 100M planning target)**.
+At the close of the CC100 audit, the accepted corpus remained **830,308 records / 63,114,001
+48K-reference tokens (63.11% of the 100M planning target)**. That figure is retained here as a historical audit checkpoint.
 
-The next independent source family is **Mozilla Common Voice Oromo Scripted
-Speech 27.0 (CC0-1.0)**. The archive has been downloaded locally, but transcript
-extraction, deduplication, and token measurement are intentionally paused for
-the next session.
+FineWeb2 `gaz_Latn` v0.1 has since been approved, raising the current accepted corpus to **852,513 records / 74,820,956 48K-reference tokens (74.82% of the 100M planning target)**. Mozilla Common Voice Oromo 27.0 remains paused and does not count toward the accepted corpus.
 
 See:
 - [CC100 Oromo audit](docs/sources/CC100_OM_AUDIT.md)
@@ -353,7 +362,7 @@ The repository is research infrastructure under active development; commands and
 ✅ Native-vs-+8K 10-step GPU smoke tests
 ✅ First controlled Gemma native-vs-+8K CPT pilot
 
-✅ OromoCorpus 50M minimum achieved — current total 56,014,939 reference tokens
+✅ OromoCorpus 50M minimum achieved — current total 74,820,956 reference tokens (74.82% of 100M)
 🔄 Expand OromoCorpus toward the preferred 100M target
 ✅ Exact byte-normalized three-way LM evaluation
 ✅ +8K v0.3 fresh-data learning curve + forgetting controls
@@ -393,6 +402,7 @@ Detailed technical material lives in `docs/` rather than being duplicated in thi
 | [MADLAD License Decision](docs/sources/MADLAD_400_LICENSE_DECISION.md) | ODC-BY approval basis, attribution obligations, and scope limitations |
 | [MADLAD Provenance Review](docs/sources/MADLAD400_PROVENANCE_REVIEW.md) | Partial source-level provenance recovery, URL/domain audit, and VOA review |
 | [HPLT3 Oromo Report](docs/sources/HPLT3_OROMO_REPORT.md) | HPLT3 filtering, deduplication, quality, language verification, and frozen metrics |
+| [FineWeb2 Oromo Report](docs/sources/FINEWEB2_OROMO_REPORT.md) | FineWeb2 `gaz_Latn` full-partition deduplication, quality policy, licensing scope, and frozen contribution |
 | [HPLT3 License Decision](docs/sources/HPLT3_LICENSE_DECISION.md) | CC0 packaging scope, underlying-text caveat, and project acceptance basis |
 | [Naming](docs/NAMING.md) | Canonical project naming |
 
