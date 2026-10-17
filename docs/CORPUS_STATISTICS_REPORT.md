@@ -781,7 +781,15 @@ The current accepted sources measure:
 | WaxalNLP Oromo ASR v0.1 | 44,194 | 10,637,213 | 1,934,045 |
 | MADLAD-400 Oromo v0.2 | 18,704 | 87,930,775 | 17,873,390 |
 | HPLT 3.0 gaz_Latn v0.1 | 26,655 | 104,275,394 | 19,771,727 |
-| **Accepted total** | **511,510** | **270,149,525** | **52,137,803** |
+| Michsethowusu Oromo Sentiments cleaned subset v0.1 | 193,681 | 20,515,090 | 3,877,136 |
+| Michsethowusu English–Oromo cleaned monolingual subset v0.1 | 45,048 | 6,094,197 | 1,185,406 |
+| Glot500 Oromo source-partitioned subset v0.1 | 80,069 | 30,954,346 | 5,913,656 |
+| FineWeb2 `gaz_Latn` v0.1 | 22,205 | 56,438,459 | 11,706,955 |
+| **Accepted total** | **852,513** | **384,151,617** | **74,820,956** |
+
+### FineWeb2 approved source
+
+FineWeb2 West Central Oromo (`gaz_Latn`) v0.1 contributes **22,205 records / 56,438,459 characters / 11,706,955 48K-reference tokens** after exact cross-source deduplication, canonical 5-word-shingle Jaccard near deduplication at 0.85, and a narrow quality filter. The final artifact SHA-256 is `d1a6c58c2298d37ae49df6bafd6a4d03963ebc99cdac831490448cb21cfc56ec`. Dataset packaging is recorded as ODC-By 1.0; underlying individual Common Crawl content rights were not independently verified.
 
 ### MADLAD-400 approved source
 
@@ -969,7 +977,7 @@ It should not yet be treated as the final Oromo foundation-model training corpus
 
 Since v0.1.2 was frozen, two additional source-level expansions have been qualified and frozen: Wikimedia omwiki and the provenance-cleared VOA Afaan Oromoo subset recovered through WURA. Together they contribute **2,970,707 net-new 48K reference tokens** beyond the AfriBERTa seed.
 
-The current accepted planning total is **52,137,803 48K reference tokens**, or **104.28%** of the 50M v0.2 minimum. The token-volume gate is achieved; a formal OromoCorpus v0.2 release still requires the selected/versioned OromoLM tokenizer and the remaining release checks.
+The current accepted planning total is **74,820,956 48K reference tokens** across **852,513 records**, or **149.64%** of the 50M v0.2 minimum and **74.82%** of the preferred 100M target. The token-volume gate is achieved; a formal OromoCorpus v0.2 release still requires the selected/versioned OromoLM tokenizer and the remaining release checks.
 
 ---
 
