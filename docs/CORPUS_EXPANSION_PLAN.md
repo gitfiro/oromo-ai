@@ -13,9 +13,9 @@ The project is targeting:
 
 The project optimizes for quality, diversity, licensing clarity, and reproducibility—not the largest possible raw download.
 
-## Current Measured Progress — 2026-09-27
+## Current Measured Progress — 2026-10-17
 
-The current accepted multi-source corpus measures **63,114,001 tokens** under the Oromo Unigram 48K + byte-fallback tokenizer used as a planning reference. The 50M v0.2 minimum has been achieved; expansion now continues toward the preferred 100M target. This tokenizer is not yet the final OromoLM tokenizer, so the number is a versioned planning measurement rather than the final release count.
+The current accepted multi-source corpus measures **74,820,956 tokens** across **852,513 records** under the Oromo Unigram 48K + byte-fallback tokenizer used as a planning reference. The 50M v0.2 minimum has been achieved; expansion now continues toward the preferred 100M target. This tokenizer is not yet the final OromoLM tokenizer, so the number is a versioned planning measurement rather than the final release count.
 
 | Source | Final accepted records | 48K reference tokens | Registry status |
 | --- | ---: | ---: | --- |
@@ -27,7 +27,9 @@ The current accepted multi-source corpus measures **63,114,001 tokens** under th
 | HPLT 3.0 gaz_Latn v0.1 | 26,655 | 19,771,727 | approved — CC0 packaging / underlying-text caveat |
 | Michsethowusu Oromo Sentiments cleaned subset v0.1 | 193,681 | 3,877,136 | approved cleaned subset — MIT |
 | Michsethowusu English–Oromo cleaned monolingual subset v0.1 | 45,048 | 1,185,406 | approved monolingual subset — NLLB/ODC-BY basis |
-| **Accepted total** | **750,239** | **63,114,001** | — |
+| Glot500 Oromo source-partitioned subset v0.1 | 80,069 | 5,913,656 | approved source-partitioned subset |
+| FineWeb2 `gaz_Latn` v0.1 | 22,205 | 11,706,955 | approved — ODC-By 1.0; underlying-text caveat |
+| **Accepted total** | **852,513** | **74,820,956** | — |
 
 ### Michsethowusu Oromo Sentiments cleaned subset
 
@@ -98,10 +100,11 @@ Margin above 50M: **13,114,001**
 Progress:
 
 ```text
-50M minimum:  114.40% complete — achieved
-margin:        13,114,001 reference tokens
+50M minimum:  149.64% complete — achieved
+margin:        24,820,956 reference tokens
 
-100M target:   63.11% complete
+100M target:   74.82% complete
+remaining:     25,179,044 reference tokens
 ```
 
 `castorini-wura-orm` remains `reviewing`. WURA is used as a provenance-discovery layer; only source subsets that independently pass rights review and the full acceptance pipeline count toward OromoCorpus.
@@ -288,9 +291,19 @@ is too small relative to higher-value independent sources.
 
 See `docs/sources/CC100_OM_AUDIT.md`.
 
+### FineWeb2 West Central Oromo (`gaz_Latn`) v0.1
+
+**Status: approved/frozen.**
+
+The full FineWeb2 `gaz_Latn` train partition contained **47,883 records / 17,158,432 words**. Exact cross-source deduplication removed **11,622 records / 4,206,684 words**. Canonical 5-word-shingle Jaccard near deduplication at **0.85** reduced the exact-new candidate to **22,432 records / 7,603,710 words**. The final narrow quality filter rejected **227 records / 203,921 words (2.68%)**.
+
+The accepted artifact contains **22,205 records / 7,399,789 words / 11,706,955 48K-reference tokens** and is frozen at SHA-256 `d1a6c58c2298d37ae49df6bafd6a4d03963ebc99cdac831490448cb21cfc56ec`. FineWeb2 packaging is recorded as **ODC-By 1.0**; underlying individual Common Crawl content rights remain `not_independently_verified`.
+
+See `docs/sources/FINEWEB2_OROMO_REPORT.md`.
+
 ### Mozilla Common Voice Oromo Scripted Speech 27.0
 
-**Status: next active source; paused after download.**
+**Status: paused after download; not currently counted toward OromoCorpus.**
 
 The CC0-1.0 release has been downloaded locally. No transcript rows have yet
 been extracted or counted. Resume by inspecting the TSV metadata, extracting
