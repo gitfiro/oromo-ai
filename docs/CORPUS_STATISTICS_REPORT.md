@@ -769,7 +769,7 @@ These limitations are documented rather than hidden.
 
 The original `afriberta_oromo_v0.1.2` seed remains frozen and unchanged. Corpus expansion is now operating as a source-by-source, provenance-first process.
 
-### Current multi-source planning snapshot — 2026-09-27
+### Current multi-source planning snapshot — 2026-10-17
 
 The current accepted sources measure:
 
@@ -785,11 +785,21 @@ The current accepted sources measure:
 | Michsethowusu English–Oromo cleaned monolingual subset v0.1 | 45,048 | 6,094,197 | 1,185,406 |
 | Glot500 Oromo source-partitioned subset v0.1 | 80,069 | 30,954,346 | 5,913,656 |
 | FineWeb2 `gaz_Latn` v0.1 | 22,205 | 56,438,459 | 11,706,955 |
-| **Accepted total** | **852,513** | **384,151,617** | **74,820,956** |
+| GlotCC V1 `gaz-Latn` | 2,109 | 8,383,273 | 1,716,558 |
+| AllenAI NLLB `gaz_Latn` v0.1 | 1,101,371 | — | 16,701,572 |
+| mOSCAR V2 `gaz_Latn` | 12,215 | — | 820,958 |
+| **Accepted total** | **1,968,208** | **—** | **94,060,044** |
 
 ### FineWeb2 approved source
 
 FineWeb2 West Central Oromo (`gaz_Latn`) v0.1 contributes **22,205 records / 56,438,459 characters / 11,706,955 48K-reference tokens** after exact cross-source deduplication, canonical 5-word-shingle Jaccard near deduplication at 0.85, and a narrow quality filter. The final artifact SHA-256 is `d1a6c58c2298d37ae49df6bafd6a4d03963ebc99cdac831490448cb21cfc56ec`. Dataset packaging is recorded as ODC-By 1.0; underlying individual Common Crawl content rights were not independently verified.
+
+### GlotCC, NLLB, and mOSCAR accepted additions
+
+Subsequent qualification added three accepted sources. GlotCC V1 `gaz-Latn` contributes **2,109 records / 1,716,558 reference tokens**. Canonical AllenAI NLLB `gaz_Latn` contributes **1,101,371 records / 16,701,572 reference tokens** after global pair-level consolidation, sentence-aware containment, normalized equality deduplication, and canonical near deduplication. mOSCAR V2 `gaz_Latn` contributes **12,215 native text segments / 820,958 reference tokens** after native-segment extraction, quality filtering, and canonical near deduplication.
+
+These additions raise OromoCorpus to **1,968,208 accepted records / 94,060,044 reference tokens (94.06% of 100M)**. Character totals for NLLB and mOSCAR are not restated in this report because the frozen user-visible summaries used for this update did not include their final character counts; the token and record totals are authoritative.
+
 
 ### MADLAD-400 approved source
 
@@ -977,7 +987,7 @@ It should not yet be treated as the final Oromo foundation-model training corpus
 
 Since v0.1.2 was frozen, two additional source-level expansions have been qualified and frozen: Wikimedia omwiki and the provenance-cleared VOA Afaan Oromoo subset recovered through WURA. Together they contribute **2,970,707 net-new 48K reference tokens** beyond the AfriBERTa seed.
 
-The current accepted planning total is **74,820,956 48K reference tokens** across **852,513 records**, or **149.64%** of the 50M v0.2 minimum and **74.82%** of the preferred 100M target. The token-volume gate is achieved; a formal OromoCorpus v0.2 release still requires the selected/versioned OromoLM tokenizer and the remaining release checks.
+The current accepted planning total is **94,060,044 48K reference tokens** across **1,968,208 records**, or **188.12%** of the 50M v0.2 minimum and **94.06%** of the preferred 100M target. **5,939,956 reference tokens remain** to the preferred 100M target. The token-volume gate is achieved; a formal OromoCorpus v0.2 release still requires the selected/versioned OromoLM tokenizer and the remaining release checks.
 
 ---
 
