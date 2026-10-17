@@ -35,7 +35,15 @@ The current accepted multi-source corpus measures **94,230,190 tokens** across *
 | Mozilla Common Voice Oromo 27.0 | 18,367 | 170,146 | approved — CC0-1.0; validated text only |
 | **Accepted total** | **1,986,575** | **94,230,190** | — |
 
-### Michsethowusu Oromo Sentiments cleaned subset
+#
+### Active candidate: BSSCO Oromia legal publications
+
+BSSCO is now the strongest locally validated legal/government expansion candidate. The source inventory contains **291 live PDFs totaling 2,176.06 MiB**. A deterministic 30-PDF sample across the size distribution established a hybrid born-digital/scan corpus and demonstrated that high-quality Afaan Oromoo can be recovered from both classes.
+
+The extraction design must operate at page level because the legal gazette material is frequently trilingual and may change orientation within a single PDF. The current validated route is: direct extraction where reliable; otherwise 300-DPI rendering, orientation search, Oromo-region OCR, Oromo/English/Amharic/unknown routing, conservative cleanup, and only then corpus deduplication and token measurement.
+
+This is a **candidate-source milestone, not a corpus-count milestone**. The accepted total remains **94,230,190 reference tokens** with **5,769,810 remaining** to 100M. No BSSCO tokens are counted yet. Full details: `docs/sources/BSSCO_OROMIA_LEGAL_AUDIT.md`.
+## Michsethowusu Oromo Sentiments cleaned subset
 
 The upstream sentiment corpus was heavily filtered rather than accepted wholesale.
 From 825,272 upstream rows, 282,604 passed the first Oromo/noise screen; 77,384
