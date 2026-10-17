@@ -201,6 +201,16 @@ See:
 - [CC100 Oromo audit](docs/sources/CC100_OM_AUDIT.md)
 - [Common Voice Oromo status](docs/sources/COMMON_VOICE_OROMO_STATUS.md)
 
+### BSSCO Oromia legal-corpus audit
+
+A new candidate-source audit has validated the **technical extractability** of the BSSCO Oromia legal repository without promoting it into OromoCorpus. The inventory contains **291 live PDFs / 2,176.06 MiB**. A deterministic 30-PDF stratified sample found **12 text-rich files (40%)**, **15 scan-heavy/very-low-text files (50%)**, and **3 files with no direct text (10%)**, spanning **1,018 sampled pages**.
+
+The publications are frequently trilingual (Afaan Oromoo / Amharic / English), and experiments showed that whole-page language classification is insufficient. Direct extraction works for born-digital documents, while 300-DPI OCR with page-level orientation and Oromo-region routing can recover scan-only Oromo pages. A 215-page test document contained Oromo, English, and Amharic pages in different orientations, establishing the need for a conservative page router rather than one fixed crop/template.
+
+**Status: candidate / extraction validated / not accepted.** BSSCO contributes **0 tokens** to the accepted total until rights review, full extraction, quality filtering, cross-source exact/near deduplication, 48K reference-token measurement, and artifact freezing are complete.
+
+See [the BSSCO legal corpus audit](docs/sources/BSSCO_OROMIA_LEGAL_AUDIT.md).
+
 ### OromoTokenizer
 
 Tokenizer research has established:
