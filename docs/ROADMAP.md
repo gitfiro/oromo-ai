@@ -118,7 +118,7 @@ Release milestones:
 
 The official total is calculated only after conservative cleaning and exact/near-duplicate removal across all included sources. The project will additionally report raw records, characters, whitespace tokens, and per-source retention so that the expansion remains auditable.
 
-### Verified expansion progress — 2026-09-27
+### Verified expansion progress — 2026-10-17
 
 Using the Oromo Unigram 48K + byte-fallback research tokenizer as the current planning reference:
 
@@ -134,13 +134,27 @@ Using the Oromo Unigram 48K + byte-fallback research tokenizer as the current pl
 | Michsethowusu English–Oromo monolingual subset v0.1 | 45,048 | 1,185,406 | approved/frozen |
 | Glot500 Oromo source-partitioned subset v0.1 | 80,069 | 5,913,656 | approved/frozen |
 | FineWeb2 `gaz_Latn` v0.1 | 22,205 | 11,706,955 | approved/frozen — ODC-By 1.0; underlying text caveat |
-| **Accepted total** | **852,513** | **74,820,956** | **149.64% of v0.2 minimum / 74.82% of 100M target** |
+| GlotCC V1 `gaz-Latn` | 2,109 | 1,716,558 | approved/frozen — CC0 packaging; underlying text caveat |
+| AllenAI NLLB `gaz_Latn` v0.1 | 1,101,371 | 16,701,572 | approved/frozen — ODC-By 1.0; source-specific terms apply |
+| mOSCAR V2 `gaz_Latn` | 12,215 | 820,958 | approved/frozen — CC-BY-4.0 dataset terms |
+| **Accepted total** | **1,968,208** | **94,060,044** | **188.12% of v0.2 minimum / 94.06% of 100M target** |
 
 ### FineWeb2 approval and 74.82M milestone
 
 FineWeb2 `gaz_Latn` v0.1 is approved/frozen after full-partition exact cross-source deduplication, canonical 5-word-shingle Jaccard near deduplication at 0.85, and a narrow evidence-based quality pass. The accepted artifact contributes **22,205 records / 11,706,955 48K-reference tokens**, taking OromoCorpus to **74,820,956 tokens (74.82% of the preferred 100M target)** with **25,179,044 tokens remaining**. Dataset packaging is recorded as ODC-By 1.0; underlying individual Common Crawl content rights are not independently verified.
 
 See `docs/sources/FINEWEB2_OROMO_REPORT.md`.
+
+### GlotCC, NLLB, and mOSCAR approvals — 94.06M milestone
+
+GlotCC V1 `gaz-Latn` contributes **2,109 records / 1,716,558 reference tokens** after exact cross-source deduplication, canonical near deduplication, and a narrow structural-quality pass.
+
+AllenAI NLLB `gaz_Latn` contributes **1,101,371 records / 16,701,572 reference tokens** after global Oromo-side consolidation across 45 non-empty pair configs, conservative quality filtering, sentence-aware exact containment against the accepted corpus, similarity-normalized deduplication, and canonical 5-word-shingle Jaccard near deduplication.
+
+mOSCAR V2 `gaz_Latn` contributes **12,215 native text segments / 820,958 reference tokens** after native-segment extraction, exact cross-source deduplication, a narrow English/Ethiopic/very-short quality filter, and canonical near deduplication against whole-record and sentence-span units.
+
+Together these three promotions move the authoritative OromoCorpus planning baseline to **1,968,208 records / 94,060,044 reference tokens (94.06% of 100M)**, leaving **5,939,956 tokens**.
+
 
 ### MADLAD-400 approval
 
@@ -612,9 +626,12 @@ The project is currently here:
 ✅ Glot500 Oromo source-partitioned subset approved: 80,069 records / 5,913,656 tokens; mtdata held
 ✅ Official CC100 Oromo audit closed: 5,603-row residual preserved but not promoted due to redundancy
 ✅ FineWeb2 `gaz_Latn` v0.1 approved/frozen: 22,205 records / 11,706,955 tokens
+✅ GlotCC V1 `gaz-Latn` approved/frozen: 2,109 records / 1,716,558 tokens
+✅ AllenAI NLLB `gaz_Latn` approved/frozen: 1,101,371 records / 16,701,572 tokens
+✅ mOSCAR V2 `gaz_Latn` approved/frozen: 12,215 records / 820,958 tokens
 ⏸ Mozilla Common Voice Oromo 27.0 remains paused after download
 ✅ 50M minimum corpus milestone achieved
-✅ Current accepted 48K-reference corpus measurement: 74,820,956 tokens (74.82% of 100M; 25,179,044 remaining)
+✅ Current accepted 48K-reference corpus measurement: 94,060,044 tokens (94.06% of 100M; 5,939,956 remaining)
 ✅ Frozen tokenizer evaluation
 ✅ Multilingual/custom tokenizer baselines
 ✅ Native causal-LM tokenizer benchmark (Phase 4A)
@@ -632,11 +649,11 @@ The project is currently here:
 ✅ +4K WikiText retention PASS
 ✅ +4K selected over +8K/native under frozen gate
         ↓
-🔄 Expand accepted OromoCorpus from 74.82M toward the preferred 100M target
+🔄 Expand accepted OromoCorpus from 94.06M toward the preferred 100M target
         ↓
 🔄 Improve corpus domain/dialect balance while expanding toward 100M / publisher cluster
 ```
 
-The immediate data task is to resume Mozilla Common Voice Oromo 27.0 transcript extraction and qualification, then continue identifying additional high-yield, rights-clear Afaan Oromoo source families while preserving the partially recovered MADLAD provenance evidence. Each new source must pass provenance review, conservative quality processing, exact and near cross-source deduplication, and source-level manifest/report freezing before its tokens are added to the planning total.
+The immediate data task is to qualify a final high-yield source family capable of contributing roughly 5.94M net-new reference tokens toward the preferred 100M target; CulturaX is the next active candidate, with Mozilla Common Voice Oromo 27.0 retained as a paused supplemental source. Each new source must pass provenance review, conservative quality processing, exact and near cross-source deduplication, and source-level manifest/report freezing before its tokens are added to the planning total.
 
 Tokenizer/base-model research may continue in parallel, and a tiny CPT proof may validate the training architecture, but scaled continued pretraining waits for an evidence-backed expanded corpus.
