@@ -140,7 +140,6 @@ Using the Oromo Unigram 48K + byte-fallback research tokenizer as the current pl
 | Mozilla Common Voice Oromo 27.0 | 18,367 | 170,146 | approved/frozen — CC0-1.0; validated text only |
 | **Accepted total** | **1,986,575** | **94,230,190** | **188.46% of v0.2 minimum / 94.23% of 100M target** |
 
-#
 ### BSSCO Oromia legal corpus — extraction feasibility validated
 
 The BSSCO government legal repository is now an active high-value candidate source. Inventory validation found **291 live PDFs / 2,176.06 MiB**. A 30-file stratified audit showed a hybrid corpus: **40% directly text-rich**, **50% scan-heavy/very-low direct text**, and **10% with no direct text**. OCR experiments recovered clean Afaan Oromoo from scan-only pages when page orientation and Oromo regions were handled explicitly.
@@ -148,6 +147,7 @@ The BSSCO government legal repository is now an active high-value candidate sour
 The source is often trilingual (Afaan Oromoo / Amharic / English), and a single large PDF was shown to contain Oromo, English, and Amharic pages with changing orientation. The next milestone is therefore a reusable **page-level language/orientation router** followed by a full 30-file Oromo-yield audit.
 
 **Important:** BSSCO remains **candidate-stage** and adds **0 accepted tokens** until rights review, extraction, filtering, cross-source deduplication, reference-token measurement, and freezing are complete. See `docs/sources/BSSCO_OROMIA_LEGAL_AUDIT.md`.
+
 ## FineWeb2 approval and 74.82M milestone
 
 FineWeb2 `gaz_Latn` v0.1 is approved/frozen after full-partition exact cross-source deduplication, canonical 5-word-shingle Jaccard near deduplication at 0.85, and a narrow evidence-based quality pass. The accepted artifact contributes **22,205 records / 11,706,955 48K-reference tokens**, taking OromoCorpus to **74,820,956 tokens (74.82% of the preferred 100M target)** with **25,179,044 tokens remaining**. Dataset packaging is recorded as ODC-By 1.0; underlying individual Common Crawl content rights are not independently verified.
