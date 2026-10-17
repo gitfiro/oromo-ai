@@ -15,7 +15,7 @@ The project optimizes for quality, diversity, licensing clarity, and reproducibi
 
 ## Current Measured Progress — 2026-10-17
 
-The current accepted multi-source corpus measures **94,060,044 tokens** across **1,968,208 records** under the Oromo Unigram 48K + byte-fallback tokenizer used as a planning reference. The 50M v0.2 minimum has been achieved; expansion now continues toward the preferred 100M target. This tokenizer is not yet the final OromoLM tokenizer, so the number is a versioned planning measurement rather than the final release count.
+The current accepted multi-source corpus measures **94,230,190 tokens** across **1,986,575 records** under the Oromo Unigram 48K + byte-fallback tokenizer used as a planning reference. The 50M v0.2 minimum has been achieved; expansion now continues toward the preferred 100M target. This tokenizer is not yet the final OromoLM tokenizer, so the number is a versioned planning measurement rather than the final release count.
 
 | Source | Final accepted records | 48K reference tokens | Registry status |
 | --- | ---: | ---: | --- |
@@ -32,7 +32,8 @@ The current accepted multi-source corpus measures **94,060,044 tokens** across *
 | GlotCC V1 `gaz-Latn` | 2,109 | 1,716,558 | approved — CC0 packaging; underlying-text caveat |
 | AllenAI NLLB `gaz_Latn` v0.1 | 1,101,371 | 16,701,572 | approved — ODC-By 1.0; source-specific terms apply |
 | mOSCAR V2 `gaz_Latn` | 12,215 | 820,958 | approved — CC-BY-4.0 dataset terms |
-| **Accepted total** | **1,968,208** | **94,060,044** | — |
+| Mozilla Common Voice Oromo 27.0 | 18,367 | 170,146 | approved — CC0-1.0; validated text only |
+| **Accepted total** | **1,986,575** | **94,230,190** | — |
 
 ### Michsethowusu Oromo Sentiments cleaned subset
 
@@ -103,11 +104,11 @@ Margin above 50M: **13,114,001**
 Progress:
 
 ```text
-50M minimum:  188.12% complete — achieved
-margin:        44,060,044 reference tokens
+50M minimum:  188.46% complete — achieved
+margin:        44,230,190 reference tokens
 
-100M target:   94.06% complete
-remaining:     5,939,956 reference tokens
+100M target:   94.23% complete
+remaining:     5,769,810 reference tokens
 ```
 
 `castorini-wura-orm` remains `reviewing`. WURA is used as a provenance-discovery layer; only source subsets that independently pass rights review and the full acceptance pipeline count toward OromoCorpus.
@@ -264,8 +265,8 @@ In addition to the v0.2 gates:
 
 ## Immediate Execution Order
 
-1. Preserve the current 13-source / 94,060,044-token approved baseline and frozen source manifests.
-2. Qualify a final high-yield source family capable of adding roughly 5.94M net-new reference tokens; CulturaX is the next active candidate, while smaller curated sources remain useful for balance.
+1. Preserve the current 14-source / 94,230,190-token approved baseline and frozen source manifests.
+2. Qualify a final high-yield source family capable of adding roughly 5.77M net-new reference tokens. CulturaX has been ruled out because its published repository contains no Oromo partition; continue the large-source search while retaining smaller curated sources for balance.
 3. Keep unclear sources in `reviewing` or `hold`; do not infer permission from crawlability or dataset-wrapper licenses.
 4. Ingest accepted source subsets without modifying prior frozen releases.
 5. Apply conservative quality filtering, within-source exact/near deduplication, and cross-source deduplication against every accepted source.
@@ -317,11 +318,8 @@ The authoritative baseline after these promotions is **1,968,208 accepted record
 
 ### Mozilla Common Voice Oromo Scripted Speech 27.0
 
-**Status: paused after download; not currently counted toward OromoCorpus.**
+**Status: approved/frozen as validated text only.**
 
-The CC0-1.0 release has been downloaded locally. No transcript rows have yet
-been extracted or counted. Resume by inspecting the TSV metadata, extracting
-unique Oromo transcript sentences, and running the standard exact/near
-cross-source qualification pipeline.
+The CC0-1.0 release contributes **18,367 sentences / 115,004 words / 170,146 48K-reference tokens** after exact cross-source and canonical near deduplication. Audio is excluded. The accepted artifact SHA-256 is `ea25fe8d3300a02228afc8d7306e60a6266090bad01f01ffa18f5a60a79fd67b`.
 
 See `docs/sources/COMMON_VOICE_OROMO_STATUS.md`.
