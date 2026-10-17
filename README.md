@@ -84,7 +84,8 @@ The current accepted corpus planning total is measured with the **Oromo Unigram 
 | GlotCC V1 `gaz-Latn` | 2,109 | 1,716,558 |
 | AllenAI NLLB `gaz_Latn` v0.1 | 1,101,371 | 16,701,572 |
 | mOSCAR V2 `gaz_Latn` | 12,215 | 820,958 |
-| **Accepted total** | **1,968,208** | **94,060,044** |
+| Mozilla Common Voice Oromo 27.0 | 18,367 | 170,146 |
+| **Accepted total** | **1,986,575** | **94,230,190** |
 
 ### MADLAD-400 licensing basis
 
@@ -122,13 +123,13 @@ does not represent every source webpage as CC0. See
 
 ```text
 OromoCorpus v0.2 minimum: 50,000,000 tokens
-Current planning total:   94,060,044
-Progress:                 188.12%
-Margin above minimum:      44,060,044
+Current planning total:   94,230,190
+Progress:                 188.46%
+Margin above minimum:      44,230,190
 
 OromoCorpus v0.3 target: 100,000,000 tokens
-Current progress:         94.06%
-Remaining to target:      5,939,956
+Current progress:         94.23%
+Remaining to target:      5,769,810
 ```
 
 The full WURA Oromo package remains under source-level review and does not count as an accepted source by itself. Only independently audited and rights-cleared subsets are admitted.
@@ -176,6 +177,12 @@ Three subsequent source families were qualified against the growing accepted bas
 These promotions bring the authoritative planning baseline to **1,968,208 accepted records / 94,060,044 reference tokens (94.06% of 100M)** with **5,939,956 tokens remaining**.
 
 
+### Mozilla Common Voice Oromo 27.0 qualification
+
+Mozilla Common Voice Scripted Speech 27.0 is accepted as a **text-only validated-sentence source**. From 18,521 validated sentence entries, exact cross-source deduplication against 13 accepted sources left **18,514 sentences / 115,771 words**. Canonical near deduplication removed only 147 additional sentences, leaving **18,367 sentences / 115,004 words / 170,146 48K-reference tokens**. The frozen artifact SHA-256 is `ea25fe8d3300a02228afc8d7306e60a6266090bad01f01ffa18f5a60a79fd67b`.
+
+No audit-only short-sentence records were automatically rejected; manual review showed legitimate Oromo names, vocabulary, short prompts, and proverbs. A simple English-marker heuristic also produced false positives because `in` is common Oromo text, so that diagnostic was not used as a deletion rule. Audio is excluded from OromoCorpus.
+
 ### Latest corpus-expansion audit
 
 The official upstream **CC100 Oromo** release was audited after the Glot500
@@ -188,7 +195,7 @@ exact-net-new residual was removed by the canonical near-dedup gate. Only
 At the close of the CC100 audit, the accepted corpus remained **830,308 records / 63,114,001
 48K-reference tokens (63.11% of the 100M planning target)**. That figure is retained here as a historical audit checkpoint.
 
-FineWeb2 `gaz_Latn` v0.1 was followed by three additional approved sources: GlotCC V1 `gaz-Latn` (**2,109 records / 1,716,558 tokens**), canonical AllenAI NLLB Oromo (**1,101,371 records / 16,701,572 tokens**), and mOSCAR V2 `gaz_Latn` (**12,215 records / 820,958 tokens**). The current accepted OromoCorpus baseline is **1,968,208 records / 94,060,044 48K-reference tokens (94.06% of the 100M planning target)**, leaving **5,939,956 tokens**. Mozilla Common Voice Oromo 27.0 remains paused and does not count toward the accepted corpus.
+FineWeb2 `gaz_Latn` v0.1 was followed by three additional approved sources: GlotCC V1 `gaz-Latn` (**2,109 records / 1,716,558 tokens**), canonical AllenAI NLLB Oromo (**1,101,371 records / 16,701,572 tokens**), and mOSCAR V2 `gaz_Latn` (**12,215 records / 820,958 tokens**). The current accepted OromoCorpus baseline is **1,986,575 records / 94,230,190 48K-reference tokens (94.23% of the 100M planning target)**, leaving **5,769,810 tokens**. Mozilla Common Voice Oromo 27.0 is now accepted as a text-only validated-sentence source, contributing **18,367 records / 170,146 reference tokens**.
 
 See:
 - [CC100 Oromo audit](docs/sources/CC100_OM_AUDIT.md)
@@ -376,7 +383,7 @@ The repository is research infrastructure under active development; commands and
 ✅ Native-vs-+8K 10-step GPU smoke tests
 ✅ First controlled Gemma native-vs-+8K CPT pilot
 
-✅ OromoCorpus 50M minimum achieved — current total 94,060,044 reference tokens (94.06% of 100M)
+✅ OromoCorpus 50M minimum achieved — current total 94,230,190 reference tokens (94.23% of 100M)
 🔄 Expand OromoCorpus toward the preferred 100M target
 ✅ Exact byte-normalized three-way LM evaluation
 ✅ +8K v0.3 fresh-data learning curve + forgetting controls
