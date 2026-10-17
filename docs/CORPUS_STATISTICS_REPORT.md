@@ -788,7 +788,8 @@ The current accepted sources measure:
 | GlotCC V1 `gaz-Latn` | 2,109 | 8,383,273 | 1,716,558 |
 | AllenAI NLLB `gaz_Latn` v0.1 | 1,101,371 | — | 16,701,572 |
 | mOSCAR V2 `gaz_Latn` | 12,215 | — | 820,958 |
-| **Accepted total** | **1,968,208** | **—** | **94,060,044** |
+| Mozilla Common Voice Oromo 27.0 | 18,367 | 796,880 | 170,146 |
+| **Accepted total** | **1,986,575** | **—** | **94,230,190** |
 
 ### FineWeb2 approved source
 
@@ -800,6 +801,10 @@ Subsequent qualification added three accepted sources. GlotCC V1 `gaz-Latn` cont
 
 These additions raise OromoCorpus to **1,968,208 accepted records / 94,060,044 reference tokens (94.06% of 100M)**. Character totals for NLLB and mOSCAR are not restated in this report because the frozen user-visible summaries used for this update did not include their final character counts; the token and record totals are authoritative.
 
+
+### Common Voice Oromo accepted addition
+
+Mozilla Common Voice Scripted Speech 27.0 contributes **18,367 validated Oromo sentences / 115,004 whitespace words / 796,880 characters / 170,146 48K-reference tokens**. Exact cross-source overlap was only 7 sentences before canonical near deduplication, and the final accepted text retained **99.34%** of the exact-net-new word mass. Audio is excluded from the text corpus. Final SHA-256: `ea25fe8d3300a02228afc8d7306e60a6266090bad01f01ffa18f5a60a79fd67b`.
 
 ### MADLAD-400 approved source
 
@@ -987,7 +992,7 @@ It should not yet be treated as the final Oromo foundation-model training corpus
 
 Since v0.1.2 was frozen, two additional source-level expansions have been qualified and frozen: Wikimedia omwiki and the provenance-cleared VOA Afaan Oromoo subset recovered through WURA. Together they contribute **2,970,707 net-new 48K reference tokens** beyond the AfriBERTa seed.
 
-The current accepted planning total is **94,060,044 48K reference tokens** across **1,968,208 records**, or **188.12%** of the 50M v0.2 minimum and **94.06%** of the preferred 100M target. **5,939,956 reference tokens remain** to the preferred 100M target. The token-volume gate is achieved; a formal OromoCorpus v0.2 release still requires the selected/versioned OromoLM tokenizer and the remaining release checks.
+The current accepted planning total is **94,230,190 48K reference tokens** across **1,986,575 records**, or **188.46%** of the 50M v0.2 minimum and **94.23%** of the preferred 100M target. **5,769,810 reference tokens remain** to the preferred 100M target. The token-volume gate is achieved; a formal OromoCorpus v0.2 release still requires the selected/versioned OromoLM tokenizer and the remaining release checks.
 
 ---
 
