@@ -137,7 +137,8 @@ Using the Oromo Unigram 48K + byte-fallback research tokenizer as the current pl
 | GlotCC V1 `gaz-Latn` | 2,109 | 1,716,558 | approved/frozen — CC0 packaging; underlying text caveat |
 | AllenAI NLLB `gaz_Latn` v0.1 | 1,101,371 | 16,701,572 | approved/frozen — ODC-By 1.0; source-specific terms apply |
 | mOSCAR V2 `gaz_Latn` | 12,215 | 820,958 | approved/frozen — CC-BY-4.0 dataset terms |
-| **Accepted total** | **1,968,208** | **94,060,044** | **188.12% of v0.2 minimum / 94.06% of 100M target** |
+| Mozilla Common Voice Oromo 27.0 | 18,367 | 170,146 | approved/frozen — CC0-1.0; validated text only |
+| **Accepted total** | **1,986,575** | **94,230,190** | **188.46% of v0.2 minimum / 94.23% of 100M target** |
 
 ### FineWeb2 approval and 74.82M milestone
 
@@ -629,9 +630,9 @@ The project is currently here:
 ✅ GlotCC V1 `gaz-Latn` approved/frozen: 2,109 records / 1,716,558 tokens
 ✅ AllenAI NLLB `gaz_Latn` approved/frozen: 1,101,371 records / 16,701,572 tokens
 ✅ mOSCAR V2 `gaz_Latn` approved/frozen: 12,215 records / 820,958 tokens
-⏸ Mozilla Common Voice Oromo 27.0 remains paused after download
+✅ Mozilla Common Voice Oromo 27.0 approved/frozen: 18,367 records / 170,146 tokens
 ✅ 50M minimum corpus milestone achieved
-✅ Current accepted 48K-reference corpus measurement: 94,060,044 tokens (94.06% of 100M; 5,939,956 remaining)
+✅ Current accepted 48K-reference corpus measurement: 94,230,190 tokens (94.23% of 100M; 5,769,810 remaining)
 ✅ Frozen tokenizer evaluation
 ✅ Multilingual/custom tokenizer baselines
 ✅ Native causal-LM tokenizer benchmark (Phase 4A)
@@ -649,7 +650,7 @@ The project is currently here:
 ✅ +4K WikiText retention PASS
 ✅ +4K selected over +8K/native under frozen gate
         ↓
-🔄 Expand accepted OromoCorpus from 94.06M toward the preferred 100M target
+🔄 Expand accepted OromoCorpus from 94.23M toward the preferred 100M target
         ↓
 🔄 Improve corpus domain/dialect balance while expanding toward 100M / publisher cluster
 ```
