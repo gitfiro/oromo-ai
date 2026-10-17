@@ -15,7 +15,7 @@ The project optimizes for quality, diversity, licensing clarity, and reproducibi
 
 ## Current Measured Progress — 2026-10-17
 
-The current accepted multi-source corpus measures **74,820,956 tokens** across **852,513 records** under the Oromo Unigram 48K + byte-fallback tokenizer used as a planning reference. The 50M v0.2 minimum has been achieved; expansion now continues toward the preferred 100M target. This tokenizer is not yet the final OromoLM tokenizer, so the number is a versioned planning measurement rather than the final release count.
+The current accepted multi-source corpus measures **94,060,044 tokens** across **1,968,208 records** under the Oromo Unigram 48K + byte-fallback tokenizer used as a planning reference. The 50M v0.2 minimum has been achieved; expansion now continues toward the preferred 100M target. This tokenizer is not yet the final OromoLM tokenizer, so the number is a versioned planning measurement rather than the final release count.
 
 | Source | Final accepted records | 48K reference tokens | Registry status |
 | --- | ---: | ---: | --- |
@@ -29,7 +29,10 @@ The current accepted multi-source corpus measures **74,820,956 tokens** across *
 | Michsethowusu English–Oromo cleaned monolingual subset v0.1 | 45,048 | 1,185,406 | approved monolingual subset — NLLB/ODC-BY basis |
 | Glot500 Oromo source-partitioned subset v0.1 | 80,069 | 5,913,656 | approved source-partitioned subset |
 | FineWeb2 `gaz_Latn` v0.1 | 22,205 | 11,706,955 | approved — ODC-By 1.0; underlying-text caveat |
-| **Accepted total** | **852,513** | **74,820,956** | — |
+| GlotCC V1 `gaz-Latn` | 2,109 | 1,716,558 | approved — CC0 packaging; underlying-text caveat |
+| AllenAI NLLB `gaz_Latn` v0.1 | 1,101,371 | 16,701,572 | approved — ODC-By 1.0; source-specific terms apply |
+| mOSCAR V2 `gaz_Latn` | 12,215 | 820,958 | approved — CC-BY-4.0 dataset terms |
+| **Accepted total** | **1,968,208** | **94,060,044** | — |
 
 ### Michsethowusu Oromo Sentiments cleaned subset
 
@@ -100,11 +103,11 @@ Margin above 50M: **13,114,001**
 Progress:
 
 ```text
-50M minimum:  149.64% complete — achieved
-margin:        24,820,956 reference tokens
+50M minimum:  188.12% complete — achieved
+margin:        44,060,044 reference tokens
 
-100M target:   74.82% complete
-remaining:     25,179,044 reference tokens
+100M target:   94.06% complete
+remaining:     5,939,956 reference tokens
 ```
 
 `castorini-wura-orm` remains `reviewing`. WURA is used as a provenance-discovery layer; only source subsets that independently pass rights review and the full acceptance pipeline count toward OromoCorpus.
@@ -261,8 +264,8 @@ In addition to the v0.2 gates:
 
 ## Immediate Execution Order
 
-1. Preserve the current approved-source baseline and frozen source manifests.
-2. Continue expansion toward 100M while prioritizing underrepresented domains and dialects; large sources remain valuable but are no longer required merely to clear the minimum.
+1. Preserve the current 13-source / 94,060,044-token approved baseline and frozen source manifests.
+2. Qualify a final high-yield source family capable of adding roughly 5.94M net-new reference tokens; CulturaX is the next active candidate, while smaller curated sources remain useful for balance.
 3. Keep unclear sources in `reviewing` or `hold`; do not infer permission from crawlability or dataset-wrapper licenses.
 4. Ingest accepted source subsets without modifying prior frozen releases.
 5. Apply conservative quality filtering, within-source exact/near deduplication, and cross-source deduplication against every accepted source.
@@ -300,6 +303,17 @@ The full FineWeb2 `gaz_Latn` train partition contained **47,883 records / 17,158
 The accepted artifact contains **22,205 records / 7,399,789 words / 11,706,955 48K-reference tokens** and is frozen at SHA-256 `d1a6c58c2298d37ae49df6bafd6a4d03963ebc99cdac831490448cb21cfc56ec`. FineWeb2 packaging is recorded as **ODC-By 1.0**; underlying individual Common Crawl content rights remain `not_independently_verified`.
 
 See `docs/sources/FINEWEB2_OROMO_REPORT.md`.
+
+### GlotCC, canonical NLLB, and mOSCAR promotions
+
+GlotCC V1 `gaz-Latn` contributes **2,109 records / 1,716,558 48K-reference tokens** after exact cross-source deduplication, canonical 5-word-shingle near deduplication, and narrow quality filtering.
+
+Canonical AllenAI NLLB `gaz_Latn` contributes **1,101,371 records / 16,701,572 48K-reference tokens** after consolidating the Oromo side across 45 non-empty pair configurations, global exact deduplication, conservative quality filtering, sentence-aware containment against accepted OromoCorpus, normalized-equality deduplication, and exact canonical near deduplication.
+
+mOSCAR V2 `gaz_Latn` contributes **12,215 native text segments / 820,958 48K-reference tokens** after correcting the nested document schema, deduplicating at native segment granularity, applying a narrow English/Ethiopic/very-short quality gate, and canonical near deduplication against whole-record and sentence-span units.
+
+The authoritative baseline after these promotions is **1,968,208 accepted records / 94,060,044 reference tokens**, leaving **5,939,956 tokens** to the preferred 100M target.
+
 
 ### Mozilla Common Voice Oromo Scripted Speech 27.0
 
