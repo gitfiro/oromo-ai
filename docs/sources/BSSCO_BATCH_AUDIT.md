@@ -17,11 +17,11 @@ The command checks that exactly 30 PDFs exist. It uses that existing sample with
 
 If the process is interrupted, rerun the identical command. Completed page checkpoints are reused only when the source PDF, script, DPI, tool versions, and OCR model hashes match. Failed pages are retried; a document failure makes the command exit nonzero and marks the summary incomplete. A final summary is produced after the workers finish.
 
-For actual reference-token measurement of the candidates, append both arguments below using the locally frozen tokenizer. The hash is from the tracked 48K tokenizer manifest:
+For actual reference-token measurement of the candidates, append both arguments below using the locally frozen tokenizer. The hash is from the tracked 48K byte-fallback tokenizer manifest used for current corpus accounting:
 
 ```bash
-  --tokenizer tokenizer/training/candidates/oromo_unigram_48k/tokenizer.model \
-  --tokenizer-sha256 bf8f11186820645532778d95314b7165acc926e0805d3e7fc4bf9655fcdd331e
+  --tokenizer tokenizer/training/candidates/oromo_unigram_48k_byte/tokenizer.model \
+  --tokenizer-sha256 79d64021d85877c1544e7e3a26bb21d2ad15f0aa7c6e76aeeeed3efddc5c3d2f
 ```
 
 No token estimate is fabricated if the tokenizer is omitted. Measured candidate tokens are before cross-source deduplication and remain outside the accepted total.
